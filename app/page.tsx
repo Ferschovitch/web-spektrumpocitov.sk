@@ -352,11 +352,14 @@ export default function HomePage() {
               marginBottom: 20,
             }}
           >
-            Pre veľké srdcia,{" "}
-            <span style={{ color: "#5BC8C8" }}>ktoré vychovávajú malých</span>
+            Spolu objímeme{" "}
+            <span style={{ color: "#5BC8C8" }}>slnko aj dážď</span>
           </h2>
           <p style={{ color: "#6B7280", fontSize: 17, lineHeight: 1.8, marginBottom: 40 }}>
-            Vieme, že rodičovstvo je cesta plná svetla aj tieňa. Spektrum Pocitov je tu, aby vám poskytlo nástroje a podporu, ktorú vaše dieťa potrebuje. V bezpečnom priestore oslavujeme všetky pocity — radosť, smútok, hnev aj odvahu.
+            Som tu pre všetkých, ktorí túžia po pochopení. Pre tých, ktorí si chcú lepšie porozumieť vo vlastnej situácii, aj pre tých, ktorí hľadajú cestu z trápení, vzťahových kríz či výchovných dilem.
+            Nech práve prechádzate akýmkoľvek obdobím, budem vás sprevádzať s rešpektom a pokojom. Bez hodnotenia a bez tlaku na rýchle odpovede.
+            Pretože život nie je len jasná obloha. Sú v ňom aj prehánky, hmla aj vietor.
+            Spolu môžeme nájsť spôsob, ako prečkať obdobie dažďov a znovu sa nadýchnuť, keď vyjde slnko.
           </p>
 
           {/* Dot pagination */}
@@ -462,7 +465,7 @@ export default function HomePage() {
           </p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
             <Link
-              href="#toolkit"
+              href="/kontakt"
               style={{
                 background: "white",
                 color: "#1A1A1A",
