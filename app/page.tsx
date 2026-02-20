@@ -355,12 +355,18 @@ export default function HomePage() {
             Spolu objímeme{" "}
             <span style={{ color: "#5BC8C8" }}>slnko aj dážď</span>
           </h2>
-          <p style={{ color: "#6B7280", fontSize: 17, lineHeight: 1.8, marginBottom: 40 }}>
-            Som tu pre všetkých, ktorí túžia po pochopení. Pre tých, ktorí si chcú lepšie porozumieť vo vlastnej situácii, aj pre tých, ktorí hľadajú cestu z trápení, vzťahových kríz či výchovných dilem.
-            Nech práve prechádzate akýmkoľvek obdobím, budem vás sprevádzať s rešpektom a pokojom. Bez hodnotenia a bez tlaku na rýchle odpovede.
-            Pretože život nie je len jasná obloha. Sú v ňom aj prehánky, hmla aj vietor.
-            Spolu môžeme nájsť spôsob, ako prečkať obdobie dažďov a znovu sa nadýchnuť, keď vyjde slnko.
-          </p>
+          <div style={{ color: "#6B7280", fontSize: 17, lineHeight: 1.8, marginBottom: 40, display: "flex", flexDirection: "column", gap: 16 }}>
+            <p style={{ margin: 0 }}>
+              Som tu pre všetkých, ktorí túžia po pochopení. Pre tých, ktorí si chcú lepšie porozumieť vo vlastnej situácii, aj pre tých, ktorí hľadajú cestu z trápení, vzťahových kríz či výchovných dilem.
+            </p>
+            <p style={{ margin: 0 }}>
+              Nech práve prechádzate akýmkoľvek obdobím, budem vás sprevádzať s rešpektom a pokojom. Bez hodnotenia a bez tlaku na rýchle odpovede.
+            </p>
+            <p style={{ margin: 0, fontStyle: "italic", color: "#9CA3AF" }}>
+              Pretože život nie je len jasná obloha. Sú v ňom aj prehánky, hmla aj vietor.
+              Spolu môžeme nájsť spôsob, ako prečkať obdobie dažďov a znovu sa nadýchnuť, keď vyjde slnko.
+            </p>
+          </div>
 
           {/* Dot pagination */}
           <div style={{ display: "flex", justifyContent: "center", gap: 10 }}>
