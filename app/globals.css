@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-cream: #F5F6F0;
+  --color-green: #6DBF67;
+  --color-green-dark: #4a9c45;
+  --color-yellow: #F5C842;
+  --color-yellow-dark: #d4a820;
+  --color-teal: #5BC8C8;
+  --color-pink: #F5A0A0;
+  --color-dark: #1A1A1A;
+  --color-muted: #6B7280;
+  --color-card-yellow: #FEF9E7;
+  --color-card-blue: #EAF6FB;
+  --color-card-pink: #FDF0F0;
+  --color-card-green: #EDF7ED;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --radius-card: 20px;
+}
+
+:root {
+  --background: #F5F6F0;
+  --foreground: #1A1A1A;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  line-height: 1.2;
+}
+
+/* Card base */
+.card {
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  background: white;
+}
+
+/* Pill button base */
+.btn-pill {
+  border-radius: 999px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-pill:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Blob shapes */
+.blob {
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Section padding */
+.section-pad {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+  .section-pad {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
