@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useCallback, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -10,6 +10,140 @@ const navLinks = [
     { href: "/kontakt", label: "Kontakt" },
 ];
 
+// Sparkle colours matching the brand palette
+const SPARKLE_COLORS = ["#F5C842", "#6DBF67", "#5BC8C8", "#F5A0A0", "#ffffff", "#F5C842"];
+
+interface Sparkle {
+    id: number;
+    x: number;
+    y: number;
+    color: string;
+    size: number;
+    angle: number;
+    distance: number;
+    shape: "star" | "circle" | "dot";
+}
+
+let sparkleCounter = 0;
+
+function createSparkles(count: number, originX: number, originY: number): Sparkle[] {
+    return Array.from({ length: count }, () => {
+        sparkleCounter += 1;
+        return {
+            id: sparkleCounter,
+            x: originX,
+            y: originY,
+            color: SPARKLE_COLORS[Math.floor(Math.random() * SPARKLE_COLORS.length)],
+            size: 5 + Math.random() * 7,
+            angle: Math.random() * 360,
+            distance: 28 + Math.random() * 36,
+            shape: (["star", "circle", "dot"] as const)[Math.floor(Math.random() * 3)],
+        };
+    });
+}
+
+function SparkleParticle({ sparkle }: { sparkle: Sparkle }) {
+    const rad = (sparkle.angle * Math.PI) / 180;
+    const tx = Math.cos(rad) * sparkle.distance;
+    const ty = Math.sin(rad) * sparkle.distance;
+
+    const style: React.CSSProperties = {
+        position: "absolute",
+        left: sparkle.x,
+        top: sparkle.y,
+        width: sparkle.size,
+        height: sparkle.size,
+        pointerEvents: "none",
+        zIndex: 200,
+        transform: "translate(-50%, -50%)",
+        animation: `sparkle-burst 0.55s ease-out forwards`,
+        // Pass travel via CSS variables
+        // @ts-expect-error custom properties
+        "--tx": `${tx}px`,
+        "--ty": `${ty}px`,
+        color: sparkle.color,
+    };
+
+    if (sparkle.shape === "star") {
+        return (
+            <span style={{ ...style, fontSize: sparkle.size, lineHeight: 1 }}>✦</span>
+        );
+    }
+    if (sparkle.shape === "circle") {
+        return (
+            <span
+                style={{
+                    ...style,
+                    borderRadius: "50%",
+                    background: sparkle.color,
+                    display: "block",
+                }}
+            />
+        );
+    }
+    // dot
+    return (
+        <span
+            style={{
+                ...style,
+                width: sparkle.size * 0.55,
+                height: sparkle.size * 0.55,
+                borderRadius: "50%",
+                background: sparkle.color,
+                display: "block",
+            }}
+        />
+    );
+}
+
+function SparkleLink({
+    href,
+    className,
+    children,
+    onClick,
+}: {
+    href: string;
+    className?: string;
+    children: React.ReactNode;
+    onClick?: () => void;
+}) {
+    const [sparkles, setSparkles] = useState<Sparkle[]>([]);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const spawnSparkles = useCallback((e: React.MouseEvent) => {
+        const rect = containerRef.current?.getBoundingClientRect();
+        if (!rect) return;
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const newSparkles = createSparkles(7, x, y);
+        setSparkles((prev) => [...prev, ...newSparkles]);
+        setTimeout(() => {
+            setSparkles((prev) =>
+                prev.filter((s) => !newSparkles.find((n) => n.id === s.id))
+            );
+        }, 600);
+    }, []);
+
+    return (
+        <div ref={containerRef} style={{ position: "relative", display: "inline-block" }}>
+            <Link
+                href={href}
+                className={className}
+                onMouseEnter={spawnSparkles}
+                onClick={(e) => {
+                    spawnSparkles(e);
+                    onClick?.();
+                }}
+            >
+                {children}
+            </Link>
+            {sparkles.map((s) => (
+                <SparkleParticle key={s.id} sparkle={s} />
+            ))}
+        </div>
+    );
+}
+
 export default function Navbar() {
     const [open, setOpen] = useState(false);
     const pathname = usePathname();
@@ -17,12 +151,18 @@ export default function Navbar() {
     return (
         <>
             <style>{`
+        @keyframes sparkle-burst {
+          0%   { transform: translate(-50%, -50%) translate(0px, 0px) scale(1); opacity: 1; }
+          60%  { opacity: 0.8; }
+          100% { transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+        }
         .nav-link {
           text-decoration: none;
           font-size: 15px;
           font-weight: 500;
           color: #4B5563;
           transition: color 0.2s;
+          position: relative;
         }
         .nav-link:hover, .nav-link.active { color: #6DBF67; }
         .nav-cta {
@@ -115,17 +255,17 @@ export default function Navbar() {
                     {/* Desktop nav */}
                     <div className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: 32 }}>
                         {navLinks.map((link) => (
-                            <Link
+                            <SparkleLink
                                 key={link.href}
                                 href={link.href}
                                 className={`nav-link${pathname === link.href ? " active" : ""}`}
                             >
                                 {link.label}
-                            </Link>
+                            </SparkleLink>
                         ))}
-                        <Link href="/kontakt" className="nav-cta">
+                        <SparkleLink href="/kontakt" className="nav-cta">
                             Rezervovať hovor
-                        </Link>
+                        </SparkleLink>
                     </div>
 
                     {/* Hamburger */}
@@ -161,18 +301,22 @@ export default function Navbar() {
                         }}
                     >
                         {navLinks.map((link) => (
-                            <Link
+                            <SparkleLink
                                 key={link.href}
                                 href={link.href}
                                 className="mobile-link"
                                 onClick={() => setOpen(false)}
                             >
                                 {link.label}
-                            </Link>
+                            </SparkleLink>
                         ))}
-                        <Link href="/kontakt" className="mobile-cta" onClick={() => setOpen(false)}>
+                        <SparkleLink
+                            href="/kontakt"
+                            className="mobile-cta"
+                            onClick={() => setOpen(false)}
+                        >
                             Rezervovať hovor
-                        </Link>
+                        </SparkleLink>
                     </div>
                 )}
             </nav>
