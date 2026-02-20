@@ -262,7 +262,7 @@ export default function Navbar() {
                             </SparkleLink>
                         ))}
                         <SparkleLink href="/kontakt" className="nav-cta">
-                            Rezervovať hovor
+                            Zavolajte mi
                         </SparkleLink>
                     </div>
 
@@ -313,7 +313,7 @@ export default function Navbar() {
                             className="mobile-cta"
                             onClick={() => setOpen(false)}
                         >
-                            Rezervovať hovor
+                            Zavolajte mi
                         </SparkleLink>
                     </div>
                 )}

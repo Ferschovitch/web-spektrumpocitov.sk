@@ -121,7 +121,7 @@ export default function ContactPage() {
                                 </label>
                                 <input
                                     type="tel"
-                                    placeholder="+421 900 000 000"
+                                    placeholder="+421 908 500 266"
                                     value={form.phone}
                                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
                                     style={inputStyle}
@@ -183,8 +183,8 @@ export default function ContactPage() {
 
                         {[
                             { icon: "📧", label: "E-mail", value: "info@spektrumpocitov.sk", href: "mailto:info@spektrumpocitov.sk" },
-                            { icon: "📞", label: "Telefón", value: "+421 900 000 000", href: "tel:+421900000000" },
-                            { icon: "📍", label: "Adresa", value: "Hlavná 12, 811 01 Bratislava", href: null },
+                            { icon: "📞", label: "Telefón", value: "+421 908 500 266", href: "tel:+421908500266" },
+                            { icon: "📍", label: "Adresa", value: "Bratislava", href: null },
                             { icon: "🕐", label: "Ordinačné hodiny", value: "Po–Pia: 9:00 – 18:00", href: null },
                         ].map((item) => (
                             <div
@@ -213,25 +213,6 @@ export default function ContactPage() {
                                 </div>
                             </div>
                         ))}
-
-                        {/* Map placeholder */}
-                        <div
-                            style={{
-                                borderRadius: 16,
-                                overflow: "hidden",
-                                height: 200,
-                                background: "linear-gradient(135deg, #EDF7ED 0%, #EAF6FB 100%)",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                border: "1.5px solid rgba(0,0,0,0.06)",
-                                flexDirection: "column",
-                                gap: 8,
-                            }}
-                        >
-                            <span style={{ fontSize: 36 }}>🗺️</span>
-                            <p style={{ color: "#6B7280", fontSize: 14, fontWeight: 500 }}>Mapa — Bratislava, Hlavná 12</p>
-                        </div>
                     </div>
                 </div>
             </section>
