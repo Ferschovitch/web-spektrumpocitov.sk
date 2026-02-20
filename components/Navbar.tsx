@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
+    { href: "/", label: "Domov" },
     { href: "/o-nas", label: "O mne" },
     { href: "/kontakt", label: "Kontakt" },
 ];
@@ -224,20 +225,11 @@ export default function Navbar() {
                 >
                     {/* Logo */}
                     <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-                        <div
-                            style={{
-                                width: 36,
-                                height: 36,
-                                borderRadius: "50%",
-                                background: "linear-gradient(135deg, #F5C842 40%, #6DBF67 100%)",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                fontSize: 18,
-                            }}
-                        >
-                            ☀️
-                        </div>
+                        <img
+                            src="/logo.png"
+                            alt="Spektrum Pocitov logo"
+                            style={{ width: 48, height: 48, objectFit: "contain" }}
+                        />
                         <span
                             style={{
                                 fontFamily: "'Playfair Display', Georgia, serif",

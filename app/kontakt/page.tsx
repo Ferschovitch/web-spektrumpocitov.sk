@@ -8,19 +8,17 @@ export default function ContactPage() {
                         <span style={{ fontSize: 12, fontWeight: 600, color: "#4a9c45" }}>📬 KONTAKT</span>
                     </div>
                     <h1 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: "clamp(30px, 4vw, 48px)", fontWeight: 700, color: "#1A1A1A", marginBottom: 16 }}>
-                        Začnime spolu
+                        Začnime spolu už dnes
                     </h1>
                     <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 500 }}>
-                        Máte otázky alebo chcete rezervovať konzultáciu? Napíšte mi — odpoviem do 24 hodín.
+                        Máte otázky alebo si chcete rezervovať konzultáciu? <br />Napíšte mi a ja vám odpoviem do 24 hodín.
                     </p>
                 </div>
             </section>
 
             {/* Contact info */}
             <section style={{ maxWidth: 600, margin: "0 auto", padding: "64px 24px" }}>
-                <h2 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: 26, fontWeight: 700, color: "#1A1A1A", marginBottom: 32 }}>
-                    Napíšte mi, zavolajte mi
-                </h2>
+
 
                 {[
                     { icon: "📧", label: "E-mail", value: "info@spektrumpocitov.sk", href: "mailto:info@spektrumpocitov.sk" },

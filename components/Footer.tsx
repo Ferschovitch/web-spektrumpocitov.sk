@@ -4,7 +4,8 @@ import Link from "next/link";
 const footerLinks = [
     /*{ href: "/#nas-pristup", label: "Náš prístup" },
     { href: "/blog", label: "Blog" },*/
-    { href: "/o-mne", label: "O mne" },
+    { href: "/", label: "Domov" },
+    { href: "/o-nas", label: "O mne" },
     { href: "/kontakt", label: "Kontakt" },
 ];
 
@@ -34,26 +35,17 @@ export default function Footer() {
                         {/* Logo */}
                         <div>
                             <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", marginBottom: 12 }}>
-                                <div
-                                    style={{
-                                        width: 32,
-                                        height: 32,
-                                        borderRadius: "50%",
-                                        background: "linear-gradient(135deg, #F5C842 40%, #6DBF67 100%)",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        fontSize: 16,
-                                    }}
-                                >
-                                    ☀️
-                                </div>
+                                <img
+                                    src="/logo.png"
+                                    alt="Spektrum Pocitov logo"
+                                    style={{ width: 48, height: 48, objectFit: "contain" }}
+                                />
                                 <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: 16, color: "white" }}>
                                     Spektrum Pocitov
                                 </span>
                             </Link>
                             <p style={{ color: "#9CA3AF", fontSize: 14, lineHeight: 1.6, maxWidth: 240 }}>
-                                Terapia pre rodiny, deti, páry aj jednotlivcov s láskavým a chápavým prítupom.
+                                Terapia pre rodiny, deti, páry aj jednotlivcov s láskavým a chápavým prístupom.
                             </p>
                         </div>
 
@@ -69,13 +61,13 @@ export default function Footer() {
                         {/* Contact info */}
                         <div className="footer-contact-info" style={{ textAlign: "right" }}>
                             <p style={{ color: "#9CA3AF", fontSize: 14, marginBottom: 8 }}>📧 info@spektrumpocitov.sk</p>
-                            <p style={{ color: "#9CA3AF", fontSize: 14, marginBottom: 8 }}>📞 +421 900 500 266</p>
+                            <p style={{ color: "#9CA3AF", fontSize: 14, marginBottom: 8 }}>📞 +421 908 500 266</p>
                             <p style={{ color: "#9CA3AF", fontSize: 14 }}>📍 Bratislava, Slovensko</p>
                         </div>
                     </div>
 
                     <div style={{ borderTop: "1px solid #374151", paddingTop: 24 }}>
-                        <p style={{ color: "#6B7280", fontSize: 13 }}>© 2026 Spektrum Pocitov. Všetky práva vyhradené.</p>
+                        <p style={{ color: "#6B7280", fontSize: 13 }}>© 2026 Spektrum Pocitov</p>
                     </div>
                 </div>
             </footer>
