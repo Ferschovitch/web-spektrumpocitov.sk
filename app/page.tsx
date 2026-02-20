@@ -34,25 +34,52 @@ const feelingsCards = [
 
 const approachCards = [
   {
-    icon: "🎨",
-    title: "Rast cez hru",
-    text: "Využívame prirodzené metódy hry, aby deti mohli slobodne vyjadrovať seba. Hra je jazykom detstva a my ním hovoríme plynule.",
+    icon: "�",
+    title: "Podpora v osobnom raste, sebarozvoj, sebapoznanie",
+    text: "Sprevádzam vás na ceste k hlbšiemu pochopeniu seba samých, aby ste mohli žiť vedomejšie a v súlade so svojimi hodnotami.",
     accentBg: "#EDF7ED",
-    accentIcon: "#6DBF67",
   },
   {
-    icon: "🌦️",
-    title: "Emocionálna odolnosť",
-    text: "Budujeme silu na zvládanie slnečných aj daždivých chvíľ. Učíme deti, že každý pocit je platný a zvládnuteľný.",
+    icon: "🆘",
+    title: "Krízová intervencia, závislosti, toxické vzťahy",
+    text: "Pomáham nájsť stabilitu a bezpečie v náročných obdobiach, keď sa zdá, že situácia prerástla vaše sily.",
+    accentBg: "#FDF0F0",
+  },
+  {
+    icon: "💬",
+    title: "Tréning efektívnej komunikácie, práca s emóciami",
+    text: "Učím, ako pomenovať svoje potreby, zvládať emócie a komunikovať tak, aby vzťahy mohli rásť namiesto toho, aby vyhoreli.",
     accentBg: "#EAF6FB",
-    accentIcon: "#5BC8C8",
+  },
+  {
+    icon: "🕊️",
+    title: "Pravidlá zdravej a bezpečnej hádky",
+    text: "Ukazujem, ako zvládať konflikty bez zraňovania, s rešpektom a dôrazom na porozumenie.",
+    accentBg: "#FEF9E7",
   },
   {
     icon: "🤝",
-    title: "Rodinné prepojenie",
-    text: "Dávame rodičom nástroje na podporu svojich detí doma. Pracujeme s celou rodinou pre trvalú a hlbokú zmenu.",
+    title: "Partnerské a pracovné vzťahy",
+    text: "Podporujem hľadanie rovnováhy, hraníc a vzájomného rešpektu vo vzťahoch doma aj v pracovnom prostredí.",
+    accentBg: "#EDF7ED",
+  },
+  {
+    icon: "✨",
+    title: "Pracovné zameranie, uplatnenie talentov, poslanie",
+    text: "Spoločne objavíme vaše silné stránky a nájdeme cestu, po ktorej môže váš talent vykročiť.",
     accentBg: "#FEF9E7",
-    accentIcon: "#F5C842",
+  },
+  {
+    icon: "🧠",
+    title: "Rozvoj mysle a vedomia, rozvoj intuície",
+    text: "Vediem k citlivejšiemu vnímaniu vlastného vnútorného hlasu a k vedomejšiemu rozhodovaniu.",
+    accentBg: "#EAF6FB",
+  },
+  {
+    icon: "🧘",
+    title: "Autogénny tréning, relaxácia a meditácia",
+    text: "Učím techniky, ktoré umožňujú rýchlejší návrat k vnútornému pokoju.",
+    accentBg: "#EDF7ED",
   },
 ];
 
@@ -354,21 +381,21 @@ export default function HomePage() {
                 marginBottom: 12,
               }}
             >
-              Náš prístup
+              Témy, ktorým sa venujem
             </h2>
             <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 520 }}>
-              Objavte, ako spájame odbornú klinickú prax s hravým, do dieťaťa orientovaným srdcom.
+              Každý človek je iný — preto pracujem s celou šírkou tém, ktoré sa vás môžu dotýkať.
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }} className="approach-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }} className="approach-grid">
             {approachCards.map((card) => (
               <div
                 key={card.title}
                 style={{
-                  background: "#F9FAF9",
+                  background: card.accentBg,
                   borderRadius: 20,
-                  padding: "32px 28px",
+                  padding: "28px 24px",
                   boxShadow: "0 4px 16px rgba(0,0,0,0.04)",
                   transition: "transform 0.25s ease, box-shadow 0.25s ease",
                 }}
@@ -383,15 +410,8 @@ export default function HomePage() {
               >
                 <div
                   style={{
-                    width: 52,
-                    height: 52,
-                    borderRadius: 14,
-                    background: card.accentBg,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 24,
-                    marginBottom: 20,
+                    fontSize: 28,
+                    marginBottom: 16,
                   }}
                 >
                   {card.icon}
@@ -399,22 +419,24 @@ export default function HomePage() {
                 <h3
                   style={{
                     fontFamily: "Playfair Display, Georgia, serif",
-                    fontSize: 20,
+                    fontSize: 16,
                     fontWeight: 700,
                     color: "#1A1A1A",
-                    marginBottom: 12,
+                    marginBottom: 10,
+                    lineHeight: 1.4,
                   }}
                 >
                   {card.title}
                 </h3>
-                <p style={{ color: "#6B7280", fontSize: 15, lineHeight: 1.7 }}>{card.text}</p>
+                <p style={{ color: "#4B5563", fontSize: 14, lineHeight: 1.7 }}>{card.text}</p>
               </div>
             ))}
           </div>
         </div>
 
         <style>{`
-          @media (max-width: 900px) { .approach-grid { grid-template-columns: 1fr !important; } }
+          @media (max-width: 1200px) { .approach-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+          @media (max-width: 600px) { .approach-grid { grid-template-columns: 1fr !important; } }
         `}</style>
       </section>
 
@@ -432,11 +454,11 @@ export default function HomePage() {
               lineHeight: 1.2,
             }}
           >
-            Pripravení nájsť{" "}
-            <span style={{ color: "#F5C842" }}>slnko?</span>
+            Ste pripravení urobiť{" "}
+            <span style={{ color: "#F5C842" }}>prvý krok?</span>
           </h2>
           <p style={{ color: "#9CA3AF", fontSize: 17, lineHeight: 1.7, marginBottom: 40 }}>
-            Pridajte sa k našej komunite rodičov a malých prieskumníkov. Získajte prístup k našej exkluzívnej sade zdrojov, cvičení a sprievodcov podporou.
+            Napíšte mi alebo rovno zavolajte, a vykročte po svojej vlastnej ceste ku krajším dňom, na ktorej vás budem rada sprevádzať.
           </p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
             <Link
@@ -455,7 +477,7 @@ export default function HomePage() {
               onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.04)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
             >
-              Preskúmať sadu nástrojov
+              Napíšte mi
             </Link>
             <Link
               href="/kontakt"
@@ -479,7 +501,7 @@ export default function HomePage() {
                 e.currentTarget.style.boxShadow = "none";
               }}
             >
-              Naplánovať konzultáciu
+              Zavolajte mi
             </Link>
           </div>
         </div>
