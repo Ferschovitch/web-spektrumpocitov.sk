@@ -11,7 +11,7 @@ export default function ContactPage() {
                         Začnime spolu
                     </h1>
                     <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 500 }}>
-                        Máte otázky alebo chcete rezervovať konzultáciu? Napíšte nám — odpovieme do 24 hodín.
+                        Máte otázky alebo chcete rezervovať konzultáciu? Napíšte mi — odpoviem do 24 hodín.
                     </p>
                 </div>
             </section>
@@ -19,7 +19,7 @@ export default function ContactPage() {
             {/* Contact info */}
             <section style={{ maxWidth: 600, margin: "0 auto", padding: "64px 24px" }}>
                 <h2 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: 26, fontWeight: 700, color: "#1A1A1A", marginBottom: 32 }}>
-                    Napíšte mi
+                    Napíšte mi, zavolajte mi
                 </h2>
 
                 {[

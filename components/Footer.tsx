@@ -2,17 +2,15 @@
 import Link from "next/link";
 
 const footerLinks = [
-    { href: "/#nas-pristup", label: "Náš prístup" },
-    { href: "/blog", label: "Blog" },
-    { href: "/o-nas", label: "O nás" },
+    /*{ href: "/#nas-pristup", label: "Náš prístup" },
+    { href: "/blog", label: "Blog" },*/
+    { href: "/o-mne", label: "O mne" },
     { href: "/kontakt", label: "Kontakt" },
 ];
 
-const legalLinks = [
-    { href: "/ochrana-sukromia", label: "Ochrana súkromia" },
-    { href: "/podmienky", label: "Podmienky služby" },
-    { href: "/kontakt", label: "Kontaktujte nás" },
-];
+
+
+
 
 export default function Footer() {
     return (
@@ -55,7 +53,7 @@ export default function Footer() {
                                 </span>
                             </Link>
                             <p style={{ color: "#9CA3AF", fontSize: 14, lineHeight: 1.6, maxWidth: 240 }}>
-                                Terapia pre deti a rodiny s láskavým, nádejným prístupom.
+                                Terapia pre rodiny, deti, páry aj jednotlivcov s láskavým a chápavým prítupom.
                             </p>
                         </div>
 
@@ -71,30 +69,13 @@ export default function Footer() {
                         {/* Contact info */}
                         <div className="footer-contact-info" style={{ textAlign: "right" }}>
                             <p style={{ color: "#9CA3AF", fontSize: 14, marginBottom: 8 }}>📧 info@spektrumpocitov.sk</p>
-                            <p style={{ color: "#9CA3AF", fontSize: 14, marginBottom: 8 }}>📞 +421 900 000 000</p>
+                            <p style={{ color: "#9CA3AF", fontSize: 14, marginBottom: 8 }}>📞 +421 900 500 266</p>
                             <p style={{ color: "#9CA3AF", fontSize: 14 }}>📍 Bratislava, Slovensko</p>
                         </div>
                     </div>
 
-                    <div
-                        style={{
-                            borderTop: "1px solid #374151",
-                            paddingTop: 24,
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            flexWrap: "wrap",
-                            gap: 12,
-                        }}
-                    >
+                    <div style={{ borderTop: "1px solid #374151", paddingTop: 24 }}>
                         <p style={{ color: "#6B7280", fontSize: 13 }}>© 2026 Spektrum Pocitov. Všetky práva vyhradené.</p>
-                        <div style={{ display: "flex", gap: 20 }}>
-                            {legalLinks.map((link) => (
-                                <Link key={link.href} href={link.href} className="footer-legal-link">
-                                    {link.label}
-                                </Link>
-                            ))}
-                        </div>
                     </div>
                 </div>
             </footer>
