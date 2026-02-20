@@ -71,8 +71,8 @@ export default function AboutPage() {
                                 <ellipse cx="168" cy="200" rx="12" ry="8" fill="#F5A0A0" opacity="0.5" />
                                 <ellipse cx="232" cy="200" rx="12" ry="8" fill="#F5A0A0" opacity="0.5" />
                                 {/* Arms */}
-                                <ellipse cx="125" cy="300" rx="22" ry="60" rx2="22" fill="#5BC8C8" transform="rotate(-10 125 300)" />
-                                <ellipse cx="275" cy="300" rx="22" ry="60" rx2="22" fill="#5BC8C8" transform="rotate(10 275 300)" />
+                                <ellipse cx="125" cy="300" rx="22" ry="60" fill="#5BC8C8" transform="rotate(-10 125 300)" />
+                                <ellipse cx="275" cy="300" rx="22" ry="60" fill="#5BC8C8" transform="rotate(10 275 300)" />
                                 {/* Hands */}
                                 <circle cx="108" cy="355" r="18" fill="#F5DEB3" />
                                 <circle cx="292" cy="355" r="18" fill="#F5DEB3" />
