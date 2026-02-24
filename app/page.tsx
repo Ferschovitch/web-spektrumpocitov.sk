@@ -8,41 +8,41 @@ const feelingsCards = [
     color: "#F5C842",
     bg: "#fdf5d6ff",
     label: "Rodiny",
-    text: "Podpora pre veľké srdcia, ktoré chcú vychovávať s väčším pokojom, istotou a porozumením.",
+    text: "Rodinná dynamika, jasne nastavené pravidlá a hranice aj funkčná spolupráca tvoria základ bezpečného prostredia, v ktorom môžu rásť deti aj dospelí. Ponúkam vám podporu na ceste k väčšiemu porozumeniu, rešpektu a blízkosti medzi vami a vašimi blízkymi.",
   },
   {
     emoji: "🔵",
     color: "#5BC8C8",
     bg: "#EAF6FB",
     label: "Deti",
-    text: "Bezpečný priestor pre deti, ktorým sa svet zdá príliš rýchly a potrebujú, aby ich niekto vypočul.",
+    text: "Podporujem rozvoj rôznych schopností a zručností dieťaťa, posilňujem jeho schopnosť zamerať pozornosť prospešným smerom a rozvíjať emočnú sebareguláciu, pričom spolu hľadáme a citlivo identifikujeme jeho skutočné potreby, aby mohlo rásť v bezpečí a porozumení.",
   },
   {
     emoji: "🔴",
     color: "#F5A0A0",
     bg: "#FDF0F0",
     label: "Jednotlivci",
-    text: "Cesta k hlbšiemu sebapoznaniu, vnútornému pokoju a zmene postoja, ktorá prináša úľavu.",
+    text: "Cesta k hlbšiemu sebapoznaniu, vnútornému pokoju a zmene postoja, ktorá prináša úľavu. Pracujeme na zvýšení sebavedomia a autonómie vo vlastnom živote, zveľadujeme vašu psychickú aj fyzickú kondíciu.",
   },
   {
     emoji: "🟢",
     color: "#6DBF67",
     bg: "#EDF7ED",
     label: "Páry",
-    text: "Obnova blízkosti a porozumenia tam, kde sa objavilo ticho alebo napätie.",
+    text: "Objavíme vzájomný jazyk lásky, nastavíme efektívnu komunikáciu a naučíme sa bezpečne a zdravo hádať. Budeme sa venovať otázkam, ako spolu tráviť zmysluplný čas, ako budovať pocit bezpečia a spolupatričnosti a ako byť jeden pre druhého stále atraktívnym a inšpiratívnym partnerom.",
   },
 ];
 
 const approachCards = [
   {
     icon: "🪞",
-    title: "Podpora v osobnom raste, sebarozvoj, sebapoznanie",
+    title: "Podpora v osobnom raste, sebarozvoj, sebapoznanie, sebavedomie",
     text: "Sprevádzam vás na ceste k hlbšiemu pochopeniu seba samých, aby ste mohli žiť vedomejšie a v súlade so svojimi hodnotami.",
     accentBg: "#EDF7ED",
   },
   {
     icon: "🆘",
-    title: "Krízová intervencia, závislosti, toxické vzťahy",
+    title: "Krízová intervencia a závislosti",
     text: "Pomáham nájsť stabilitu a bezpečie v náročných obdobiach, keď sa zdá, že situácia je nad vaše sily.",
     accentBg: "#FDF0F0",
   },
@@ -60,27 +60,33 @@ const approachCards = [
   },
   {
     icon: "🤝",
-    title: "Partnerské a pracovné vzťahy",
-    text: "Podporujem hľadanie rovnováhy, hraníc a vzájomného rešpektu vo vzťahoch doma aj v pracovnom prostredí.",
+    title: "Partnerské a pracovné vzťahy, toxické vzťahy",
+    text: "Podporujem hľadanie rovnováhy a vzájomného rešpektu vo vzťahoch doma aj v pracovnom prostredí. Venujem sa rôznym vzťahovým dynamikám (mužsko-ženská, narcis vs. empat, obeť vs. tyran, atď.).",
     accentBg: "#EDF7ED",
   },
   {
     icon: "✨",
     title: "Pracovné zameranie, uplatnenie talentov, poslanie",
-    text: "Spoločne objavíme vaše silné stránky a nájdeme cestu, po ktorej môže váš talent vykročiť.",
+    text: "Spoločne objavíme vaše silné stránky a nájdeme cestu, po ktorej môže váš talent vykročiť. Nahradíme pocity pracovného vyhorenia za spokojnosť a pracovné naplnenie.",
     accentBg: "#FEF9E7",
   },
   {
     icon: "🧠",
-    title: "Rozvoj mysle a vedomia, rozvoj intuície",
-    text: "Vediem k citlivejšiemu vnímaniu vlastného vnútorného hlasu a k vedomejšiemu rozhodovaniu.",
+    title: "Rozvoj mysle, vedomia a intuície",
+    text: "Vediem k citlivejšiemu vnímaniu vnútorného hlasu a k vedomejšiemu rozhodovaniu, aj pomocou identifikácie zautomatizovaných reakcií a vzorcov myslenia, rôznych blokov a strachov.",
     accentBg: "#EAF6FB",
   },
   {
     icon: "🧘",
     title: "Autogénny tréning, relaxácia a meditácia",
-    text: "Učím techniky, ktoré umožňujú rýchlejší návrat k vnútornému pokoju.",
+    text: "Učím techniky, ktoré umožňujú rýchlejší návrat k vnútornému pokoju, premene neprospešných návykov na prospešné.",
     accentBg: "#EDF7ED",
+  },
+  {
+    icon: "⚛️",
+    title: "Energetické zákony a manifestácia",
+    text: "Objasním príčiny a následky aktuálnej podoby vašich vzťahov, práce, zdravia (psychosomatika) a celkovej životnej situácie",
+    accentBg: "#FDF0F0",
   },
 ];
 
@@ -117,7 +123,7 @@ const carouselCards = [
       "Únava. Preťaženie. Pochybnosti. Pocit, že musím zvládnuť všetko a pritom sa nikto nepýta, či mi niečo nechýba.",
       "Žiť ľahšie sa dá. Nie únikom, ale pochopením.",
       "Ak chcete objaviť, čo sa deje pod povrchom vašich reakcií, vzťahov a rozhodnutí, som tu pre vás. Nie aby som vám povedala, kým máte byť, ale aby ste sa mohli znovu stretnúť sami so sebou.",
-      "Pretože vnútorný pokoj nie je slabosť. Je to sila, ktorá vám umožní slobodne dýchať.",
+      "Pretože statiť sa nie je hanba ani nič definitívne. Je to príležitosť lepšie spoznať svoje vnútro a konečne sa slobodne nadýchnuť.",
     ],
   },
   {
@@ -125,9 +131,8 @@ const carouselCards = [
     bg: "#EDF7ED",
     title: "Pre páry, ktoré si znova hľadajú cestu k sebe",
     paragraphs: [
-      "Byť vo vzťahu znamená rásť. Niekedy spolu, niekedy každý sám. A občas sa na tej ceste stratí blízkosť.",
-      "Rozchod však nezačína hádkou ani tichom medzi vetami. Začína sa únavou, nepochopením a drobnými zraneniami, ktoré sa v nás nenápadne hromadia.",
-      "Ak cítite, že sa chcete znovu počúvať a nie iba na seba reagovať, rada vás budem sprevádzať. Nie hľadaním vinníka, ale návratom k porozumeniu. Nie preto, že zmiznú všetky rozdiely, ale preto, že sa naučíte stáť spoločne na jednej strane barikády.",
+      "Byť vo vzťahu znamená kráčať po spoločnej ceste. A občas sa na tej ceste stratí blízkosť, ktorú nahradia hádky alebo naopak dusivé ticho, zraňujúce správanie či úplné vyčerpanie.",
+      "Ak nehľadáte vinníka, ale cestu k vzájomnému porozumeniu, rada vás ňou budem sprevádzať. Otvorenými rozhobvormi a spoločnými cvičeniami sa priblížite k sebe aby ste sa mohli opäť naladiť na rovnakú vlnu.",
       "Pretože láska nepotrebuje dokonalosť. Potrebuje bezpečný priestor.",
     ],
   },
@@ -282,10 +287,10 @@ export default function HomePage() {
                 color: "#1A1A1A",
               }}
             >
-              Spolu objímeme{" "}
-              <span style={{ color: "#F5C842" }}>slnko</span>{" "}
-              aj{" "}
-              <span style={{ color: "#5BC8C8" }}>dážď</span>
+              Spolu objavme{" "}
+              <span style={{ color: "#F5C842" }}>svetlo</span>{" "}
+              v{" "}
+              <span style={{ color: "#5BC8C8" }}>tme</span>
             </h1>
 
             <div
@@ -300,13 +305,26 @@ export default function HomePage() {
               <p style={{ margin: 0 }}>
                 Som tu pre všetkých, ktorí túžia po pochopení. Pre tých, ktorí chcú lepšie porozumieť vlastnej situácii, aj pre tých, ktorí hľadajú cestu z trápení, vzťahových kríz či výchovných dilem.<br /><br />
               </p>
+
+              <p style={{ margin: 0 }}>
+                Ľudí vnímam a prijímam práve takých, akí sú, bez hodnotenia, nálepiek či tlaku. Spolu môžeme nájsť odpovede na vaše otázky, správny smer na ceste riešenia vašich problémov a vytúžený vnútorný pokoj.<br /><br />
+              </p>
+
+              <p style={{ margin: 0 }}>
+                Ponúkam autentický a ľudský prístup.<br />
+              </p>
+              {/* doplniť ze kamaratka */}
+
+              {/*
               <p style={{ margin: 0 }}>
                 Budem vás sprevádzať s rešpektom a pokojom, nech prechádzate akýmkoľvek obdobím. Bez hodnotenia a bez tlaku na rýchle odpovede.<br /><br />
               </p>
+              
               <p style={{ margin: 0, fontStyle: "italic", color: "#9CA3AF" }}>
                 Pretože život nie je len jasná obloha. Občas prídu prehánky, hmla a vietor.
                 Spolu môžeme nájsť spôsob, ako prečkať obdobie dažďov a znovu sa nadýchnuť, keď vyjde slnko.
               </p>
+              */}
             </div>
 
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
@@ -465,11 +483,11 @@ export default function HomePage() {
               Témy, ktorým sa venujem
             </h2>
             <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 520 }}>
-              Každý človek je iný, a preto pracujem s celou šírkou tém, ktoré sa vás môžu dotýkať.
+
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }} className="approach-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }} className="approach-grid">
             {approachCards.map((card) => (
               <div
                 key={card.title}
@@ -516,7 +534,7 @@ export default function HomePage() {
         </div>
 
         <style>{`
-          @media (max-width: 1200px) { .approach-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+          @media (max-width: 900px) { .approach-grid { grid-template-columns: repeat(2, 1fr) !important; } }
           @media (max-width: 600px) { .approach-grid { grid-template-columns: 1fr !important; } }
         `}</style>
       </section>
@@ -535,11 +553,11 @@ export default function HomePage() {
               lineHeight: 1.2,
             }}
           >
-            Ste pripravení urobiť{" "}
-            <span style={{ color: "#F5C842" }}>prvý krok?</span>
+            Vykročte na cestu ku  {" "}
+            <span style={{ color: "#F5C842" }}>krajším dňom</span>
           </h2>
           <p style={{ color: "#9CA3AF", fontSize: 17, lineHeight: 1.7, marginBottom: 40 }}>
-            Napíšte mi alebo rovno zavolajte, a vykročte po svojej vlastnej ceste ku krajším dňom, na ktorej vás budem rada sprevádzať.
+
           </p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
             <Link

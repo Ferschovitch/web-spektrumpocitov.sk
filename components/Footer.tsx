@@ -45,7 +45,7 @@ export default function Footer() {
                                 </span>
                             </Link>
                             <p style={{ color: "#9CA3AF", fontSize: 14, lineHeight: 1.6, maxWidth: 240 }}>
-                                Terapia pre rodiny, deti, páry aj jednotlivcov s láskavým a chápavým prístupom.
+                                Podpora pre rodiny, deti, páry aj jednotlivcov s láskavým a chápavým prístupom.
                             </p>
                         </div>
 

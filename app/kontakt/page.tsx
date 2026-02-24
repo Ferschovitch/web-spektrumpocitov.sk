@@ -1,3 +1,4 @@
+"use client";
 export default function ContactPage() {
     return (
         <div style={{ background: "#F5F6F0", minHeight: "100vh" }}>
@@ -51,6 +52,54 @@ export default function ContactPage() {
                         </div>
                     </div>
                 ))}
+
+                {/* Partner links */}
+                <div style={{ marginTop: 16 }}>
+                    <p style={{ fontSize: 12, fontWeight: 600, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 14 }}>Užitočné odkazy</p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                        {[
+                            { title: "Kid Genius", url: "https://www.kidgenius.sk/", subtitle: "Lektorka a psychologička", color: "#F5C842", bg: "#fdf5d6ff", icon: "🧒" },
+                            { title: "Světladíl", url: "https://www.svetladil.cz/", subtitle: "Lektorka extraokulárneho videnia", color: "#5BC8C8", bg: "#EAF6FB", icon: "✨" },
+                            { title: "OZ Pre detské hlavičky", url: null, subtitle: "Členka združenia", color: "#F5A0A0", bg: "#FDF0F0", icon: "🧠" },
+                        ].map((link) => (
+                            <a
+                                key={link.title}
+                                href={link.url ?? undefined}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 14,
+                                    background: "white",
+                                    borderRadius: 16,
+                                    padding: "16px 24px",
+                                    boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
+                                    textDecoration: "none",
+                                    transition: "transform 0.2s, box-shadow 0.2s",
+                                    borderLeft: `4px solid ${link.color}`,
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = "translateY(-2px)";
+                                    e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.10)";
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = "translateY(0)";
+                                    e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.05)";
+                                }}
+                            >
+                                <div style={{ width: 40, height: 40, borderRadius: 10, background: link.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>
+                                    {link.icon}
+                                </div>
+                                <div style={{ flex: 1 }}>
+                                    <p style={{ margin: 0, fontSize: 16, fontWeight: 600, color: "#1A1A1A" }}>{link.title}</p>
+                                    <p style={{ margin: 0, fontSize: 13, color: "#9CA3AF" }}>{link.subtitle}</p>
+                                </div>
+                                {link.url && <span style={{ color: "#D1D5DB", fontSize: 18 }}>↗</span>}
+                            </a>
+                        ))}
+                    </div>
+                </div>
             </section>
         </div>
     );

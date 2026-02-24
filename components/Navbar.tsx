@@ -20,7 +20,7 @@ interface Sparkle {
     size: number;
     angle: number;
     distance: number;
-    shape: "star" | "circle" | "dot";
+    char: "✦" | "✶" | "✧" | "★";
 }
 
 let sparkleCounter = 0;
@@ -33,10 +33,10 @@ function createSparkles(count: number, originX: number, originY: number): Sparkl
             x: originX,
             y: originY,
             color: SPARKLE_COLORS[Math.floor(Math.random() * SPARKLE_COLORS.length)],
-            size: 5 + Math.random() * 7,
+            size: 8 + Math.random() * 10,
             angle: Math.random() * 360,
-            distance: 28 + Math.random() * 36,
-            shape: (["star", "circle", "dot"] as const)[Math.floor(Math.random() * 3)],
+            distance: 40 + Math.random() * 60,
+            char: (["✦", "✶", "✧", "★"] as const)[Math.floor(Math.random() * 4)],
         };
     });
 }
@@ -55,7 +55,7 @@ function SparkleParticle({ sparkle }: { sparkle: Sparkle }) {
         pointerEvents: "none",
         zIndex: 200,
         transform: "translate(-50%, -50%)",
-        animation: `sparkle-burst 0.55s ease-out forwards`,
+        animation: `sparkle-burst 1.2s ease-out forwards`,
         // Pass travel via CSS variables
         // @ts-expect-error custom properties
         "--tx": `${tx}px`,
@@ -63,35 +63,8 @@ function SparkleParticle({ sparkle }: { sparkle: Sparkle }) {
         color: sparkle.color,
     };
 
-    if (sparkle.shape === "star") {
-        return (
-            <span style={{ ...style, fontSize: sparkle.size, lineHeight: 1 }}>✦</span>
-        );
-    }
-    if (sparkle.shape === "circle") {
-        return (
-            <span
-                style={{
-                    ...style,
-                    borderRadius: "50%",
-                    background: sparkle.color,
-                    display: "block",
-                }}
-            />
-        );
-    }
-    // dot
     return (
-        <span
-            style={{
-                ...style,
-                width: sparkle.size * 0.55,
-                height: sparkle.size * 0.55,
-                borderRadius: "50%",
-                background: sparkle.color,
-                display: "block",
-            }}
-        />
+        <span style={{ ...style, fontSize: sparkle.size, lineHeight: 1 }}>{sparkle.char}</span>
     );
 }
 
@@ -120,7 +93,7 @@ function SparkleLink({
             setSparkles((prev) =>
                 prev.filter((s) => !newSparkles.find((n) => n.id === s.id))
             );
-        }, 600);
+        }, 1300);
     }, []);
 
     return (
@@ -151,8 +124,9 @@ export default function Navbar() {
         <>
             <style>{`
         @keyframes sparkle-burst {
-          0%   { transform: translate(-50%, -50%) translate(0px, 0px) scale(1); opacity: 1; }
-          60%  { opacity: 0.8; }
+          0%   { transform: translate(-50%, -50%) translate(0px, 0px) scale(1.2); opacity: 1; }
+          40%  { opacity: 1; }
+          70%  { opacity: 0.6; }
           100% { transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
         }
         .nav-link {

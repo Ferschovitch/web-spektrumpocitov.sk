@@ -91,28 +91,58 @@ export default function AboutPage() {
                         <h1 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 700, color: "#1A1A1A", marginBottom: 20, lineHeight: 1.2 }}>
                             Mgr. Linda Stanislavová
                         </h1>
-                        <p style={{ color: "#6DBF67", fontSize: 15, fontWeight: 600, marginBottom: 20 }}>
-                            Terapia pre deti, rodiny, páry aj jednotlivcov | Kurz rozvoja mysle | Škola etikoterapie
-                        </p>
-                        <p style={{ color: "#4B5563", fontSize: 17, lineHeight: 1.8, marginBottom: 16 }}>
-                            Som terapeutka s dlhoročnou praxou v poradenstve pre deti, jednotlivcov, páry aj rodiny.<br /><br />
-                            Sprevádzam rodičov pri výchove detí, pomáham harmonizovať rodinné vzťahy a podporujem otvorenú, rešpektujúcu komunikáciu. V partnerských vzťahoch vytváram bezpečný priestor pre porozumenie, blízkosť a obnovu dôvery.
-                        </p>
-                        <p style={{ color: "#4B5563", fontSize: 17, lineHeight: 1.8, marginBottom: 32 }}>
-                            Verím, že vzťah, ktorý máme sami so sebou a so svojím telom, ovplyvňuje všetko ostatné - naše rozhodnutia, emócie aj kvalitu našich vzťahov. Vo svojej práci sa preto zameriavam na rozvoj vedomia a sebapoznanie, ako aj na psychosomatiku – citlivé prepojenie medzi telom, mysľou a správaním. <br /><br />Keď porozumieme tomu, čo sa deje pod povrchom, dokážeme prirodzene meniť aj to, čo sa deje navonok.
-                            <br /><br />
-                            Rozvoj vedomia.<br />
-                            Zdravé vzťahy.<br />
-                            Vnútorný pokoj.<br />
-                            Sloboda byť samým sebou.
-                        </p>
-                        <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 32 }}>
-                            {["Rodinné poradenstvo", "Párová terapia", "Rozvoj vedomia a intuície", "Vision Extra Ocular", "Hravá metóda rozvoja vedomia"].map((tag) => (
-                                <span key={tag} style={{ background: "#fdf5d6ff", color: "#4B5563", borderRadius: 999, padding: "6px 14px", fontSize: 13, fontWeight: 500 }}>
-                                    {tag}
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20 }}>
+                            {[
+                                { label: "Terapeutické metódy", color: "#6DBF67", bg: "#EDF7ED" },
+                                { label: "Krízová intervencia", color: "#5BC8C8", bg: "#EAF6FB" },
+                                { label: "Vision Extra Ocular", color: "#F5C842", bg: "#fdf5d6ff" },
+                                { label: "Etikoterapia", color: "#F5A0A0", bg: "#FDF0F0" },
+                                { label: "Theta Healing", color: "#6DBF67", bg: "#EDF7ED" },
+                                { label: "Kid Genius", color: "#5BC8C8", bg: "#EAF6FB" },
+                                { label: "Mimozmyslové vnímanie", color: "#F5A0A0", bg: "#FDF0F0" },
+                                { label: "Základné školy", color: "#F5C842", bg: "#fdf5d6ff" },
+                                { label: "Materské školy", color: "#5BC8C8", bg: "#EAF6FB" },
+                            ].map((tag) => (
+                                <span key={tag.label} style={{
+                                    background: tag.bg,
+                                    color: tag.color,
+                                    borderRadius: 999,
+                                    padding: "5px 14px",
+                                    fontSize: 13,
+                                    fontWeight: 600,
+                                    letterSpacing: "0.01em",
+                                }}>
+                                    {tag.label}
                                 </span>
                             ))}
                         </div>
+                        <p style={{ color: "#4B5563", fontSize: 17, lineHeight: 1.8, marginBottom: 16 }}>
+                            Som skúsenou psychologičkou a lektorkou rozvoja mysle, vedomia a intuície. Venujem sa deťom, jednotlivcom, párom aj rodinám.<br /><br />
+                            Verím, že vzťah, ktorý máme sami k sebe, ovplyvňuje celý náš život. Vo svojej práci sa aj preto zameriavam na rozvoj sebapoznania, rozšírenie vedomia, ako aj na psychosomatiku, teda citlivé prepojenie medzi telom, mysľou a správaním.
+                        </p>
+                        <p style={{ color: "#4B5563", fontSize: 17, lineHeight: 1.8, marginBottom: 32 }}>
+
+                            Pomáham harmonizovať rodinné vzťahy a podporujem otvorenú, rešpektujúcu komunikáciu. V partnerských vzťahoch vytváram bezpečný priestor pre porozumenie, blízkosť a obnovu dôvery. Rodičom pomáham pozrieť sa na výchovu detskými očami. <br /><br />Keď porozumieme tomu, čo sa deje pod povrchom, dokážeme prirodzene meniť aj to, čo sa deje navonok.
+                            <br /><br />
+                            <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 12 }}>
+                                {[
+                                    { text: "Emocionálne liečenie tela, mysle a duše.", color: "#F5A0A0", bg: "#FDF0F0" },
+                                    { text: "Zvýšenie imunity organizmu.", color: "#6DBF67", bg: "#EDF7ED" },
+                                    { text: "Uvoľnenie tráum v tele, telesných blokov, psychosomatických ťažkostí.", color: "#5BC8C8", bg: "#EAF6FB" },
+                                    { text: "Pochopenie životných udalostí.", color: "#F5C842", bg: "#fdf5d6ff" },
+                                    { text: "Sloboda byť samým sebou a autenticita.", color: "#6DBF67", bg: "#EDF7ED" },
+                                ].map((item) => (
+                                    <div key={item.text} style={{
+                                        display: "flex", alignItems: "center", gap: 12,
+                                        background: item.bg, borderRadius: 12, padding: "10px 16px",
+                                    }}>
+                                        <div style={{ width: 8, height: 8, borderRadius: "50%", background: item.color, flexShrink: 0 }} />
+                                        <span style={{ color: "#4B5563", fontSize: 15, lineHeight: 1.6 }}>{item.text}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </p>
+
                         <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
                             <Link
                                 href="/kontakt"
@@ -170,7 +200,7 @@ export default function AboutPage() {
                             Moje hodnoty
                         </h2>
                         <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 600, margin: "0 auto" }}>
-                            Princípy, ktoré formujú každú terapeutickú hodinu a každý rozhovor.
+
                         </p>
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }} className="values-grid">
@@ -193,100 +223,6 @@ export default function AboutPage() {
         `}</style>
             </section>
 
-            {/* Education & Experience */}
-            <section style={{ padding: "80px 24px", background: "white" }}>
-                <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-
-                    {/* Section heading */}
-                    <div style={{ textAlign: "center", marginBottom: 56 }}>
-                        <h2 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: "clamp(26px, 4vw, 38px)", fontWeight: 700, color: "#1A1A1A", marginBottom: 12 }}>
-                            Vzdelanie a odborné zázemie
-                        </h2>
-
-                    </div>
-
-                    {/* Education card */}
-                    <div style={{ marginBottom: 56 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-                            <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#fdf5d6ff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>🎓</div>
-                            <h3 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: 22, fontWeight: 700, color: "#1A1A1A", margin: 0 }}>Vzdelanie</h3>
-                        </div>
-                        <div style={{ background: "#fdf5d6ff", borderRadius: 20, padding: "28px 32px", borderLeft: "4px solid #F5C842" }}>
-                            <p style={{ fontWeight: 700, fontSize: 16, color: "#1A1A1A", marginBottom: 6 }}>Sociálna a pracovná psychológia</p>
-                            <p style={{ color: "#6DBF67", fontSize: 14, fontWeight: 600, marginBottom: 10 }}>Univerzita Komenského v Bratislave, Fakulta sociálnych a ekonomických vied</p>
-                            <p style={{ color: "#4B5563", fontSize: 15, lineHeight: 1.7, margin: 0 }}>Odborné vzdelanie zamerané na psychológiu jednotlivca, vzťahov a pracovného prostredia.</p>
-                        </div>
-                    </div>
-
-                    {/* Experience groups */}
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 32 }} className="exp-grid">
-
-                        {/* 1. Psychologická prax */}
-                        <div>
-                            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-                                <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#5BC8C8", flexShrink: 0 }} />
-                                <h3 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: 18, fontWeight: 700, color: "#1A1A1A", margin: 0 }}>Psychologická prax</h3>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                                <div style={{ background: "#EAF6FB", borderRadius: 16, padding: "20px 24px" }}>
-                                    <p style={{ fontWeight: 700, fontSize: 15, color: "#1A1A1A", marginBottom: 6 }}>Školská psychologička (základné aj materské školy)</p>
-                                    <p style={{ color: "#4B5563", fontSize: 14, lineHeight: 1.7, margin: 0 }}>Individuálne konzultácie so žiakmi a deťmi v predškolskom veku, preventívne programy, psychodiagnostika, krízová a skupinová intervencia, spolupráca s rodičmi a pedagógmi. Podpora detí v ich prirodzenom vývine a vytváranie bezpečného prostredia pre ich emocionálny aj sociálny rast.</p>
-                                </div>
-                                <div style={{ background: "#EAF6FB", borderRadius: 16, padding: "20px 24px" }}>
-                                    <p style={{ fontWeight: 700, fontSize: 15, color: "#1A1A1A", marginBottom: 6 }}>Krízová linka pomoci – IPčko.sk</p>
-                                    <p style={{ color: "#4B5563", fontSize: 14, lineHeight: 1.7, margin: 0 }}>Krízová intervencia a emailové poradenstvo pre klientov v náročných životných situáciách.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* 2. Psychoterapeutický výcvik */}
-                        <div>
-                            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-                                <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#F5A0A0", flexShrink: 0 }} />
-                                <h3 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: 18, fontWeight: 700, color: "#1A1A1A", margin: 0 }}>Psychoterapeutický výcvik</h3>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                                <div style={{ background: "#FDF0F0", borderRadius: 16, padding: "20px 24px" }}>
-                                    <p style={{ fontWeight: 700, fontSize: 15, color: "#1A1A1A", marginBottom: 6 }}>Transformačná systemická terapia podľa Virginie Satirovej</p>
-                                    <p style={{ color: "#4B5563", fontSize: 14, lineHeight: 1.7, margin: 0 }}>Komplexný psychoterapeutický výcvik zameraný na prácu so vzťahmi, rodinnými systémami, vnútornými zdrojmi a osobnostným rastom.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* 3. Práca s deťmi a rozvoj potenciálu */}
-                        <div>
-                            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-                                <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#6DBF67", flexShrink: 0 }} />
-                                <h3 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: 18, fontWeight: 700, color: "#1A1A1A", margin: 0 }}>Práca s deťmi a rozvoj potenciálu</h3>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                                <div style={{ background: "#EDF7ED", borderRadius: 16, padding: "20px 24px" }}>
-                                    <p style={{ fontWeight: 700, fontSize: 15, color: "#1A1A1A", marginBottom: 6 }}>Mentálna aritmetika a Numicon (Kid Genius)</p>
-                                    <p style={{ color: "#4B5563", fontSize: 14, lineHeight: 1.7, margin: 0 }}>Podpora rozvoja oboch mozgových hemisfér, jemnej motoriky a sebadôvery detí prostredníctvom hravých a rešpektujúcich metód učenia.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* 4. Rozvoj vedomia a práca s vnútorným priestorom */}
-                        <div>
-                            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-                                <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#F5C842", flexShrink: 0 }} />
-                                <h3 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: 18, fontWeight: 700, color: "#1A1A1A", margin: 0 }}>Rozvoj vedomia a práca s vnútorným priestorom</h3>
-                            </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                                <div style={{ background: "#fdf5d6ff", borderRadius: 16, padding: "20px 24px" }}>
-                                    <p style={{ fontWeight: 700, fontSize: 15, color: "#1A1A1A", marginBottom: 6 }}>Výcviky Visión ExtraOcular, A.C. – Extraokulárne videnie 1 a 2</p>
-                                    <p style={{ color: "#4B5563", fontSize: 14, lineHeight: 1.7, margin: 0 }}>Metódy zamerané na rozvoj vedomia, intuície a spracovanie hlbších príčin psychických a fyzických ťažkostí u detí aj dospelých, vrátane práce s rodinným systémom.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <style>{`
-                    @media (max-width: 768px) { .exp-grid { grid-template-columns: 1fr !important; } }
-                `}</style>
-            </section>
         </div>
     );
 }
