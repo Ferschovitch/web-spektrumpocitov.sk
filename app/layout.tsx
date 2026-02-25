@@ -4,9 +4,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Spektrum Pocitov – Terapia pre deti a rodiny",
-  description: "Terapia pre deti so svežím, nádejným prístupom. Sprevádzame vašu rodinu každým ročným obdobím rastu — so srdcom a hrou.",
-  keywords: "terapia pre deti, rodinná terapia, herná terapia, detský terapeut, Slovensko",
+  title: "Spektrum Pocitov – Ako sa vyznať vo všetkých tých rozmanitých emóciách",
+  description: "Psychologická podpora a rozvoj vedomia",
+  keywords: "Terapia, Toxické vzťahy, narcis, narcizmus, empat, krízová intervencia, Vision Extra Ocular, extraokulárne videnie, Theta Healing, Etikoterapia, neurolingvistické programovanie, Slovensko",
 };
 
 export default function RootLayout({

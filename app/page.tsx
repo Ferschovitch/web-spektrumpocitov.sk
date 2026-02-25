@@ -56,7 +56,7 @@ const approachCards = [
     icon: "🕊️",
     title: "Pravidlá zdravej a bezpečnej hádky",
     text: "Ukazujem, ako zvládať konflikty bez zraňovania, s rešpektom a dôrazom na porozumenie.",
-    accentBg: "#FEF9E7",
+    accentBg: "#fdf5d6ff",
   },
   {
     icon: "🤝",
@@ -67,25 +67,25 @@ const approachCards = [
   {
     icon: "✨",
     title: "Pracovné zameranie, uplatnenie talentov, poslanie",
-    text: "Spoločne objavíme vaše silné stránky a nájdeme cestu, po ktorej môže váš talent vykročiť. Nahradíme pocity pracovného vyhorenia za spokojnosť a pracovné naplnenie.",
-    accentBg: "#FEF9E7",
+    text: "Spoločne objavíme vaše silné stránky a nájdeme cestu, po ktorej môže váš talent vykročiť. Postupne nahradíme pocity vyhorenia za spokojnosť a pracovné naplnenie.",
+    accentBg: "#fdf5d6ff",
   },
   {
     icon: "🧠",
     title: "Rozvoj mysle, vedomia a intuície",
-    text: "Vediem k citlivejšiemu vnímaniu vnútorného hlasu a k vedomejšiemu rozhodovaniu, aj pomocou identifikácie zautomatizovaných reakcií a vzorcov myslenia, rôznych blokov a strachov.",
+    text: "Vediem vás k citlivejšiemu vnímaniu vnútorného hlasu a k vedomejšiemu rozhodovaniu, aj pomocou identifikácie zautomatizovaných reakcií a vzorcov myslenia, rôznych blokov a strachov.",
     accentBg: "#EAF6FB",
   },
   {
     icon: "🧘",
     title: "Autogénny tréning, relaxácia a meditácia",
-    text: "Učím techniky, ktoré umožňujú rýchlejší návrat k vnútornému pokoju, premene neprospešných návykov na prospešné.",
+    text: "Učíme sa techniky, ktoré umožňujú rýchlejší návrat k vnútornému pokoju, premene neprospešných návykov na prospešné.",
     accentBg: "#EDF7ED",
   },
   {
     icon: "⚛️",
     title: "Energetické zákony a manifestácia",
-    text: "Objasním príčiny a následky aktuálnej podoby vašich vzťahov, práce, zdravia (psychosomatika) a celkovej životnej situácie",
+    text: "Odhalíme príčiny a následky aktuálnej podoby vašich vzťahov, práce, psychosomatických príčin narušeného zdravotného stavu a celkovej životnej situácie.",
     accentBg: "#FDF0F0",
   },
 ];
@@ -98,8 +98,8 @@ const carouselCards = [
     paragraphs: [
       "Objavte svetlo aj tam, kde sa zdá, že je len únava, chaos či pochybnosti.",
       "Byť rodičom znamená zodpovednosť, ale aj neustále otázky: Robím to správne?",
-      "Ak ste pripravení otvoriť svoju myseľ a pozrieť sa na veci z iného uhla, rada vás budem sprevádzať. Nie návodmi na dokonalosť, ale návratom k vnútornému pokoju. K miestu, kde sa dá žiť ľahšie. Nie preto, že zmiznú všetky problémy, ale preto, že sa zmení váš postoj.",
-      "Pretože veľké srdcia nepotrebujú dokonalosť. Potrebujú podporu.",
+      "Ak ste pripravení otvoriť svoju myseľ a pozrieť sa na veci z iného uhla, rada vás budem sprevádzať. Nie návodmi na dokonalosť, ale návratom k sebe a k vnútornému pokoju. K miestu, kde sa dá žiť ľahšie. Nie preto, že zmiznú všetky problémy, ale preto, že sa zmení váš postoj.",
+      "Pretože skutočná sila sa skrýva v našom postoji.",
     ],
   },
   {
@@ -121,8 +121,8 @@ const carouselCards = [
     paragraphs: [
       "Niekedy je najťažší rozhovor ten, ktorý vedieme sami so sebou.",
       "Únava. Preťaženie. Pochybnosti. Pocit, že musím zvládnuť všetko a pritom sa nikto nepýta, či mi niečo nechýba.",
-      "Žiť ľahšie sa dá. Nie únikom, ale pochopením.",
-      "Ak chcete objaviť, čo sa deje pod povrchom vašich reakcií, vzťahov a rozhodnutí, som tu pre vás. Nie aby som vám povedala, kým máte byť, ale aby ste sa mohli znovu stretnúť sami so sebou.",
+      "Žiť ľahšie sa dá. Nie únikom, ale pochopením, čo a prečo nás tak veľmi vyčerpáva.",
+      "Ak chcete objaviť, čo sa deje pod povrchom vašich reakcií, vzťahov a rozhodnutí, som tu pre vás. Nie, aby som vám povedala, kým máte byť, ale aby ste sa mohli znovu stretnúť sami so sebou.",
       "Pretože statiť sa nie je hanba ani nič definitívne. Je to príležitosť lepšie spoznať svoje vnútro a konečne sa slobodne nadýchnuť.",
     ],
   },
@@ -132,7 +132,7 @@ const carouselCards = [
     title: "Pre páry, ktoré si znova hľadajú cestu k sebe",
     paragraphs: [
       "Byť vo vzťahu znamená kráčať po spoločnej ceste. A občas sa na tej ceste stratí blízkosť, ktorú nahradia hádky alebo naopak dusivé ticho, zraňujúce správanie či úplné vyčerpanie.",
-      "Ak nehľadáte vinníka, ale cestu k vzájomnému porozumeniu, rada vás ňou budem sprevádzať. Otvorenými rozhobvormi a spoločnými cvičeniami sa priblížite k sebe aby ste sa mohli opäť naladiť na rovnakú vlnu.",
+      "Ak nehľadáte vinníka, ale cestu k vzájomnému porozumeniu, rada vás ňou budem sprevádzať. Otvorenými rozhovormi a spoločnými cvičeniami sa priblížite k sebe aby ste sa mohli opäť naladiť na rovnakú vlnu.",
       "Pretože láska nepotrebuje dokonalosť. Potrebuje bezpečný priestor.",
     ],
   },

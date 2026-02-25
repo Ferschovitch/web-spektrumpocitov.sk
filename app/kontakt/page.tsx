@@ -1,5 +1,8 @@
 "use client";
+import { useState } from "react";
+
 export default function ContactPage() {
+    const [openTooltip, setOpenTooltip] = useState<string | null>(null);
     return (
         <div style={{ background: "#F5F6F0", minHeight: "100vh" }}>
             {/* Header */}
@@ -12,7 +15,7 @@ export default function ContactPage() {
                         Začnime spolu už dnes
                     </h1>
                     <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 500 }}>
-                        Máte otázky alebo si chcete rezervovať konzultáciu? <br />Napíšte mi a ja vám odpoviem do 24 hodín.
+                        Máte otázky alebo si chcete rezervovať konzultáciu? <br />Napíšte mi a ja vám odpoviem.
                     </p>
                 </div>
             </section>
@@ -60,47 +63,72 @@ export default function ContactPage() {
                         {[
                             { title: "Kid Genius", url: "https://www.kidgenius.sk/", subtitle: "Lektorka a psychologička", color: "#F5C842", bg: "#fdf5d6ff", icon: "🧒" },
                             { title: "Světladíl", url: "https://www.svetladil.cz/", subtitle: "Lektorka extraokulárneho videnia", color: "#5BC8C8", bg: "#EAF6FB", icon: "✨" },
-                            { title: "OZ Pre detské hlavičky", url: null, subtitle: "Členka združenia", color: "#F5A0A0", bg: "#FDF0F0", icon: "🧠" },
+                            { title: "OZ Pre detské hlavičky", url: null, subtitle: "Členka združenia", color: "#F5A0A0", bg: "#FDF0F0", icon: "🧠", tooltip: "OZ, ktoré sa zaoberá podporou vzdelávania a rozvoja detí, aj so špeciálnymi potrebami." },
                         ].map((link) => (
-                            <a
-                                key={link.title}
-                                href={link.url ?? undefined}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: 14,
-                                    background: "white",
-                                    borderRadius: 16,
-                                    padding: "16px 24px",
-                                    boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
-                                    textDecoration: "none",
-                                    transition: "transform 0.2s, box-shadow 0.2s",
-                                    borderLeft: `4px solid ${link.color}`,
-                                }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.transform = "translateY(-2px)";
-                                    e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.10)";
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.transform = "translateY(0)";
-                                    e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.05)";
-                                }}
-                            >
-                                <div style={{ width: 40, height: 40, borderRadius: 10, background: link.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>
-                                    {link.icon}
-                                </div>
-                                <div style={{ flex: 1 }}>
-                                    <p style={{ margin: 0, fontSize: 16, fontWeight: 600, color: "#1A1A1A" }}>{link.title}</p>
-                                    <p style={{ margin: 0, fontSize: 13, color: "#9CA3AF" }}>{link.subtitle}</p>
-                                </div>
-                                {link.url && <span style={{ color: "#D1D5DB", fontSize: 18 }}>↗</span>}
-                            </a>
+                            <div key={link.title} style={{ position: "relative" }}>
+                                <a
+                                    href={link.url ?? undefined}
+                                    target={link.url ? "_blank" : undefined}
+                                    rel="noopener noreferrer"
+                                    onClick={link.tooltip ? (e) => { e.preventDefault(); setOpenTooltip(openTooltip === link.title ? null : link.title); } : undefined}
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: 14,
+                                        background: "white",
+                                        borderRadius: 16,
+                                        padding: "16px 24px",
+                                        boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
+                                        textDecoration: "none",
+                                        transition: "transform 0.2s, box-shadow 0.2s",
+                                        borderLeft: `4px solid ${link.color}`,
+                                        cursor: link.tooltip ? "pointer" : "default",
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = "translateY(-2px)";
+                                        e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.10)";
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = "translateY(0)";
+                                        e.currentTarget.style.boxShadow = "0 2px 12px rgba(0,0,0,0.05)";
+                                    }}
+                                >
+                                    <div style={{ width: 40, height: 40, borderRadius: 10, background: link.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>
+                                        {link.icon}
+                                    </div>
+                                    <div style={{ flex: 1 }}>
+                                        <p style={{ margin: 0, fontSize: 16, fontWeight: 600, color: "#1A1A1A" }}>{link.title}</p>
+                                        <p style={{ margin: 0, fontSize: 13, color: "#9CA3AF" }}>{link.subtitle}</p>
+                                    </div>
+                                    {link.url && <span style={{ color: "#D1D5DB", fontSize: 18 }}>↗</span>}
+                                    {link.tooltip && <span style={{ color: "#D1D5DB", fontSize: 16 }}>💬</span>}
+                                </a>
+                                {link.tooltip && openTooltip === link.title && (
+                                    <div style={{
+                                        marginTop: 8,
+                                        background: "#1A1A1A",
+                                        color: "white",
+                                        fontSize: 13,
+                                        lineHeight: 1.6,
+                                        borderRadius: 12,
+                                        padding: "12px 16px",
+                                        boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
+                                        animation: "fadeSlideIn 0.18s ease",
+                                    }}>
+                                        {link.tooltip}
+                                    </div>
+                                )}
+                            </div>
                         ))}
                     </div>
                 </div>
             </section>
+            <style>{`
+                @keyframes fadeSlideIn {
+                    from { opacity: 0; transform: translateY(-6px); }
+                    to   { opacity: 1; transform: translateY(0); }
+                }
+            `}</style>
         </div>
     );
 }
