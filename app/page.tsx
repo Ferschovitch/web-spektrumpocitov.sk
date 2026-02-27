@@ -214,6 +214,7 @@ function CarouselSection() {
           {/* Prev */}
           <button
             onClick={() => goTo((active - 1 + carouselCards.length) % carouselCards.length)}
+            aria-label="Predchádzajúci"
             style={{
               width: 40, height: 40, borderRadius: "50%", border: "2px solid #E5E7EB",
               background: "white", cursor: "pointer", fontSize: 18, display: "flex",
@@ -222,7 +223,7 @@ function CarouselSection() {
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = card.color; }}
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E5E7EB"; }}
           >
-            ←
+            <span aria-hidden="true">←</span>
           </button>
 
           {/* Dots */}
@@ -231,6 +232,8 @@ function CarouselSection() {
               <button
                 key={i}
                 onClick={() => goTo(i)}
+                aria-label={`Snímka ${i + 1}`}
+                aria-current={i === active ? "true" : undefined}
                 style={{
                   width: i === active ? 28 : 12,
                   height: 12,
@@ -248,6 +251,7 @@ function CarouselSection() {
           {/* Next */}
           <button
             onClick={() => goTo((active + 1) % carouselCards.length)}
+            aria-label="Nasledujúci"
             style={{
               width: 40, height: 40, borderRadius: "50%", border: "2px solid #E5E7EB",
               background: "white", cursor: "pointer", fontSize: 18, display: "flex",
@@ -256,7 +260,7 @@ function CarouselSection() {
             onMouseEnter={(e) => { e.currentTarget.style.borderColor = card.color; }}
             onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E5E7EB"; }}
           >
-            →
+            <span aria-hidden="true">→</span>
           </button>
         </div>
       </div>
@@ -400,12 +404,15 @@ export default function HomePage() {
                 rotate: "10deg"
               }}
             >
-              {/* Hero image */}
-              <img
-                src="/hero-image.jpg"
-                alt="Kreslená ilustrácia domu, slnka, kvetov a stromu"
-                style={{ width: "100%", display: "block" }}
-              />
+              {/* Hero image – WebP with JPG fallback */}
+              <picture>
+                <source srcSet="/hero-image.webp" type="image/webp" />
+                <img
+                  src="/hero-image.jpg"
+                  alt="Kreslená ilustrácia domu, slnka, kvetov a stromu"
+                  style={{ width: "100%", display: "block" }}
+                />
+              </picture>
             </div>
           </div>
         </div>

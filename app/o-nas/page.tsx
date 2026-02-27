@@ -36,16 +36,20 @@ export default function AboutPage() {
                                 justifyContent: "center",
                             }}
                         >
-                            <img
-                                src="/therapist-portrait.png"
-                                alt="Mgr. Linda Stanislavová – psychologička a terapeutka"
-                                style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
-                                    display: "block",
-                                }}
-                            />
+                            {/* Portrait – WebP with PNG fallback */}
+                            <picture>
+                                <source srcSet="/therapist-portrait.webp" type="image/webp" />
+                                <img
+                                    src="/therapist-portrait.png"
+                                    alt="Mgr. Linda Stanislavová – psychologička a terapeutka"
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "cover",
+                                        display: "block",
+                                    }}
+                                />
+                            </picture>
                         </div>
                     </div>
 
