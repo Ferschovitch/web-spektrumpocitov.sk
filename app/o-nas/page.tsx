@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-
+import Image from "next/image";
 
 
 const valuesCards = [
@@ -36,30 +36,26 @@ export default function AboutPage() {
                                 justifyContent: "center",
                             }}
                         >
-                            {/* Portrait – WebP with PNG fallback */}
-                            <picture>
-                                <source srcSet="/therapist-portrait.webp" type="image/webp" />
-                                <img
-                                    src="/therapist-portrait.png"
-                                    alt="Mgr. Linda Stanislavová – psychologička a terapeutka"
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        objectFit: "cover",
-                                        display: "block",
-                                    }}
-                                />
-                            </picture>
+                            {/* Portrait – next/image with lazy loading (below fold) */}
+                            <Image
+                                src="/therapist-portrait.webp"
+                                alt="Mgr. Linda Stanislavová – psychologička a terapeutka"
+                                width={500}
+                                height={420}
+                                loading="lazy"
+                                sizes="(max-width: 900px) 100vw, 500px"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    display: "block",
+                                }}
+                            />
                         </div>
                     </div>
 
                     {/* Text */}
                     <div>
-                        {/*
-                        <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#EDF7ED", borderRadius: 999, padding: "6px 16px", marginBottom: 20 }}>
-                            <span style={{ fontSize: 12, fontWeight: 600, color: "#4a9c45" }}>🌿 SPOZNAJTE MA</span>
-                        </div>
-                        */}
                         <h1 style={{ fontFamily: "Playfair Display, Georgia, serif", fontWeight: 700, color: "#1A1A1A", marginBottom: 20, lineHeight: 1.25 }}>
                             <span style={{ display: "block", fontSize: "clamp(16px, 2.2vw, 26px)", color: "#9CA3AF" }}>Mgr.</span>
                             <span style={{ display: "block", fontSize: "clamp(32px, 5vw, 52px)" }}>Linda</span>
@@ -95,7 +91,6 @@ export default function AboutPage() {
                             Verím, že vzťah, ktorý máme sami k sebe, ovplyvňuje celý náš život. Vo svojej práci sa aj preto zameriavam na rozvoj sebapoznania, rozšírenie vedomia, ako aj na psychosomatiku, teda citlivé prepojenie medzi telom, mysľou a správaním.
                         </p>
                         <div style={{ color: "#4B5563", fontSize: 17, lineHeight: 1.8, marginBottom: 32 }}>
-
                             Pomáham harmonizovať rodinné vzťahy a podporujem otvorenú, rešpektujúcu komunikáciu. V partnerských vzťahoch vytváram bezpečný priestor pre porozumenie, blízkosť a obnovu dôvery. Rodičom pomáham pozrieť sa na výchovu detskými očami. <br /><br />Keď porozumieme tomu, čo sa deje pod povrchom, dokážeme prirodzene meniť aj to, čo sa deje navonok.
                             <br /><br />
                             <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 12 }}>
@@ -173,9 +168,7 @@ export default function AboutPage() {
                         <h2 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: "clamp(26px, 4vw, 38px)", fontWeight: 700, color: "#1A1A1A", marginBottom: 12 }}>
                             Moje hodnoty
                         </h2>
-                        <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 600, margin: "0 auto" }}>
-
-                        </p>
+                        <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 600, margin: "0 auto" }} />
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }} className="values-grid">
                         {valuesCards.map((card) => (
@@ -189,12 +182,6 @@ export default function AboutPage() {
                         ))}
                     </div>
                 </div>
-
-                <style>{`
-          @media (max-width: 1024px) { .values-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-          @media (max-width: 600px) { .values-grid { grid-template-columns: 1fr !important; } }
-          @media (max-width: 900px) { .about-hero-grid { grid-template-columns: 1fr !important; } }
-        `}</style>
             </section>
 
         </div>

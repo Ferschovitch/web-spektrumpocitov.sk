@@ -12,9 +12,10 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
+// Dropped weight "300" – not visually used anywhere on the site
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 });
@@ -32,6 +33,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sk" className={`${playfair.variable} ${inter.variable}`}>
+      <head>
+        {/* Preconnect to Google Fonts CDN for faster font fetching */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      </head>
       <body>
         <Navbar />
         <main>{children}</main>

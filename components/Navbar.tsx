@@ -1,6 +1,7 @@
 "use client";
 import { useState, useCallback, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
@@ -56,7 +57,6 @@ function SparkleParticle({ sparkle }: { sparkle: Sparkle }) {
         zIndex: 200,
         transform: "translate(-50%, -50%)",
         animation: `sparkle-burst 1.2s ease-out forwards`,
-        // Pass travel via CSS variables
         // @ts-expect-error custom properties
         "--tx": `${tx}px`,
         "--ty": `${ty}px`,
@@ -197,12 +197,15 @@ export default function Navbar() {
                         height: 68,
                     }}
                 >
-                    {/* Logo */}
+                    {/* Logo – next/image for automatic optimisation & lazy loading */}
                     <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-                        <img
-                            src="/logo.png"
+                        <Image
+                            src="/logo.webp"
                             alt="Spektrum Pocitov logo"
-                            style={{ width: 48, height: 48, objectFit: "contain" }}
+                            width={48}
+                            height={48}
+                            style={{ objectFit: "contain" }}
+                            priority
                         />
                         <span
                             style={{

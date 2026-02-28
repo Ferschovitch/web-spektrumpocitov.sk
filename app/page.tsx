@@ -1,6 +1,7 @@
-"use client";
-import { useState } from "react";
+// Server Component – no "use client" needed since interactivity is isolated in CarouselSection
 import Link from "next/link";
+import Image from "next/image";
+import CarouselSection from "@/components/CarouselSection";
 
 const feelingsCards = [
   {
@@ -90,184 +91,6 @@ const approachCards = [
   },
 ];
 
-const carouselCards = [
-  {
-    color: "#F5C842",
-    bg: "#fdf5d6ff",
-    title: "Pre veľké srdcia, ktoré vychovávajú tie malé",
-    paragraphs: [
-      "Objavte svetlo aj tam, kde sa zdá, že je len únava, chaos či pochybnosti.",
-      "Byť rodičom znamená zodpovednosť, ale aj neustále otázky: Robím to správne?",
-      "Ak ste pripravení otvoriť svoju myseľ a pozrieť sa na veci z iného uhla, rada vás budem sprevádzať. Nie návodmi na dokonalosť, ale návratom k sebe a k vnútornému pokoju. K miestu, kde sa dá žiť ľahšie. Nie preto, že zmiznú všetky problémy, ale preto, že sa zmení váš postoj.",
-      "Pretože skutočná sila sa skrýva v našom postoji.",
-    ],
-  },
-  {
-    color: "#5BC8C8",
-    bg: "#EDF7ED",
-    title: "Pre deti, ktorým sa svet zdá príliš rýchly",
-    paragraphs: [
-      "Niektoré deti vnímajú svet inak.",
-      "Dysgrafia. Dyslexia. Dysortografia. Za týmito slovami sa často skrýva viac než len slovo porucha. Niekedy je to tlak. Očakávania. Porovnávanie. Pocit, že svet sa zrýchlil a písmenká či čísla sa kamsi rozutekali.",
-      "Dieťa však nepotrebuje ďalší tlak na to, aby niečo zvládalo. Potrebuje bezpečie. Porozumenie. Prijatie.",
-      "Pretože skutočná vnútorná motivácia nevzniká z povinnosti ani zo strachu z chýb. Vzniká z hladu duše. Keď je dieťa v kontakte so svojím vnútorným svetom, učenie sa sa stáva prirodzeným.",
-      "Keď sa cíti prijaté, rastie. Keď je v bezpečí, odváži sa skúšať. A práve tam začína skutočná zmena.",
-    ],
-  },
-  {
-    color: "#F5A0A0",
-    bg: "#FDF0F0",
-    title: "Pre jednotlivcov, ktorí chcú porozumieť sami sebe",
-    paragraphs: [
-      "Niekedy je najťažší rozhovor ten, ktorý vedieme sami so sebou.",
-      "Únava. Preťaženie. Pochybnosti. Pocit, že musím zvládnuť všetko a pritom sa nikto nepýta, či mi niečo nechýba.",
-      "Žiť ľahšie sa dá. Nie únikom, ale pochopením, čo a prečo nás tak veľmi vyčerpáva.",
-      "Ak chcete objaviť, čo sa deje pod povrchom vašich reakcií, vzťahov a rozhodnutí, som tu pre vás. Nie, aby som vám povedala, kým máte byť, ale aby ste sa mohli znovu stretnúť sami so sebou.",
-      "Pretože statiť sa nie je hanba ani nič definitívne. Je to príležitosť lepšie spoznať svoje vnútro a konečne sa slobodne nadýchnuť.",
-    ],
-  },
-  {
-    color: "#6DBF67",
-    bg: "#EDF7ED",
-    title: "Pre páry, ktoré si znova hľadajú cestu k sebe",
-    paragraphs: [
-      "Byť vo vzťahu znamená kráčať po spoločnej ceste. A občas sa na tej ceste stratí blízkosť, ktorú nahradia hádky alebo naopak dusivé ticho, zraňujúce správanie či úplné vyčerpanie.",
-      "Ak nehľadáte vinníka, ale cestu k vzájomnému porozumeniu, rada vás ňou budem sprevádzať. Otvorenými rozhovormi a spoločnými cvičeniami sa priblížite k sebe aby ste sa mohli opäť naladiť na rovnakú vlnu.",
-      "Pretože láska nepotrebuje dokonalosť. Potrebuje bezpečný priestor.",
-    ],
-  },
-
-
-];
-
-function CarouselSection() {
-  const [active, setActive] = useState(0);
-  const [animating, setAnimating] = useState(false);
-
-  function goTo(idx: number) {
-    if (idx === active || animating) return;
-    setAnimating(true);
-    setTimeout(() => {
-      setActive(idx);
-      setAnimating(false);
-    }, 250);
-  }
-
-  const card = carouselCards[active];
-
-  return (
-    <section style={{ padding: "80px 24px", background: "#F5F6F0", position: "relative", overflow: "hidden" }}>
-      <div style={{ position: "absolute", width: 400, height: 400, borderRadius: "50%", background: "#5BC8C8", opacity: 0.07, top: -120, right: -100 }} />
-      <div style={{ position: "absolute", width: 300, height: 300, borderRadius: "50%", background: "#F5A0A0", opacity: 0.07, bottom: -80, left: -80 }} />
-
-      <div style={{ maxWidth: 820, margin: "0 auto", position: "relative" }}>
-        {/* Card */}
-        <div
-          style={{
-            background: card.bg,
-            borderRadius: 28,
-            padding: "48px 52px",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.07)",
-            opacity: animating ? 0 : 1,
-            transform: animating ? "translateY(12px)" : "translateY(0)",
-            transition: "opacity 0.25s ease, transform 0.25s ease",
-            minHeight: 340,
-            textAlign: "center",
-          }}
-        >
-          {/* Colour accent dot */}
-          <div style={{ width: 16, height: 16, borderRadius: "50%", background: card.color, marginBottom: 24, margin: "0 auto 24px" }} />
-
-          <h2
-            style={{
-              fontFamily: "Playfair Display, Georgia, serif",
-              fontSize: "clamp(22px, 3vw, 34px)",
-              fontWeight: 700,
-              color: "#1A1A1A",
-              marginBottom: 24,
-              lineHeight: 1.3,
-            }}
-          >
-            {card.title}
-          </h2>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {card.paragraphs.map((para, i) => (
-              <p
-                key={i}
-                style={{
-                  margin: 0,
-                  color: i === card.paragraphs.length - 1 ? "#9CA3AF" : "#4B5563",
-                  fontSize: 16,
-                  lineHeight: 1.8,
-                  fontStyle: i === card.paragraphs.length - 1 ? "italic" : "normal",
-                }}
-              >
-                {para}
-              </p>
-            ))}
-          </div>
-        </div>
-
-        {/* Navigation */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginTop: 36 }}>
-          {/* Prev */}
-          <button
-            onClick={() => goTo((active - 1 + carouselCards.length) % carouselCards.length)}
-            aria-label="Predchádzajúci"
-            style={{
-              width: 40, height: 40, borderRadius: "50%", border: "2px solid #E5E7EB",
-              background: "white", cursor: "pointer", fontSize: 18, display: "flex",
-              alignItems: "center", justifyContent: "center", transition: "border-color 0.2s",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = card.color; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E5E7EB"; }}
-          >
-            <span aria-hidden="true">←</span>
-          </button>
-
-          {/* Dots */}
-          <div style={{ display: "flex", gap: 10 }}>
-            {carouselCards.map((c, i) => (
-              <button
-                key={i}
-                onClick={() => goTo(i)}
-                aria-label={`Snímka ${i + 1}`}
-                aria-current={i === active ? "true" : undefined}
-                style={{
-                  width: i === active ? 28 : 12,
-                  height: 12,
-                  borderRadius: 999,
-                  background: i === active ? c.color : "#D1D5DB",
-                  border: "none",
-                  cursor: "pointer",
-                  transition: "all 0.3s ease",
-                  padding: 0,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Next */}
-          <button
-            onClick={() => goTo((active + 1) % carouselCards.length)}
-            aria-label="Nasledujúci"
-            style={{
-              width: 40, height: 40, borderRadius: "50%", border: "2px solid #E5E7EB",
-              background: "white", cursor: "pointer", fontSize: 18, display: "flex",
-              alignItems: "center", justifyContent: "center", transition: "border-color 0.2s",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.borderColor = card.color; }}
-            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "#E5E7EB"; }}
-          >
-            <span aria-hidden="true">→</span>
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function HomePage() {
   return (
     <div style={{ background: "#F5F6F0" }}>
@@ -279,8 +102,6 @@ export default function HomePage() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="hero-grid">
           {/* Left: text */}
           <div>
-
-
             <h1
               style={{
                 fontFamily: "Playfair Display, Georgia, serif",
@@ -317,18 +138,6 @@ export default function HomePage() {
               <p style={{ margin: 0 }}>
                 Ponúkam autentický a ľudský prístup.<br />
               </p>
-              {/* doplniť ze kamaratka */}
-
-              {/*
-              <p style={{ margin: 0 }}>
-                Budem vás sprevádzať s rešpektom a pokojom, nech prechádzate akýmkoľvek obdobím. Bez hodnotenia a bez tlaku na rýchle odpovede.<br /><br />
-              </p>
-              
-              <p style={{ margin: 0, fontStyle: "italic", color: "#9CA3AF" }}>
-                Pretože život nie je len jasná obloha. Občas prídu prehánky, hmla a vietor.
-                Spolu môžeme nájsť spôsob, ako prečkať obdobie dažďov a znovu sa nadýchnuť, keď vyjde slnko.
-              </p>
-              */}
             </div>
 
             <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
@@ -342,16 +151,7 @@ export default function HomePage() {
                   textDecoration: "none",
                   fontSize: 15,
                   fontWeight: 700,
-                  transition: "transform 0.2s, box-shadow 0.2s",
                   display: "inline-block",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.04)";
-                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.2)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "none";
                 }}
               >
                 Napíšte mi
@@ -367,11 +167,8 @@ export default function HomePage() {
                   fontSize: 15,
                   fontWeight: 600,
                   border: "2px solid #1A1A1A",
-                  transition: "transform 0.2s",
                   display: "inline-block",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.03)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
               >
                 Zavolajte mi
               </Link>
@@ -391,7 +188,7 @@ export default function HomePage() {
               background: "#5BC8C8", opacity: 0.15, bottom: 10, left: -30, zIndex: 0,
             }} />
 
-            {/* Image card */}
+            {/* Image card – next/image with priority + sizes for responsive cropping */}
             <div
               style={{
                 position: "relative",
@@ -401,18 +198,18 @@ export default function HomePage() {
                 boxShadow: "0 16px 48px rgba(0,0,0,0.12)",
                 width: "100%",
                 maxWidth: 470,
-                rotate: "10deg"
+                rotate: "10deg",
               }}
             >
-              {/* Hero image – WebP with JPG fallback */}
-              <picture>
-                <source srcSet="/hero-image.webp" type="image/webp" />
-                <img
-                  src="/hero-image.jpg"
-                  alt="Kreslená ilustrácia domu, slnka, kvetov a stromu"
-                  style={{ width: "100%", display: "block" }}
-                />
-              </picture>
+              <Image
+                src="/hero-image.webp"
+                alt="Kreslená ilustrácia domu, slnka, kvetov a stromu"
+                width={470}
+                height={400}
+                priority
+                sizes="(max-width: 768px) 100vw, 470px"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
             </div>
           </div>
         </div>
@@ -452,8 +249,6 @@ export default function HomePage() {
                   boxShadow: "0 4px 16px rgba(0,0,0,0.05)",
                   transition: "transform 0.25s ease",
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
               >
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
                   <div style={{ width: 14, height: 14, borderRadius: "50%", background: card.color, flexShrink: 0 }} />
@@ -464,14 +259,9 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-
-        <style>{`
-          @media (max-width: 1024px) { .feelings-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-          @media (max-width: 600px) { .feelings-grid { grid-template-columns: 1fr !important; } }
-        `}</style>
       </section>
 
-      {/* ── CAROUSEL ── */}
+      {/* ── CAROUSEL (client component) ── */}
       <CarouselSection />
 
       {/* ── OUR APPROACH ── */}
@@ -489,9 +279,6 @@ export default function HomePage() {
             >
               Témy, ktorým sa venujem
             </h2>
-            <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 520 }}>
-
-            </p>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }} className="approach-grid">
@@ -505,21 +292,8 @@ export default function HomePage() {
                   boxShadow: "0 4px 16px rgba(0,0,0,0.04)",
                   transition: "transform 0.25s ease, box-shadow 0.25s ease",
                 }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 32px rgba(0,0,0,0.09)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(0,0,0,0.04)";
-                }}
               >
-                <div
-                  style={{
-                    fontSize: 28,
-                    marginBottom: 16,
-                  }}
-                >
+                <div style={{ fontSize: 28, marginBottom: 16 }}>
                   {card.icon}
                 </div>
                 <h3
@@ -539,11 +313,6 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-
-        <style>{`
-          @media (max-width: 900px) { .approach-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-          @media (max-width: 600px) { .approach-grid { grid-template-columns: 1fr !important; } }
-        `}</style>
       </section>
 
       {/* ── CTA BANNER ── */}
@@ -560,12 +329,10 @@ export default function HomePage() {
               lineHeight: 1.2,
             }}
           >
-            Vykročte na cestu ku  {" "}
+            Vykročte na cestu ku{" "}
             <span style={{ color: "#F5C842" }}>krajším dňom</span>
           </h2>
-          <p style={{ color: "#9CA3AF", fontSize: 17, lineHeight: 1.7, marginBottom: 40 }}>
-
-          </p>
+          <p style={{ color: "#9CA3AF", fontSize: 17, lineHeight: 1.7, marginBottom: 40 }} />
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
             <Link
               href="/kontakt"
@@ -577,11 +344,8 @@ export default function HomePage() {
                 textDecoration: "none",
                 fontSize: 15,
                 fontWeight: 700,
-                transition: "transform 0.2s",
                 display: "inline-block",
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.04)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; }}
             >
               Napíšte mi
             </Link>
@@ -595,16 +359,7 @@ export default function HomePage() {
                 textDecoration: "none",
                 fontSize: 15,
                 fontWeight: 700,
-                transition: "transform 0.2s, box-shadow 0.2s",
                 display: "inline-block",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.04)";
-                e.currentTarget.style.boxShadow = "0 6px 24px rgba(245,200,66,0.35)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)";
-                e.currentTarget.style.boxShadow = "none";
               }}
             >
               Zavolajte mi
@@ -612,13 +367,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .hero-grid { grid-template-columns: 1fr !important; }
-          .hero-image-wrap { order: -1; margin-bottom: 16px; }
-        }
-      `}</style>
     </div>
   );
 }
