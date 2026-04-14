@@ -1,7 +1,24 @@
 // Server Component – no "use client" needed since interactivity is isolated in CarouselSection
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import CarouselSection from "@/components/CarouselSection";
+
+export const metadata: Metadata = {
+  title: "Spektrum Pocitov – Ako sa vyznať vo všetkých tých rozmanitých emóciách",
+  description:
+    "Psychologická podpora a rozvoj vedomia",
+  alternates: {
+    canonical: "https://www.spektrumpocitov.sk",
+  },
+  openGraph: {
+    title: "Spektrum Pocitov – Ako sa vyznať vo všetkých tých rozmanitých emóciách",
+    description:
+      "Psychologická podpora a rozvoj vedomia",
+    url: "https://www.spektrumpocitov.sk",
+    type: "website",
+  },
+};
 
 const feelingsCards = [
   {
@@ -16,7 +33,7 @@ const feelingsCards = [
     color: "#5BC8C8",
     bg: "#EAF6FB",
     label: "Deti",
-    text: "Podporujem rozvoj rôznych schopností a zručností dieťaťa, posilňujem jeho schopnosť zamerať pozornosť prospešným smerom a rozvíjať emočnú sebareguláciu, pričom spolu hľadáme a citlivo identifikujeme jeho skutočné potreby, aby mohlo rásť v bezpečí a porozumení.",
+    text: "Podporujem rozvoj rôznych schopností a zručností dieťaťa, posilňujem jeho schopnosť zamerať pozornosť prospešným smerom a rozvíjať emočnú sebareguláciu, pričom spolu hľadáme a citlivo identifikujeme jeho skutočné potreby, ktoré konzultujeme s rodičmi s cieľom udržať pokrok dieťaťa.",
   },
   {
     emoji: "🔴",
@@ -61,8 +78,9 @@ const approachCards = [
   },
   {
     icon: "🤝",
-    title: "Partnerské a pracovné vzťahy, toxické vzťahy",
-    text: "Podporujem hľadanie rovnováhy a vzájomného rešpektu vo vzťahoch doma aj v pracovnom prostredí. Venujem sa rôznym vzťahovým dynamikám (mužsko-ženská, narcis vs. empat, obeť vs. tyran, atď.).",
+    title: "Vzťahy",
+    /*text: "Podporujem hľadanie rovnováhy a vzájomného rešpektu vo vzťahoch doma aj v pracovnom prostredí. Venujem sa rôznym vzťahovým dynamikám (mužsko-ženská, narcis vs. empat, obeť vs. tyran, atď.).",*/
+    text: "Partnerské, pracovné a toxické vzťahy. Osudové spojenia a spriaznené duše, narcizmus, ničivá empatia, obeť a tyran, šikana.",
     accentBg: "#EDF7ED",
   },
   {
@@ -74,7 +92,7 @@ const approachCards = [
   {
     icon: "🧠",
     title: "Rozvoj mysle, vedomia a intuície",
-    text: "Vediem vás k citlivejšiemu vnímaniu vnútorného hlasu a k vedomejšiemu rozhodovaniu, aj pomocou identifikácie zautomatizovaných reakcií a vzorcov myslenia, rôznych blokov a strachov.",
+    text: "Pracujeme na citlivejšom vnímaní vlastnej intuície, aj pomocou identifikácie zautomatizovaných reakcií a vzorcov myslenia, rôznych blokov a strachov.",
     accentBg: "#EAF6FB",
   },
   {
@@ -128,7 +146,7 @@ export default function HomePage() {
               }}
             >
               <p style={{ margin: 0 }}>
-                Som tu pre všetkých, ktorí túžia po pochopení. Pre tých, ktorí chcú lepšie porozumieť vlastnej situácii, aj pre tých, ktorí hľadajú cestu z trápení, vzťahových kríz či výchovných dilem.<br /><br />
+                Som tu pre všetkých, ktorí túžia po pochopení a podpore. Pre tých, ktorí chcú lepšie porozumieť vlastnej situácii, aj pre tých, ktorí hľadajú cestu z trápení, vzťahových kríz či výchovných dilem.<br /><br />
               </p>
 
               <p style={{ margin: 0 }}>
@@ -136,7 +154,7 @@ export default function HomePage() {
               </p>
 
               <p style={{ margin: 0 }}>
-                Ponúkam autentický a ľudský prístup.<br />
+                Ponúkam autentický a ľudský prístup, spojenie tradičnej a alternatívnej psychológie.<br />
               </p>
             </div>
 

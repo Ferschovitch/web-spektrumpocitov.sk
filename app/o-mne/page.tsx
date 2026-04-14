@@ -5,14 +5,38 @@ import Image from "next/image";
 
 const valuesCards = [
     { color: "#F5C842", bg: "#fdf5d6ff", label: "Rešpekt k jedinečnosti", text: "Každý príbeh je iný, každý z nás žije iným tempom. Vytváram priestor, kde môžete byť prijatí bez strachu z toho, že vás niekto bude posudzovať." },
-    { color: "#5BC8C8", bg: "#EAF6FB", label: "Prepojenie telo – myseľ – vzťahy", text: "Vnímam človeka ako celok. To, čo prežívame vnútri, sa odráža v našom tele aj vo vzťahoch, a práve v tomto prepojení často nachádzame odpovede." },
+    { color: "#5BC8C8", bg: "#EAF6FB", label: "Prepojenie telo – myseľ – emócie", text: "Vnímam človeka ako celok. To, čo prežívame vnútri, sa odráža v našom tele aj vo vzťahoch, a práve v tomto prepojení často nachádzame odpovede." },
     { color: "#F5A0A0", bg: "#FDF0F0", label: "Bezpečie a dôvera", text: "Skutočná zmena je možná tam, kde je na ňu bezpečný priestor. Mojou prioritou je vytvoriť prostredie, v ktorom môžete hovoriť otvorene a bez obáv." },
     { color: "#6DBF67", bg: "#EDF7ED", label: "Vedomý rast a vnútorná rovnováha", text: "Verím, že rovnováha neprichádza zvonka, ale vzniká v nás. Podporujem kroky, ktoré vedú k väčšiemu pokoju a dôvere v samého seba." },
 ];
 
 export default function AboutPage() {
+    const personJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Mgr. Linda Stanislavová",
+        jobTitle: "Psychologička a terapeutka",
+        url: "https://www.spektrumpocitov.sk/o-mne",
+        worksFor: {
+            "@type": "Organization",
+            name: "Spektrum Pocitov",
+            url: "https://www.spektrumpocitov.sk",
+        },
+        address: {
+            "@type": "PostalAddress",
+            addressLocality: "Bratislava",
+            addressCountry: "SK",
+        },
+        telephone: "+421908500266",
+        email: "info@spektrumpocitov.sk",
+    };
+
     return (
         <div style={{ background: "#F5F6F0", minHeight: "100vh" }}>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+            />
             {/* Hero bio */}
             <section style={{ background: "white", padding: "80px 24px" }}>
                 <div
@@ -65,13 +89,13 @@ export default function AboutPage() {
                             {[
                                 { label: "Základné školy", color: "#F5C842", bg: "#fdf5d6ff" },
                                 { label: "Materské školy", color: "#5BC8C8", bg: "#EAF6FB" },
-                                { label: "Mentálna aritmetika - Kid Genius", color: "#5BC8C8", bg: "#EAF6FB" },
                                 { label: "Krízová intervencia", color: "#F5A0A0", bg: "#FDF0F0" },
-                                { label: "Terapeutické metódy", color: "#6DBF67", bg: "#EDF7ED" },
-                                { label: "Vision Extra Ocular", color: "#F5C842", bg: "#fdf5d6ff" },
-                                { label: "Mimozmyslové vnímanie", color: "#5BC8C8", bg: "#EAF6FB" },
-                                { label: "Theta Healing", color: "#6DBF67", bg: "#EDF7ED" },
+                                { label: "Terapeutické princípy", color: "#6DBF67", bg: "#EDF7ED" },
+                                { label: "Vision Extra Ocular - rozvoj mysle, vedomia a intuície", color: "#F5C842", bg: "#fdf5d6ff" },
+                                { label: "Sny, podverdomie a mimozmyslové vnímanie", color: "#5BC8C8", bg: "#EAF6FB" },
+                                { label: "Theta liečenie", color: "#6DBF67", bg: "#EDF7ED" },
                                 { label: "Etikoterapia", color: "#F5A0A0", bg: "#FDF0F0" },
+                                { label: "Energetické zákony a kvantová fyzika", color: "#5BC8C8", bg: "#EAF6FB" },
                             ].map((tag) => (
                                 <span key={tag.label} style={{
                                     background: tag.bg,
@@ -87,7 +111,7 @@ export default function AboutPage() {
                             ))}
                         </div>
                         <p style={{ color: "#4B5563", fontSize: 17, lineHeight: 1.8, marginBottom: 16 }}>
-                            Som skúsenou psychologičkou a lektorkou rozvoja mysle, vedomia a intuície. Venujem sa deťom, jednotlivcom, párom aj rodinám.<br /><br />
+                            Som psychologička, koučka a lektorka rozvoja mysle, vedomia a intuície. Venujem sa deťom, jednotlivcom, párom aj rodinám.<br /><br />
                             Verím, že vzťah, ktorý máme sami k sebe, ovplyvňuje celý náš život. Vo svojej práci sa aj preto zameriavam na rozvoj sebapoznania, rozšírenie vedomia, ako aj na psychosomatiku, teda citlivé prepojenie medzi telom, mysľou a správaním.
                         </p>
                         <div style={{ color: "#4B5563", fontSize: 17, lineHeight: 1.8, marginBottom: 32 }}>
@@ -95,11 +119,10 @@ export default function AboutPage() {
                             <br /><br />
                             <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 12 }}>
                                 {[
-                                    { text: "Emocionálne liečenie tela, mysle a duše.", color: "#F5A0A0", bg: "#FDF0F0" },
-                                    { text: "Zvýšenie imunity organizmu.", color: "#6DBF67", bg: "#EDF7ED" },
+                                    { text: "Emocionálne liečenie, práca s energiou.", color: "#F5A0A0", bg: "#FDF0F0" },
                                     { text: "Uvoľnenie napätia, tráum, psychosomatických ťažkostí.", color: "#5BC8C8", bg: "#EAF6FB" },
-                                    { text: "Pochopenie životných udalostí.", color: "#F5C842", bg: "#fdf5d6ff" },
-                                    { text: "Sloboda byť samým sebou a autenticita.", color: "#6DBF67", bg: "#EDF7ED" },
+                                    { text: "Pochopenie seba samého, konštruktívne uchopenie životných skúseností a udalostí.", color: "#F5C842", bg: "#fdf5d6ff" },
+                                    { text: "Vnútorná sloboda a autenticita.", color: "#6DBF67", bg: "#EDF7ED" },
                                 ].map((item) => (
                                     <div key={item.text} style={{
                                         display: "flex", alignItems: "center", gap: 12,
@@ -166,7 +189,8 @@ export default function AboutPage() {
                 <div style={{ maxWidth: 1100, margin: "0 auto" }}>
                     <div style={{ textAlign: "center", marginBottom: 48 }}>
                         <h2 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: "clamp(26px, 4vw, 38px)", fontWeight: 700, color: "#1A1A1A", marginBottom: 12 }}>
-                            Moje hodnoty
+
+                            Čo nám pri práci pomáha
                         </h2>
                         <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 600, margin: "0 auto" }} />
                     </div>

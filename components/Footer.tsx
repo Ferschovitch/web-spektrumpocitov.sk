@@ -5,7 +5,7 @@ const footerLinks = [
     /*{ href: "/#nas-pristup", label: "Náš prístup" },
     { href: "/blog", label: "Blog" },*/
     { href: "/", label: "Domov" },
-    { href: "/o-nas", label: "O mne" },
+    { href: "/o-mne", label: "O mne" },
     { href: "/kontakt", label: "Kontakt" },
 ];
 
@@ -45,7 +45,7 @@ export default function Footer() {
                                 </span>
                             </Link>
                             <p style={{ color: "#9CA3AF", fontSize: 14, lineHeight: 1.6, maxWidth: 240 }}>
-                                Podpora pre rodiny, deti, páry aj jednotlivcov s láskavým a chápavým prístupom.
+                                Spojenie tradičnej a alternatívnej psychológie.
                             </p>
                         </div>
 

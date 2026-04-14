@@ -21,9 +21,57 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Spektrum Pocitov – Ako sa vyznať vo všetkých tých rozmanitých emóciách",
-  description: "Psychologická podpora a rozvoj vedomia",
-  keywords: "Terapia, Toxické vzťahy, narcis, narcizmus, empat, krízová intervencia, Vision Extra Ocular, extraokulárne videnie, Theta Healing, Etikoterapia, neurolingvistické programovanie, Slovensko",
+  metadataBase: new URL("https://www.spektrumpocitov.sk"),
+  title: {
+    default: "Spektrum Pocitov – Ako sa vyznať vo všetkých tých rozmanitých emóciách",
+    template: "%s | Spektrum Pocitov",
+  },
+  description:
+    "Psychologická podpora a rozvoj vedomia",
+  keywords: [
+    "psychologička Bratislava",
+    "terapia pre deti",
+    "rodinná terapia",
+    "krízová intervencia",
+    "Theta Healing",
+    "Etikoterapia",
+    "extraokulárne videnie",
+    "Vision Extra Ocular",
+    "neurolingvistické programovanie",
+    "toxické vzťahy",
+    "narcizmus",
+    "emočná sebaregulácia",
+  ],
+  alternates: {
+    canonical: "https://www.spektrumpocitov.sk",
+  },
+  openGraph: {
+    siteName: "Spektrum Pocitov",
+    locale: "sk_SK",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Spektrum Pocitov – Psychologická podpora",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@spektrumpocitov",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -37,6 +85,30 @@ export default function RootLayout({
         {/* Preconnect to Google Fonts CDN for faster font fetching */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        {/* JSON-LD – Organization structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Spektrum Pocitov",
+              url: "https://www.spektrumpocitov.sk",
+              logo: "https://www.spektrumpocitov.sk/logo.webp",
+              telephone: "+421908500266",
+              email: "info@spektrumpocitov.sk",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Bratislava",
+                addressCountry: "SK",
+              },
+              sameAs: [
+                "https://www.kidgenius.sk/",
+                "https://www.svetladil.cz/",
+              ],
+            }),
+          }}
+        />
       </head>
       <body>
         <Navbar />

@@ -94,33 +94,99 @@ h4 {
 
 /* Homepage hero */
 @media (max-width: 768px) {
-  .hero-grid { grid-template-columns: 1fr !important; }
-  .hero-image-wrap { order: -1; margin-bottom: 16px; }
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-image-wrap {
+    order: -1;
+    margin-bottom: 16px;
+  }
 }
 
 /* Feelings explorer 4→2→1 */
-@media (max-width: 1024px) { .feelings-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-@media (max-width: 600px)  { .feelings-grid { grid-template-columns: 1fr !important; } }
+@media (max-width: 1024px) {
+  .feelings-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .feelings-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 
 /* Approach cards 3→2→1 */
-@media (max-width: 900px) { .approach-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-@media (max-width: 600px) { .approach-grid { grid-template-columns: 1fr !important; } }
+@media (max-width: 900px) {
+  .approach-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .approach-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 
 /* O-Nas values grid and hero */
-@media (max-width: 1024px) { .values-grid      { grid-template-columns: repeat(2, 1fr) !important; } }
-@media (max-width: 600px)  { .values-grid      { grid-template-columns: 1fr !important; } }
-@media (max-width: 900px)  { .about-hero-grid  { grid-template-columns: 1fr !important; } }
+@media (max-width: 1024px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .values-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .about-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Služby services grid 4→2→1 */
+@media (max-width: 1100px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Služby product card and course detail grids */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .course-details-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 
 /* ── GPU-accelerated hover cards ── */
 /* Apply will-change only during hover to avoid constant GPU layer promotion */
-.feelings-grid > div,
-.approach-grid > div,
-.values-grid > div {
+.feelings-grid>div,
+.approach-grid>div,
+.values-grid>div,
+.services-grid>div {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.feelings-grid > div:hover,
-.approach-grid > div:hover,
-.values-grid > div:hover {
+.feelings-grid>div:hover,
+.approach-grid>div:hover,
+.values-grid>div:hover,
+.services-grid>div:hover {
   will-change: transform;
 }
