@@ -130,7 +130,7 @@ export default function ContactPage() {
                             {[
                                 { title: "Světladíl", url: "https://www.svetladil.cz/", subtitle: "", color: "#5BC8C8", bg: "#EAF6FB", icon: "✨" },
                                 { title: "OZ Pre detské hlavičky", url: "https://www.facebook.com/profile.php?id=61574330332603", subtitle: "", color: "#F5A0A0", bg: "#FDF0F0", icon: "" },
-                            ].map((link) => (
+                            ].map((link: { title: string; url: string; subtitle: string; color: string; bg: string; icon: string; tooltip?: string }) => (
                                 <div key={link.title} style={{ position: "relative" }}>
                                     <a
                                         href={link.url ?? undefined}
