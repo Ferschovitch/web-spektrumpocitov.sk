@@ -201,7 +201,7 @@ export default function Navbar() {
                     {/* Logo – next/image for automatic optimisation & lazy loading */}
                     <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
                         <Image
-                            src="/logo.webp"
+                            src="/logo-sun.webp"
                             alt="Spektrum Pocitov logo"
                             width={48}
                             height={48}

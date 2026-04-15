@@ -5,6 +5,7 @@ const footerLinks = [
     /*{ href: "/#nas-pristup", label: "Náš prístup" },
     { href: "/blog", label: "Blog" },*/
     { href: "/", label: "Domov" },
+    { href: "/sluzby", label: "Služby" },
     { href: "/o-mne", label: "O mne" },
     { href: "/kontakt", label: "Kontakt" },
 ];
@@ -36,7 +37,7 @@ export default function Footer() {
                         <div>
                             <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", marginBottom: 12 }}>
                                 <img
-                                    src="/logo.png"
+                                    src="/logo-sun.png"
                                     alt="Spektrum Pocitov logo"
                                     style={{ width: 48, height: 48, objectFit: "contain" }}
                                 />

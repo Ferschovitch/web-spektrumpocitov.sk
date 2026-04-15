@@ -5,14 +5,14 @@ import Image from "next/image";
 import CarouselSection from "@/components/CarouselSection";
 
 export const metadata: Metadata = {
-  title: "Spektrum Pocitov – Ako sa vyznať vo všetkých tých rozmanitých emóciách",
+  title: "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
   description:
     "Psychologická podpora a rozvoj vedomia",
   alternates: {
     canonical: "https://www.spektrumpocitov.sk",
   },
   openGraph: {
-    title: "Spektrum Pocitov – Ako sa vyznať vo všetkých tých rozmanitých emóciách",
+    title: "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
     description:
       "Psychologická podpora a rozvoj vedomia",
     url: "https://www.spektrumpocitov.sk",
@@ -53,56 +53,56 @@ const feelingsCards = [
 
 const approachCards = [
   {
-    icon: "🪞",
+    icon: "",
     title: "Podpora v osobnom raste, sebarozvoj, sebapoznanie, sebavedomie",
     text: "Sprevádzam vás na ceste k hlbšiemu pochopeniu seba samých, aby ste mohli žiť vedomejšie a v súlade so svojimi hodnotami.",
     accentBg: "#EDF7ED",
   },
   {
-    icon: "🆘",
+    icon: "",
     title: "Krízová intervencia a závislosti",
     text: "Pomáham nájsť stabilitu a bezpečie v náročných obdobiach, keď sa zdá, že situácia je nad vaše sily.",
     accentBg: "#FDF0F0",
   },
   {
-    icon: "💬",
+    icon: "",
     title: "Tréning efektívnej komunikácie, práca s emóciami",
     text: "Učím, ako pomenovať svoje potreby, zvládať emócie a komunikovať tak, aby vzťahy mohli rásť namiesto toho, aby vyhoreli.",
     accentBg: "#EAF6FB",
   },
   {
-    icon: "🕊️",
+    icon: "",
     title: "Pravidlá zdravej a bezpečnej hádky",
     text: "Ukazujem, ako zvládať konflikty bez zraňovania, s rešpektom a dôrazom na porozumenie.",
     accentBg: "#fdf5d6ff",
   },
   {
-    icon: "🤝",
+    icon: "",
     title: "Vzťahy",
     /*text: "Podporujem hľadanie rovnováhy a vzájomného rešpektu vo vzťahoch doma aj v pracovnom prostredí. Venujem sa rôznym vzťahovým dynamikám (mužsko-ženská, narcis vs. empat, obeť vs. tyran, atď.).",*/
     text: "Partnerské, pracovné a toxické vzťahy. Osudové spojenia a spriaznené duše, narcizmus, ničivá empatia, obeť a tyran, šikana.",
     accentBg: "#EDF7ED",
   },
   {
-    icon: "✨",
+    icon: "",
     title: "Pracovné zameranie, uplatnenie talentov, poslanie",
     text: "Spoločne objavíme vaše silné stránky a nájdeme cestu, po ktorej môže váš talent vykročiť. Postupne nahradíme pocity vyhorenia za spokojnosť a pracovné naplnenie.",
     accentBg: "#fdf5d6ff",
   },
   {
-    icon: "🧠",
+    icon: "",
     title: "Rozvoj mysle, vedomia a intuície",
     text: "Pracujeme na citlivejšom vnímaní vlastnej intuície, aj pomocou identifikácie zautomatizovaných reakcií a vzorcov myslenia, rôznych blokov a strachov.",
     accentBg: "#EAF6FB",
   },
   {
-    icon: "🧘",
+    icon: "",
     title: "Autogénny tréning, relaxácia a meditácia",
     text: "Učíme sa techniky, ktoré umožňujú rýchlejší návrat k vnútornému pokoju, premene neprospešných návykov na prospešné.",
     accentBg: "#EDF7ED",
   },
   {
-    icon: "⚛️",
+    icon: "",
     title: "Energetické zákony a manifestácia",
     text: "Odhalíme príčiny a následky aktuálnej podoby vašich vzťahov, práce, psychosomatických príčin narušeného zdravotného stavu a celkovej životnej situácie.",
     accentBg: "#FDF0F0",

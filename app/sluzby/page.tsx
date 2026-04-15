@@ -5,7 +5,7 @@ export default function SluzbyPage() {
     const serviceJsonLd = {
         "@context": "https://schema.org",
         "@type": "Service",
-        name: "Spektrum Pocitov – Ako sa vyznať vo všetkých tých rozmanitých emóciách",
+        name: "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
         provider: {
             "@type": "Person",
             name: "Mgr. Linda Stanislavová",
@@ -92,7 +92,7 @@ export default function SluzbyPage() {
                         }}>
 
                             <Link
-                                href="mailto:info@spektrumpocitov.sk"
+                                href="/kontakt"
                                 style={{
                                     marginTop: 8,
                                     background: "#F5C842",
@@ -167,7 +167,7 @@ export default function SluzbyPage() {
                         }}>
 
                             <Link
-                                href="mailto:info@spektrumpocitov.sk"
+                                href="/kontakt"
                                 style={{
                                     marginTop: 8,
                                     background: "#F5A0A0",

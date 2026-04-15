@@ -21,7 +21,7 @@ const carouselCards = [
             "Niektoré deti vnímajú svet inak.",
             "Dysgrafia. Dyslexia. Dysortografia. Za týmito slovami sa často skrýva viac než len slovo porucha. Niekedy je to tlak. Očakávania. Porovnávanie. Pocit, že svet sa zrýchlil a písmenká či čísla sa kamsi rozutekali.",
             "Dieťa však nepotrebuje ďalší tlak na to, aby niečo zvládalo. Potrebuje bezpečie. Porozumenie. Prijatie.",
-            "Pretože skutočná vnútorná motivácia nevzniká z povinnosti ani zo strachu z chýb. Vzniká z hladu duše. Keď je dieťa v kontakte so svojím vnútorným svetom, učenie sa sa stáva prirodzeným.",
+            "Pretože skutočná vnútorná motivácia nevzniká z povinnosti ani zo strachu z chýb. Vzniká z hladu duše. Keď je dieťa v kontakte so svojím vnútorným svetom, učenie sa stáva prirodzeným.",
             "Keď sa cíti prijaté, rastie. Keď je v bezpečí, odváži sa skúšať. A práve tam začína skutočná zmena.",
         ],
     },

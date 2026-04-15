@@ -23,7 +23,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.spektrumpocitov.sk"),
   title: {
-    default: "Spektrum Pocitov – Ako sa vyznať vo všetkých tých rozmanitých emóciách",
+    default: "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
     template: "%s | Spektrum Pocitov",
   },
   description:
@@ -94,7 +94,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Spektrum Pocitov",
               url: "https://www.spektrumpocitov.sk",
-              logo: "https://www.spektrumpocitov.sk/logo.webp",
+              logo: "https://www.spektrumpocitov.sk/logo-sun.webp",
               telephone: "+421908500266",
               email: "info@spektrumpocitov.sk",
               address: {
