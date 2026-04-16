@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { prisma } from "@/lib/db";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -74,11 +75,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const globalDb = await prisma.pageContent.findUnique({ where: { slug: 'global' } });
+  const globalContent = globalDb?.content || {};
+
   return (
     <html lang="sk" className={`${playfair.variable} ${inter.variable}`}>
       <head>
@@ -113,7 +117,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         <main>{children}</main>
-        <Footer />
+        <Footer content={globalContent} />
       </body>
     </html>
   );

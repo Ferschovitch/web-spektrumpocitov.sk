@@ -3,8 +3,16 @@
 import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
+import { decrypt } from "@/lib/auth";
 
 export async function savePageContent(prevState: any, formData: FormData) {
+    const cookieStore = await cookies();
+    const session = cookieStore.get("session")?.value;
+    if (!session || !(await decrypt(session))) {
+        return { error: "Nepovolený prístup. Relácia vypršala." };
+    }
+
     const slug = formData.get("slug") as string;
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;

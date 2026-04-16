@@ -14,7 +14,7 @@ const footerLinks = [
 
 
 
-export default function Footer() {
+export default function Footer({ content }: { content: any }) {
     return (
         <>
             <style>{`
@@ -46,7 +46,7 @@ export default function Footer() {
                                 </span>
                             </Link>
                             <p style={{ color: "#9CA3AF", fontSize: 14, lineHeight: 1.6, maxWidth: 240 }}>
-                                Spojenie tradičnej a alternatívnej psychológie.
+                                {content?.footerText || "Spojenie tradičnej a alternatívnej psychológie."}
                             </p>
                         </div>
 
@@ -61,14 +61,14 @@ export default function Footer() {
 
                         {/* Contact info */}
                         <div className="footer-contact-info" style={{ textAlign: "right" }}>
-                            <p style={{ color: "#9CA3AF", fontSize: 14, marginBottom: 8 }}>📧 info@spektrumpocitov.sk</p>
-                            <p style={{ color: "#9CA3AF", fontSize: 14, marginBottom: 8 }}>📞 +421 908 500 266</p>
-                            <p style={{ color: "#9CA3AF", fontSize: 14 }}>📍 Bratislava, Slovensko</p>
+                            <p style={{ color: "#9CA3AF", fontSize: 14, marginBottom: 8 }}>📧 {content?.footerEmail || "info@spektrumpocitov.sk"}</p>
+                            <p style={{ color: "#9CA3AF", fontSize: 14, marginBottom: 8 }}>📞 {content?.footerPhone || "+421 908 500 266"}</p>
+                            <p style={{ color: "#9CA3AF", fontSize: 14 }}>📍 {content?.footerAddress || "Bratislava, Slovensko"}</p>
                         </div>
                     </div>
 
                     <div style={{ borderTop: "1px solid #374151", paddingTop: 24 }}>
-                        <p style={{ color: "#6B7280", fontSize: 13 }}>© 2026 Spektrum Pocitov</p>
+                        <p style={{ color: "#6B7280", fontSize: 13 }}>{content?.footerCopyright || "© 2026 Spektrum Pocitov"}</p>
                     </div>
                 </div>
             </footer>
