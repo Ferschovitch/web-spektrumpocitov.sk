@@ -66,7 +66,7 @@ export default async function HomePage() {
     <div style={{ background: "#F5F6F0" }}>
       {/* ── HERO ── */}
       <section style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
+        <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
           <div>
             <h1 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: "clamp(38px, 5vw, 58px)", fontWeight: 700, lineHeight: 1.15, marginBottom: 20, color: "#1A1A1A" }}>
               {content.heroTitleStart || "Spolu objavme "}
@@ -113,7 +113,7 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
+          <div className="feelings-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}>
             {(content.feelingsCards || []).map((card: any) => (
               <div key={card.label} style={{ background: card.bg, borderRadius: 20, padding: "32px 24px", boxShadow: "0 4px 16px rgba(0,0,0,0.05)", transition: "transform 0.25s ease" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
@@ -139,7 +139,7 @@ export default async function HomePage() {
             </h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+          <div className="approach-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
             {(content.approachCards || []).map((card: any) => (
               <div key={card.title} style={{ background: card.accentBg, borderRadius: 20, padding: "28px 24px", boxShadow: "0 4px 16px rgba(0,0,0,0.04)" }}>
                 <div style={{ fontSize: 28, marginBottom: 16 }}>{card.icon}</div>

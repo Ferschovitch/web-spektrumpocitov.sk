@@ -23,7 +23,7 @@ async function main() {
         heroBody1: "Som tu pre všetkých, ktorí túžia po pochopení a podpore. Pre tých, ktorí chcú lepšie porozumieť vlastnej situácii, aj pre tých, ktorí hľadajú cestu z trápení, vzťahových kríz či výchovných dilem.",
         heroBody2: "Ľudí vnímam a prijímam práve takých, akí sú, bez hodnotenia, nálepiek či tlaku. Spolu môžeme nájsť odpovede na vaše otázky, správny smer na ceste riešenia vašich problémov a vytúžený vnútorný pokoj.",
         heroBody3: "Ponúkam autentický a ľudský prístup, spojenie tradičnej a alternatívnej psychológie.",
-        
+
         feelingsTitle: "Odpoveď sa skrýva vo vás",
         feelingsSubtitle: "Spolu ju môžeme objaviť, pomenovať a v bezpečnom prostredí na nej postaviť váš život opäť na nohy.",
         feelingsCards: [
@@ -84,9 +84,9 @@ async function main() {
       description: 'Zoznámte sa so mnou',
       keywords: 'o mne, psychológ, profil',
       content: {
-        pageTitle: "Mgr. Veronika Fersch",
+        pageTitle: "Mgr. Linda Stanislavová",
         pageSubtitle: "Moja cesta a vzdelanie",
-        bodyText1: "Volám sa Veronika a venujem sa psychológii...",
+        bodyText1: "Som psychologička, koučka a lektorka rozvoja mysle, vedomia a intuície. Venujem sa deťom, jednotlivcom, párom aj rodinám.",
         bodyText2: "Moje vzdelanie tvorí pevný základ pre pomoc..."
       }
     }
@@ -103,12 +103,12 @@ async function main() {
       keywords: 'kontakt, adresa, telefón, email',
       content: {
         pageTitle: "Kontaktujte ma",
-        email: "poradna@spektrumpocitov.sk",
-        phone: "+421 911 364 163",
-        address: "Seberíniho 1, 821 03 Bratislava - Ružinov",
-        companyDetails: "IČO: 56254421, DIČ: 1121171804",
+        email: "info@spektrumpocitov.sk",
+        phone: "+421 908 500 266",
+        address: "Bratislava",
+        companyDetails: "",
         formTitle: "Napíšte mi",
-        mapUrl: "https://www.google.com/maps/embed?..."
+        mapUrl: ""
       }
     }
   });
