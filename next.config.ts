@@ -11,6 +11,20 @@ const nextConfig: NextConfig = {
     // Minify & dead-code-eliminate CSS output
     optimizeCss: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/blog",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/blog/:path*",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

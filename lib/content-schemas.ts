@@ -124,7 +124,19 @@ export const PAGE_SCHEMAS: Record<string, SectionSchema[]> = {
                     schema: [
                         { name: "text", label: "Položka (text)", type: "text" }
                     ]
-                }
+                },
+                {
+                    name: "detiHowItWorks",
+                    label: "Zoznam: Ako prebieha (3 kroky)",
+                    type: "array",
+                    schema: [
+                        { name: "label", label: "Nadpis kroku", type: "text" },
+                        { name: "text", label: "Popis kroku", type: "textarea" },
+                        { name: "color", label: "Farba nadpisu (Hex: #...)", type: "color" },
+                        { name: "bg", label: "Farba pozadia (Hex: #...)", type: "color" }
+                    ]
+                },
+                { name: "detiKurzBtn", label: "Text tlačidla kurzu", type: "text" }
             ]
         },
         {

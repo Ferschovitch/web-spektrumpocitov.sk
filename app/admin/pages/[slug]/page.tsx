@@ -115,110 +115,167 @@ export default function PageEditor({ params }: { params: Promise<{ slug: string 
 
     return (
         <div>
-            <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "1.5rem", fontFamily: "Playfair Display, Georgia, serif" }}>
+            <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "0.5rem", fontFamily: "Playfair Display, Georgia, serif" }}>
                 Úprava obsahu: <span style={{ color: "#6DBF67" }}>{slug}</span>
             </h1>
+            <p style={{ color: "#9CA3AF", fontSize: "0.9rem", marginBottom: "2rem" }}>
+                Zmeny sa prejavia na webe okamžite po uložení.
+            </p>
 
             {state?.success && (
-                <div style={{ backgroundColor: "#dcfce7", color: "#166534", padding: "1rem", borderRadius: "0.5rem", marginBottom: "1.5rem" }}>
-                    {state.success}
-                </div>
-            )}
-            
-            {state?.error && (
-                <div style={{ backgroundColor: "#fee2e2", color: "#991b1b", padding: "1rem", borderRadius: "0.5rem", marginBottom: "1.5rem" }}>
-                    {state.error}
+                <div style={{ backgroundColor: "#dcfce7", color: "#166534", padding: "1rem", borderRadius: "0.5rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    ✅ {state.success}
                 </div>
             )}
 
-            <form action={formAction} style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+            {state?.error && (
+                <div style={{ backgroundColor: "#fee2e2", color: "#991b1b", padding: "1rem", borderRadius: "0.5rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    ❌ {state.error}
+                </div>
+            )}
+
+            <form action={formAction} style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
                 <input type="hidden" name="slug" value={slug} />
 
-                {/* We serialize contentState into the form so the Server Action can simply read it */}
                 {Object.entries(contentState).map(([k, v]) => (
                     <input key={k} type="hidden" name={`content_${k}`} value={typeof v === 'object' ? JSON.stringify(v) : v} />
                 ))}
 
-                <div style={{ backgroundColor: "white", padding: "1.5rem", borderRadius: "1rem", boxShadow: "0 2px 4px rgba(0,0,0,0.05)" }}>
-                    <h2 style={{ fontSize: "1.2rem", fontWeight: "bold", marginBottom: "1rem" }}>SEO Metadáta</h2>
-                    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                {/* ── SEO ZONE ── */}
+                <div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
+                        <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#EDE9FE", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.1rem" }}>🔍</div>
                         <div>
-                            <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500" }}>Titulok (Browser Title)</label>
-                            <input type="text" name="title" defaultValue={pageData.title || ""} style={{ width: "100%", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid #ccc", boxSizing: "border-box" }} />
+                            <h2 style={{ fontSize: "1.1rem", fontWeight: "bold", color: "#5B21B6", margin: 0 }}>SEO &amp; Metadáta</h2>
+                            <p style={{ fontSize: "0.8rem", color: "#8B5CF6", margin: 0 }}>Tieto polia sa zobrazujú vo vyhľadávačoch (Google, Bing...), nie priamo na stránke.</p>
+                        </div>
+                    </div>
+
+                    <div style={{ backgroundColor: "white", padding: "1.5rem", borderRadius: "1rem", boxShadow: "0 2px 4px rgba(0,0,0,0.05)", borderLeft: "4px solid #8B5CF6", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+                        <div>
+                            <label style={{ display: "block", marginBottom: "0.35rem", fontWeight: "600", color: "#374151" }}>
+                                Titulok stránky <span style={{ fontWeight: 400, color: "#9CA3AF", fontSize: "0.8rem" }}>(zobrazuje sa v záložke prehliadača a vo výsledkoch Google)</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="title"
+                                defaultValue={pageData.title || ""}
+                                placeholder="napr. Spektrum Pocitov – Psychologická podpora Bratislava"
+                                style={{ width: "100%", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid #DDD6FE", boxSizing: "border-box", fontSize: "0.9rem" }}
+                            />
                         </div>
                         <div>
-                            <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500" }}>Popis pre vyhľadávače</label>
-                            <textarea name="description" defaultValue={pageData.description || ""} rows={2} style={{ width: "100%", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid #ccc", boxSizing: "border-box", resize: "vertical" }} />
+                            <label style={{ display: "block", marginBottom: "0.35rem", fontWeight: "600", color: "#374151" }}>
+                                Meta popis <span style={{ fontWeight: 400, color: "#9CA3AF", fontSize: "0.8rem" }}>(krátky popis stránky vo výsledkoch vyhľadávania, ideálne 120–160 znakov)</span>
+                            </label>
+                            <textarea
+                                name="description"
+                                defaultValue={pageData.description || ""}
+                                rows={2}
+                                placeholder="napr. Psychologická podpora pre deti, páry a jednotlivcov v Bratislave..."
+                                style={{ width: "100%", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid #DDD6FE", boxSizing: "border-box", resize: "vertical", fontSize: "0.9rem" }}
+                            />
                         </div>
                         <div>
-                            <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500" }}>Kľúčové slová</label>
-                            <input type="text" name="keywords" defaultValue={pageData.keywords || ""} style={{ width: "100%", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid #ccc", boxSizing: "border-box" }} />
+                            <label style={{ display: "block", marginBottom: "0.35rem", fontWeight: "600", color: "#374151" }}>
+                                Kľúčové slová <span style={{ fontWeight: 400, color: "#9CA3AF", fontSize: "0.8rem" }}>(oddeľte čiarkou – napr. psychológ Bratislava, terapia, koučing)</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="keywords"
+                                defaultValue={pageData.keywords || ""}
+                                placeholder="napr. psychológ Bratislava, terapia pre deti, rodinné poradenstvo"
+                                style={{ width: "100%", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid #DDD6FE", boxSizing: "border-box", fontSize: "0.9rem" }}
+                            />
                         </div>
                     </div>
                 </div>
 
-                {schema.length > 0 ? schema.map((section: SectionSchema) => (
-                    <div key={section.id} style={{ backgroundColor: "white", padding: "1.5rem", borderRadius: "1rem", boxShadow: "0 2px 4px rgba(0,0,0,0.05)", borderLeft: "4px solid #6DBF67" }}>
-                        <h2 style={{ fontSize: "1.2rem", fontWeight: "bold", marginBottom: "0.5rem" }}>{section.title}</h2>
-                        
-                        <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", marginTop: "1.5rem" }}>
-                            {section.fields.map(field => (
-                                <div key={field.name}>
-                                    <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "600", color: "#374151" }}>{field.label}</label>
-                                    
-                                    {field.type === "textarea" ? (
-                                        <textarea
-                                            value={contentState[field.name] || ""}
-                                            onChange={e => handleContentChange(field.name, e.target.value)}
-                                            rows={3}
-                                            style={{ width: "100%", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid #ccc" }}
-                                        />
-                                    ) : field.type === "array" ? (
-                                        <ArrayEditor 
-                                            field={field} 
-                                            value={contentState[field.name] || []} 
-                                            onChange={(newVal) => handleContentChange(field.name, newVal)} 
-                                        />
-                                    ) : (
-                                        <input
-                                            type="text"
-                                            value={contentState[field.name] || ""}
-                                            onChange={e => handleContentChange(field.name, e.target.value)}
-                                            style={{ width: "100%", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid #ccc" }}
-                                        />
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )) : (
-                    <div style={{ padding: "2rem", textAlign: "center", backgroundColor: "white", borderRadius: "1rem", color: "#6b7280" }}>
-                        Pre túto stránku zatiaľ nie je definovaná vizuálna štruktúra, prepína sa do núdzového režimu.
-                        {/* Fallback code if schema is missing can be placed here, currently skipping since we have all 5 covered */}
+                {/* ── DIVIDER ── */}
+                {schema.length > 0 && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                        <div style={{ flex: 1, height: 1, background: "#E5E7EB" }} />
+                        <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#9CA3AF", textTransform: "uppercase", letterSpacing: "0.08em", whiteSpace: "nowrap" }}>Obsah stránky</span>
+                        <div style={{ flex: 1, height: 1, background: "#E5E7EB" }} />
                     </div>
                 )}
 
-                {/* Global Save Button */}
-                <div style={{ position: "sticky", bottom: "2rem", display: "flex", justifyContent: "flex-end", zIndex: 50 }}>
+                {/* ── CONTENT ZONE ── */}
+                {schema.length > 0 ? (
+                    <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "-0.5rem" }}>
+                            <div style={{ width: 36, height: 36, borderRadius: "50%", background: "#DCFCE7", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.1rem" }}>✏️</div>
+                            <div>
+                                <h2 style={{ fontSize: "1.1rem", fontWeight: "bold", color: "#166534", margin: 0 }}>Text na webe</h2>
+                                <p style={{ fontSize: "0.8rem", color: "#4ade80", margin: 0 }}>Tieto polia sa zobrazujú priamo návštevníkom stránky.</p>
+                            </div>
+                        </div>
+
+                        {schema.map((section: SectionSchema) => (
+                            <div key={section.id} style={{ backgroundColor: "white", padding: "1.5rem", borderRadius: "1rem", boxShadow: "0 2px 4px rgba(0,0,0,0.05)", borderLeft: "4px solid #6DBF67" }}>
+                                <h2 style={{ fontSize: "1.1rem", fontWeight: "bold", marginBottom: "0.25rem", color: "#1A1A1A" }}>{section.title}</h2>
+                                <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", marginTop: "1.25rem" }}>
+                                    {section.fields.map(field => (
+                                        <div key={field.name}>
+                                            <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "600", color: "#374151" }}>{field.label}</label>
+                                            {field.type === "textarea" ? (
+                                                <textarea
+                                                    value={contentState[field.name] || ""}
+                                                    onChange={e => handleContentChange(field.name, e.target.value)}
+                                                    rows={3}
+                                                    style={{ width: "100%", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid #D1FAE5", fontSize: "0.9rem" }}
+                                                />
+                                            ) : field.type === "array" ? (
+                                                <ArrayEditor
+                                                    field={field}
+                                                    value={contentState[field.name] || []}
+                                                    onChange={(newVal) => handleContentChange(field.name, newVal)}
+                                                />
+                                            ) : (
+                                                <input
+                                                    type="text"
+                                                    value={contentState[field.name] || ""}
+                                                    onChange={e => handleContentChange(field.name, e.target.value)}
+                                                    style={{ width: "100%", padding: "0.75rem", borderRadius: "0.5rem", border: "1px solid #D1FAE5", fontSize: "0.9rem" }}
+                                                />
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div style={{ padding: "2rem", textAlign: "center", backgroundColor: "white", borderRadius: "1rem", color: "#6b7280", border: "1px dashed #e5e7eb" }}>
+                        Pre túto stránku zatiaľ nie je definovaná editovateľná štruktúra obsahu.
+                    </div>
+                )}
+
+                {/* Global Save Button – fixed so it's always visible */}
+                <div style={{ position: "fixed", bottom: "2rem", right: "2rem", zIndex: 100 }}>
                     <button
                         type="submit"
                         disabled={isPending}
                         style={{
-                            backgroundColor: "#1A1A1A",
+                            backgroundColor: isPending ? "#374151" : "#1A1A1A",
                             color: "white",
-                            padding: "1rem 2rem",
+                            padding: "0.85rem 1.75rem",
                             borderRadius: "999px",
                             border: "none",
                             fontWeight: "bold",
                             cursor: isPending ? "not-allowed" : "pointer",
-                            opacity: isPending ? 0.7 : 1,
-                            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)"
+                            opacity: isPending ? 0.75 : 1,
+                            boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
+                            fontSize: "0.95rem",
+                            transition: "background-color 0.2s, box-shadow 0.2s",
+                            whiteSpace: "nowrap",
                         }}
                     >
-                        {isPending ? "Ukladám..." : "Uložiť zmeny v obsahu"}
+                        {isPending ? "⏳ Ukladám..." : "💾 Uložiť zmeny"}
                     </button>
                 </div>
             </form>
         </div>
     );
 }
+

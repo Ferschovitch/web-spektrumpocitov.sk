@@ -333,7 +333,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     <span style={{ fontSize: 20 }}></span> Ako prebieha
                                 </h3>
                                 <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                                    {[
+                                    {(content.detiHowItWorks || [
                                         {
                                             label: "10 lekcií",
                                             text: "Kurz 1 aj Kurz 2 obsahuje 10 lekcií, opakujúcich sa ideálne každý týždeň alebo každé 2 týždne — podľa vašich možností.",
@@ -349,7 +349,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                             text: "Druhú hodinu konzultujeme s rodičmi dporúčania na udržanie pokroku, ktorý dieťa na lekcii dosiahlo.",
                                             color: "#F5C842", bg: "#fdf5d6ff",
                                         },
-                                    ].map((step) => (
+                                    ]).map((step: any) => (
                                         <div key={step.label} style={{
                                             background: step.bg, borderRadius: 14, padding: "16px 18px",
                                         }}>
@@ -387,7 +387,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                             e.currentTarget.style.boxShadow = "none";
                                         }}
                                     >
-                                        Mám záujem o kurz
+                                        {content.detiKurzBtn || "Mám záujem o kurz"}
                                     </Link>
                                 </div>
                             </div>

@@ -42,6 +42,7 @@ export default async function AdminDashboard() {
                             <tr style={{ borderBottom: "1px solid #e5e7eb", textAlign: "left" }}>
                                 <th style={{ padding: "0.75rem", color: "#4b5563" }}>ID podstránky</th>
                                 <th style={{ padding: "0.75rem", color: "#4b5563" }}>Názov (SEO)</th>
+                                <th style={{ padding: "0.75rem", color: "#4b5563" }}>Posledná zmena</th>
                                 <th style={{ padding: "0.75rem", color: "#4b5563", textAlign: "right" }}>Akcia</th>
                             </tr>
                         </thead>
@@ -49,7 +50,13 @@ export default async function AdminDashboard() {
                             {recentPages.map((page) => (
                                 <tr key={page.id} style={{ borderBottom: "1px solid #f3f4f6" }}>
                                     <td style={{ padding: "0.75rem", fontWeight: "500" }}>{page.slug}</td>
-                                    <td style={{ padding: "0.75rem", color: "#6b7280" }}>{page.title}</td>
+                                    <td style={{ padding: "0.75rem", color: "#6b7280" }}>{page.title || <span style={{ color: "#d1d5db", fontStyle: "italic" }}>—</span>}</td>
+                                    <td style={{ padding: "0.75rem", color: "#6b7280", fontSize: "0.875rem", whiteSpace: "nowrap" }}>
+                                        {page.updatedAt.toLocaleString("sk-SK", {
+                                            day: "numeric", month: "numeric", year: "numeric",
+                                            hour: "2-digit", minute: "2-digit",
+                                        })}
+                                    </td>
                                     <td style={{ padding: "0.75rem", textAlign: "right" }}>
                                         <Link href={`/admin/pages/${page.slug}`} style={{ backgroundColor: "#F5F6F0", padding: "0.5rem 1rem", borderRadius: "0.5rem", textDecoration: "none", color: "#1f2937", fontSize: "0.875rem" }}>
                                             Upraviť

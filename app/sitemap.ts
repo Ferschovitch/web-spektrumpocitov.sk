@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import articles from "@/content/articles.json";
 
 const BASE_URL = "https://www.spektrumpocitov.sk";
 
@@ -24,12 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
         {
-            url: `${BASE_URL}/blog`,
-            lastModified: new Date(),
-            changeFrequency: "weekly",
-            priority: 0.8,
-        },
-        {
             url: `${BASE_URL}/kontakt`,
             lastModified: new Date(),
             changeFrequency: "yearly",
@@ -37,12 +30,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
     ];
 
-    const articleRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
-        url: `${BASE_URL}/blog/${article.slug}`,
-        lastModified: new Date(article.date),
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-    }));
-
-    return [...staticRoutes, ...articleRoutes];
+    return [...staticRoutes];
 }

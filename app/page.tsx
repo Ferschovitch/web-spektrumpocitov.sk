@@ -1,26 +1,27 @@
-// Server Component – no "use client" needed since interactivity is isolated in CarouselSection
+// Server Component – fetches content from DB, falls back to hardcoded defaults
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import CarouselSection from "@/components/CarouselSection";
+import { prisma } from "@/lib/db";
 
-export const metadata: Metadata = {
-  title: "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
-  description:
-    "Psychologická podpora a rozvoj vedomia",
-  alternates: {
-    canonical: "https://www.spektrumpocitov.sk",
-  },
-  openGraph: {
-    title: "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
-    description:
-      "Psychologická podpora a rozvoj vedomia",
-    url: "https://www.spektrumpocitov.sk",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await prisma.pageContent.findUnique({ where: { slug: "home" } });
+  return {
+    title: page?.title || "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
+    description: page?.description || "Psychologická podpora a rozvoj vedomia",
+    keywords: page?.keywords || "",
+    alternates: { canonical: "https://www.spektrumpocitov.sk" },
+    openGraph: {
+      title: page?.title || "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
+      description: page?.description || "Psychologická podpora a rozvoj vedomia",
+      url: "https://www.spektrumpocitov.sk",
+      type: "website",
+    },
+  };
+}
 
-const feelingsCards = [
+const defaultFeelings = [
   {
     emoji: "🟡",
     color: "#F5C842",
@@ -51,67 +52,58 @@ const feelingsCards = [
   },
 ];
 
-const approachCards = [
-  {
-    icon: "",
-    title: "Podpora v osobnom raste, sebarozvoj, sebapoznanie, sebavedomie",
-    text: "Sprevádzam vás na ceste k hlbšiemu pochopeniu seba samých, aby ste mohli žiť vedomejšie a v súlade so svojimi hodnotami.",
-    accentBg: "#EDF7ED",
-  },
-  {
-    icon: "",
-    title: "Krízová intervencia a závislosti",
-    text: "Pomáham nájsť stabilitu a bezpečie v náročných obdobiach, keď sa zdá, že situácia je nad vaše sily.",
-    accentBg: "#FDF0F0",
-  },
-  {
-    icon: "",
-    title: "Tréning efektívnej komunikácie, práca s emóciami",
-    text: "Učím, ako pomenovať svoje potreby, zvládať emócie a komunikovať tak, aby vzťahy mohli rásť namiesto toho, aby vyhoreli.",
-    accentBg: "#EAF6FB",
-  },
-  {
-    icon: "",
-    title: "Pravidlá zdravej a bezpečnej hádky",
-    text: "Ukazujem, ako zvládať konflikty bez zraňovania, s rešpektom a dôrazom na porozumenie.",
-    accentBg: "#fdf5d6ff",
-  },
-  {
-    icon: "",
-    title: "Vzťahy",
-    /*text: "Podporujem hľadanie rovnováhy a vzájomného rešpektu vo vzťahoch doma aj v pracovnom prostredí. Venujem sa rôznym vzťahovým dynamikám (mužsko-ženská, narcis vs. empat, obeť vs. tyran, atď.).",*/
-    text: "Partnerské, pracovné a toxické vzťahy. Osudové spojenia a spriaznené duše, narcizmus, ničivá empatia, obeť a tyran, šikana.",
-    accentBg: "#EDF7ED",
-  },
-  {
-    icon: "",
-    title: "Pracovné zameranie, uplatnenie talentov, poslanie",
-    text: "Spoločne objavíme vaše silné stránky a nájdeme cestu, po ktorej môže váš talent vykročiť. Postupne nahradíme pocity vyhorenia za spokojnosť a pracovné naplnenie.",
-    accentBg: "#fdf5d6ff",
-  },
-  {
-    icon: "",
-    title: "Rozvoj mysle, vedomia a intuície",
-    text: "Pracujeme na citlivejšom vnímaní vlastnej intuície, aj pomocou identifikácie zautomatizovaných reakcií a vzorcov myslenia, rôznych blokov a strachov.",
-    accentBg: "#EAF6FB",
-  },
-  {
-    icon: "",
-    title: "Autogénny tréning, relaxácia a meditácia",
-    text: "Učíme sa techniky, ktoré umožňujú rýchlejší návrat k vnútornému pokoju, premene neprospešných návykov na prospešné.",
-    accentBg: "#EDF7ED",
-  },
-  {
-    icon: "",
-    title: "Energetické zákony a manifestácia",
-    text: "Odhalíme príčiny a následky aktuálnej podoby vašich vzťahov, práce, psychosomatických príčin narušeného zdravotného stavu a celkovej životnej situácie.",
-    accentBg: "#FDF0F0",
-  },
+const defaultApproach = [
+  { icon: "", title: "Podpora v osobnom raste, sebarozvoj, sebapoznanie, sebavedomie", text: "Sprevádzam vás na ceste k hlbšiemu pochopeniu seba samých, aby ste mohli žiť vedomejšie a v súlade so svojimi hodnotami.", accentBg: "#EDF7ED" },
+  { icon: "", title: "Krízová intervencia a závislosti", text: "Pomáham nájsť stabilitu a bezpečie v náročných obdobiach, keď sa zdá, že situácia je nad vaše sily.", accentBg: "#FDF0F0" },
+  { icon: "", title: "Tréning efektívnej komunikácie, práca s emóciami", text: "Učím, ako pomenovať svoje potreby, zvládať emócie a komunikovať tak, aby vzťahy mohli rásť namiesto toho, aby vyhoreli.", accentBg: "#EAF6FB" },
+  { icon: "", title: "Pravidlá zdravej a bezpečnej hádky", text: "Ukazujem, ako zvládať konflikty bez zraňovania, s rešpektom a dôrazom na porozumenie.", accentBg: "#fdf5d6ff" },
+  { icon: "", title: "Vzťahy", text: "Partnerské, pracovné a toxické vzťahy. Osudové spojenia a spriaznené duše, narcizmus, ničivá empatia, obeť a tyran, šikana.", accentBg: "#EDF7ED" },
+  { icon: "", title: "Pracovné zameranie, uplatnenie talentov, poslanie", text: "Spoločne objavíme vaše silné stránky a nájdeme cestu, po ktorej môže váš talent vykročiť. Postupne nahradíme pocity vyhorenia za spokojnosť a pracovné naplnenie.", accentBg: "#fdf5d6ff" },
+  { icon: "", title: "Rozvoj mysle, vedomia a intuície", text: "Pracujeme na citlivejšom vnímaní vlastnej intuície, aj pomocou identifikácie zautomatizovaných reakcií a vzorcov myslenia, rôznych blokov a strachov.", accentBg: "#EAF6FB" },
+  { icon: "", title: "Autogénny tréning, relaxácia a meditácia", text: "Učíme sa techniky, ktoré umožňujú rýchlejší návrat k vnútornému pokoju, premene neprospešných návykov na prospešné.", accentBg: "#EDF7ED" },
+  { icon: "", title: "Energetické zákony a manifestácia", text: "Odhalíme príčiny a následky aktuálnej podoby vašich vzťahov, práce, psychosomatických príčin narušeného zdravotného stavu a celkovej životnej situácie.", accentBg: "#FDF0F0" },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const pageDb = await prisma.pageContent.findUnique({ where: { slug: "home" } });
+  const c = (pageDb?.content as any) || {};
+
+  const feelingsCards = (c.feelingsCards && c.feelingsCards.length > 0) ? c.feelingsCards : defaultFeelings;
+  const approachCards = (c.approachCards && c.approachCards.length > 0) ? c.approachCards : defaultApproach;
+
   return (
     <div style={{ background: "#F5F6F0" }}>
+      <style>{`
+        @keyframes reveal-up {
+          from { 
+            opacity: 0; 
+            transform: translateY(40px) scale(0.95); 
+          }
+          to { 
+            opacity: 1; 
+            transform: translateY(0) scale(1); 
+          }
+        }
+        
+        .reveal-card {
+          /* Fallback for browsers without animation-timeline support */
+          animation: reveal-up 0.8s ease-out forwards;
+          
+          /* Modern scroll-triggered animation */
+          animation-timeline: view();
+          animation-range: entry 5% cover 35%;
+        }
+
+        /* Stagger effects using nth-child */
+        .feelings-grid > div:nth-child(1) { animation-delay: 0.1s; }
+        .feelings-grid > div:nth-child(2) { animation-delay: 0.2s; }
+        .feelings-grid > div:nth-child(3) { animation-delay: 0.3s; }
+        .feelings-grid > div:nth-child(4) { animation-delay: 0.4s; }
+
+        .approach-grid > div:nth-child(3n+1) { animation-delay: 0.1s; }
+        .approach-grid > div:nth-child(3n+2) { animation-delay: 0.2s; }
+        .approach-grid > div:nth-child(3n+3) { animation-delay: 0.3s; }
+      `}</style>
       {/* ── HERO ── */}
       <section
         style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px" }}
@@ -130,10 +122,10 @@ export default function HomePage() {
                 color: "#1A1A1A",
               }}
             >
-              Spolu objavme{" "}
-              <span style={{ color: "#F5C842" }}>svetlo</span>{" "}
-              v{" "}
-              <span style={{ color: "#5BC8C8" }}>tme</span>
+              {c.heroTitleStart || "Spolu objavme"}{" "}
+              <span style={{ color: "#F5C842" }}>{c.heroTitleHighlight1 || "svetlo"}</span>{" "}
+              {c.heroTitleMiddle || "v"}{" "}
+              <span style={{ color: "#5BC8C8" }}>{c.heroTitleHighlight2 || "tme"}</span>
             </h1>
 
             <div
@@ -146,15 +138,13 @@ export default function HomePage() {
               }}
             >
               <p style={{ margin: 0 }}>
-                Som tu pre všetkých, ktorí túžia po pochopení a podpore. Pre tých, ktorí chcú lepšie porozumieť vlastnej situácii, aj pre tých, ktorí hľadajú cestu z trápení, vzťahových kríz či výchovných dilem.<br /><br />
+                {c.heroBody1 || "Som tu pre všetkých, ktorí túžia po pochopení a podpore. Pre tých, ktorí chcú lepšie porozumieť vlastnej situácii, aj pre tých, ktorí hľadajú cestu z trápení, vzťahových kríz či výchovných dilem."}<br /><br />
               </p>
-
               <p style={{ margin: 0 }}>
-                Ľudí vnímam a prijímam práve takých, akí sú, bez hodnotenia, nálepiek či tlaku. Spolu môžeme nájsť odpovede na vaše otázky, správny smer na ceste riešenia vašich problémov a vytúžený vnútorný pokoj.<br /><br />
+                {c.heroBody2 || "Ľudí vnímam a prijímam práve takých, akí sú, bez hodnotenia, nálepiek či tlaku. Spolu môžeme nájsť odpovede na vaše otázky, správny smer na ceste riešenia vašich problémov a vytúžený vnútorný pokoj."}<br /><br />
               </p>
-
               <p style={{ margin: 0 }}>
-                Ponúkam autentický a ľudský prístup, spojenie tradičnej a alternatívnej psychológie.<br />
+                {c.heroBody3 || "Ponúkam autentický a ľudský prístup, spojenie tradičnej a alternatívnej psychológie."}<br />
               </p>
             </div>
 
@@ -206,7 +196,7 @@ export default function HomePage() {
               background: "#5BC8C8", opacity: 0.15, bottom: 10, left: -30, zIndex: 0,
             }} />
 
-            {/* Image card – next/image with priority + sizes for responsive cropping */}
+            {/* Image card */}
             <div
               style={{
                 position: "relative",
@@ -246,10 +236,10 @@ export default function HomePage() {
                 marginBottom: 12,
               }}
             >
-              Odpoveď sa skrýva vo vás
+              {c.feelingsTitle || "Odpoveď sa skrýva vo vás"}
             </h2>
             <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 520, margin: "0 auto" }}>
-              Spolu ju môžeme objaviť, pomenovať a v bezpečnom prostredí na nej postaviť váš život opäť na nohy.
+              {c.feelingsSubtitle || "Spolu ju môžeme objaviť, pomenovať a v bezpečnom prostredí na nej postaviť váš život opäť na nohy."}
             </p>
           </div>
 
@@ -257,7 +247,7 @@ export default function HomePage() {
             style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}
             className="feelings-grid"
           >
-            {feelingsCards.map((card) => (
+            {feelingsCards.map((card: any) => (
               <div
                 key={card.label}
                 style={{
@@ -267,6 +257,7 @@ export default function HomePage() {
                   boxShadow: "0 4px 16px rgba(0,0,0,0.05)",
                   transition: "transform 0.25s ease",
                 }}
+                className="reveal-card"
               >
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
                   <div style={{ width: 14, height: 14, borderRadius: "50%", background: card.color, flexShrink: 0 }} />
@@ -295,12 +286,12 @@ export default function HomePage() {
                 marginBottom: 12,
               }}
             >
-              Témy, ktorým sa venujem
+              {c.approachTitle || "Témy, ktorým sa venujem"}
             </h2>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }} className="approach-grid">
-            {approachCards.map((card) => (
+            {approachCards.map((card: any) => (
               <div
                 key={card.title}
                 style={{
@@ -310,6 +301,7 @@ export default function HomePage() {
                   boxShadow: "0 4px 16px rgba(0,0,0,0.04)",
                   transition: "transform 0.25s ease, box-shadow 0.25s ease",
                 }}
+                className="reveal-card"
               >
                 <div style={{ fontSize: 28, marginBottom: 16 }}>
                   {card.icon}
@@ -347,10 +339,12 @@ export default function HomePage() {
               lineHeight: 1.2,
             }}
           >
-            Vykročte na cestu ku{" "}
-            <span style={{ color: "#F5C842" }}>krajším dňom</span>
+            {c.ctaTitleStart || "Vykročte na cestu ku"}{" "}
+            <span style={{ color: "#F5C842" }}>{c.ctaTitleHighlight || "krajším dňom"}</span>
           </h2>
-          <p style={{ color: "#9CA3AF", fontSize: 17, lineHeight: 1.7, marginBottom: 40 }} />
+          <p style={{ color: "#9CA3AF", fontSize: 17, lineHeight: 1.7, marginBottom: 40 }}>
+            {c.ctaSubtitle || ""}
+          </p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
             <Link
               href="/kontakt"
