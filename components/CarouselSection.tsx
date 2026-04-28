@@ -49,9 +49,11 @@ const carouselCards = [
     },
 ];
 
-export default function CarouselSection() {
+export default function CarouselSection({ cards = [] }: { cards?: any[] }) {
     const [active, setActive] = useState(0);
     const [animating, setAnimating] = useState(false);
+
+    const actualCards = (cards && cards.length > 0) ? cards : carouselCards;
 
     function goTo(idx: number) {
         if (idx === active || animating) return;
@@ -62,7 +64,11 @@ export default function CarouselSection() {
         }, 250);
     }
 
-    const card = carouselCards[active];
+    if (actualCards.length === 0) return null;
+    const card = actualCards[active % actualCards.length];
+
+    // Normalize paragraphs (they might be strings or objects {text: string} from the CMS)
+    const paragraphs = card.paragraphs.map((p: any) => typeof p === 'string' ? p : p.text);
 
     return (
         <section style={{ padding: "80px 24px", background: "#F5F6F0", position: "relative", overflow: "hidden" }}>
@@ -101,15 +107,15 @@ export default function CarouselSection() {
                     </h2>
 
                     <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                        {card.paragraphs.map((para, i) => (
+                        {paragraphs.map((para: string, i: number) => (
                             <p
                                 key={i}
                                 style={{
                                     margin: 0,
-                                    color: i === card.paragraphs.length - 1 ? "#9CA3AF" : "#4B5563",
+                                    color: i === paragraphs.length - 1 ? "#9CA3AF" : "#4B5563",
                                     fontSize: 16,
                                     lineHeight: 1.8,
-                                    fontStyle: i === card.paragraphs.length - 1 ? "italic" : "normal",
+                                    fontStyle: i === paragraphs.length - 1 ? "italic" : "normal",
                                 }}
                             >
                                 {para}
@@ -122,7 +128,7 @@ export default function CarouselSection() {
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginTop: 36 }}>
                     {/* Prev */}
                     <button
-                        onClick={() => goTo((active - 1 + carouselCards.length) % carouselCards.length)}
+                        onClick={() => goTo((active - 1 + actualCards.length) % actualCards.length)}
                         aria-label="Predchádzajúci"
                         style={{
                             width: 40, height: 40, borderRadius: "50%", border: "2px solid #E5E7EB",
@@ -137,7 +143,7 @@ export default function CarouselSection() {
 
                     {/* Dots */}
                     <div style={{ display: "flex", gap: 10 }}>
-                        {carouselCards.map((c, i) => (
+                        {actualCards.map((c, i) => (
                             <button
                                 key={i}
                                 onClick={() => goTo(i)}
@@ -159,7 +165,7 @@ export default function CarouselSection() {
 
                     {/* Next */}
                     <button
-                        onClick={() => goTo((active + 1) % carouselCards.length)}
+                        onClick={() => goTo((active + 1) % actualCards.length)}
                         aria-label="Nasledujúci"
                         style={{
                             width: 40, height: 40, borderRadius: "50%", border: "2px solid #E5E7EB",

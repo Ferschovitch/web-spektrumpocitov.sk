@@ -2,18 +2,38 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const valuesCards = [
-    { color: "#F5C842", bg: "#fdf5d6ff", label: "Rešpekt k jedinečnosti", text: "Každý príbeh je iný, každý z nás žije iným tempom. Vytváram priestor, kde môžete byť prijatí bez strachu z toho, že vás niekto bude posudzovať." },
-    { color: "#5BC8C8", bg: "#EAF6FB", label: "Prepojenie telo – myseľ – emócie", text: "Vnímam človeka ako celok. To, čo prežívame vnútri, sa odráža v našom tele aj vo vzťahoch, a práve v tomto prepojení často nachádzame odpovede." },
-    { color: "#F5A0A0", bg: "#FDF0F0", label: "Bezpečie a dôvera", text: "Skutočná zmena je možná tam, kde je na ňu bezpečný priestor. Mojou prioritou je vytvoriť prostredie, v ktorom môžete hovoriť otvorene a bez obáv." },
-    { color: "#6DBF67", bg: "#EDF7ED", label: "Vedomý rast a vnútorná rovnováha", text: "Verím, že rovnováha neprichádza zvonka, ale vzniká v nás. Podporujem kroky, ktoré vedú k väčšiemu pokoju a dôvere v samého seba." },
-];
+export default function AboutPage({ content = {} }: { content?: any }) {
+    const c = content;
 
-export default function AboutPage() {
+    const valuesCardsData = (c.valuesCards && c.valuesCards.length > 0) ? c.valuesCards : [
+        { color: "#F5C842", bg: "#fdf5d6ff", label: "Rešpekt k jedinečnosti", text: "Každý príbeh je iný, každý z nás žije iným tempom. Vytváram priestor, kde môžete byť prijatí bez strachu z toho, že vás niekto bude posudzovať." },
+        { color: "#5BC8C8", bg: "#EAF6FB", label: "Prepojenie telo – myseľ – emócie", text: "Vnímam človeka ako celok. To, čo prežívame vnútri, sa odráža v našom tele aj vo vzťahoch, a práve v tomto prepojení často nachádzame odpovede." },
+        { color: "#F5A0A0", bg: "#FDF0F0", label: "Bezpečie a dôvera", text: "Skutočná zmena je možná tam, kde je na ňu bezpečný priestor. Mojou prioritou je vytvoriť prostredie, v ktorom môžete hovoriť otvorene a bez obáv." },
+        { color: "#6DBF67", bg: "#EDF7ED", label: "Vedomý rast a vnútorná rovnováha", text: "Verím, že rovnováha neprichádza zvonka, ale vzniká v nás. Podporujem kroky, ktoré vedú k väčšiemu pokoju a dôvere v samého seba." },
+    ];
+
+    const expertiseTagsData = (c.expertiseTags && c.expertiseTags.length > 0) ? c.expertiseTags : [
+        { label: "Základné školy", color: "#F5C842", bg: "#fdf5d6ff" },
+        { label: "Materské školy", color: "#5BC8C8", bg: "#EAF6FB" },
+        { label: "Krízová intervencia", color: "#F5A0A0", bg: "#FDF0F0" },
+        { label: "Terapeutické princípy", color: "#6DBF67", bg: "#EDF7ED" },
+        { label: "Vision Extra Ocular - rozvoj mysle, vedomia a intuície", color: "#F5C842", bg: "#fdf5d6ff" },
+        { label: "Sny, podverdomie a mimozmyslové vnímanie", color: "#5BC8C8", bg: "#EAF6FB" },
+        { label: "Theta liečenie", color: "#6DBF67", bg: "#EDF7ED" },
+        { label: "Etikoterapia", color: "#F5A0A0", bg: "#FDF0F0" },
+        { label: "Energetické zákony a kvantová fyzika", color: "#5BC8C8", bg: "#EAF6FB" },
+    ];
+
+    const bulletPointsData = (c.bulletPoints && c.bulletPoints.length > 0) ? c.bulletPoints : [
+        { text: "Emocionálne liečenie, práca s energiou.", color: "#F5A0A0", bg: "#FDF0F0" },
+        { text: "Uvoľnenie napätia, tráum, psychosomatických ťažkostí.", color: "#5BC8C8", bg: "#EAF6FB" },
+        { text: "Pochopenie seba samého, konštruktívne uchopenie životných skúseností a udalostí.", color: "#F5C842", bg: "#fdf5d6ff" },
+        { text: "Vnútorná sloboda a autenticita.", color: "#6DBF67", bg: "#EDF7ED" },
+    ];
     const personJsonLd = {
         "@context": "https://schema.org",
         "@type": "Person",
-        name: "Mgr. Linda Stanislavová",
+        name: c.name || "Mgr. Linda Stanislavová",
         jobTitle: "Psychologička a terapeutka",
         url: "https://www.spektrumpocitov.sk/o-mne",
         worksFor: {
@@ -80,21 +100,11 @@ export default function AboutPage() {
                     <div>
                         <h1 style={{ fontFamily: "Playfair Display, Georgia, serif", fontWeight: 700, color: "#1A1A1A", marginBottom: 20, lineHeight: 1.25 }}>
                             <span style={{ display: "block", fontSize: "clamp(16px, 2.2vw, 26px)", color: "#9CA3AF" }}>Mgr.</span>
-                            <span style={{ display: "block", fontSize: "clamp(32px, 5vw, 52px)" }}>Linda</span>
-                            <span style={{ display: "block", fontSize: "clamp(16px, 2.2vw, 26px)", color: "#9CA3AF" }}>Stanislavová</span>
+                            <span style={{ display: "block", fontSize: "clamp(32px, 5vw, 52px)" }}>{c.name ? c.name.split(' ')[0] : "Linda"}</span>
+                            <span style={{ display: "block", fontSize: "clamp(16px, 2.2vw, 26px)", color: "#9CA3AF" }}>{c.name ? c.name.split(' ').slice(1).join(' ') : "Stanislavová"}</span>
                         </h1>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20 }}>
-                            {[
-                                { label: "Základné školy", color: "#F5C842", bg: "#fdf5d6ff" },
-                                { label: "Materské školy", color: "#5BC8C8", bg: "#EAF6FB" },
-                                { label: "Krízová intervencia", color: "#F5A0A0", bg: "#FDF0F0" },
-                                { label: "Terapeutické princípy", color: "#6DBF67", bg: "#EDF7ED" },
-                                { label: "Vision Extra Ocular - rozvoj mysle, vedomia a intuície", color: "#F5C842", bg: "#fdf5d6ff" },
-                                { label: "Sny, podverdomie a mimozmyslové vnímanie", color: "#5BC8C8", bg: "#EAF6FB" },
-                                { label: "Theta liečenie", color: "#6DBF67", bg: "#EDF7ED" },
-                                { label: "Etikoterapia", color: "#F5A0A0", bg: "#FDF0F0" },
-                                { label: "Energetické zákony a kvantová fyzika", color: "#5BC8C8", bg: "#EAF6FB" },
-                            ].map((tag) => (
+                            {expertiseTagsData.map((tag: any) => (
                                 <span key={tag.label} style={{
                                     background: tag.bg,
                                     color: tag.color,
@@ -109,19 +119,14 @@ export default function AboutPage() {
                             ))}
                         </div>
                         <p style={{ color: "#4B5563", fontSize: 17, lineHeight: 1.8, marginBottom: 16 }}>
-                            Som psychologička, koučka a lektorka rozvoja mysle, vedomia a intuície. Venujem sa deťom, jednotlivcom, párom aj rodinám.<br /><br />
-                            Verím, že vzťah, ktorý máme sami k sebe, ovplyvňuje celý náš život. Vo svojej práci sa aj preto zameriavam na rozvoj sebapoznania, rozšírenie vedomia, ako aj na psychosomatiku, teda citlivé prepojenie tela, mysle, emócií, správania...
+                            {c.paragraph1 || "Som psychologička, koučka a lektorka rozvoja mysle, vedomia a intuície. Venujem sa deťom, jednotlivcom, párom aj rodinám."}<br /><br />
+                            {c.paragraph2 || "Verím, že vzťah, ktorý máme sami k sebe, ovplyvňuje celý náš život. Vo svojej práci sa aj preto zameriavam na rozvoj sebapoznania, rozšírenie vedomia, ako aj na psychosomatiku, teda citlivé prepojenie tela, mysle, emócií, správania..."}
                         </p>
                         <div style={{ color: "#4B5563", fontSize: 17, lineHeight: 1.8, marginBottom: 32 }}>
-                            Pomáham harmonizovať rodinné vzťahy a podporujem otvorenú, rešpektujúcu komunikáciu. V partnerských vzťahoch vytváram bezpečný priestor pre porozumenie, blízkosť a obnovu dôvery. Rodičom pomáham pozrieť sa na výchovu detskými očami. <br /><br />Keď porozumieme tomu, čo sa deje pod povrchom, dokážeme prirodzene meniť aj to, čo sa deje navonok.
+                            {c.paragraph3 || "Pomáham harmonizovať rodinné vzťahy a podporujem otvorenú, rešpektujúcu komunikáciu. V partnerských vzťahoch vytváram bezpečný priestor pre porozumenie, blízkosť a obnovu dôvery. Rodičom pomáham pozrieť sa na výchovu detskými očami. Keď porozumieme tomu, čo sa deje pod povrchom, dokážeme prirodzene meniť aj to, čo sa deje navonok."}
                             <br /><br />
                             <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 12 }}>
-                                {[
-                                    { text: "Emocionálne liečenie, práca s energiou.", color: "#F5A0A0", bg: "#FDF0F0" },
-                                    { text: "Uvoľnenie napätia, tráum, psychosomatických ťažkostí.", color: "#5BC8C8", bg: "#EAF6FB" },
-                                    { text: "Pochopenie seba samého, konštruktívne uchopenie životných skúseností a udalostí.", color: "#F5C842", bg: "#fdf5d6ff" },
-                                    { text: "Vnútorná sloboda a autenticita.", color: "#6DBF67", bg: "#EDF7ED" },
-                                ].map((item) => (
+                                {bulletPointsData.map((item: any) => (
                                     <div key={item.text} style={{
                                         display: "flex", alignItems: "center", gap: 12,
                                         background: item.bg, borderRadius: 12, padding: "10px 16px",
@@ -187,12 +192,12 @@ export default function AboutPage() {
                 <div style={{ maxWidth: 1100, margin: "0 auto" }}>
                     <div style={{ textAlign: "center", marginBottom: 48 }}>
                         <h2 style={{ fontFamily: "Playfair Display, Georgia, serif", fontSize: "clamp(26px, 4vw, 38px)", fontWeight: 700, color: "#1A1A1A", marginBottom: 12 }}>
-                            Čo nám pri práci pomáha
+                            {c.valuesTitle || "Čo nám pri práci pomáha"}
                         </h2>
                         <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 600, margin: "0 auto" }} />
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }} className="values-grid">
-                        {valuesCards.map((card) => (
+                        {valuesCardsData.map((card: any) => (
                             <div key={card.label} style={{ background: card.bg, borderRadius: 20, padding: "28px 22px", boxShadow: "0 4px 16px rgba(0,0,0,0.05)" }}>
                                 <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 14 }}>
                                     <div style={{ width: 10, height: 10, borderRadius: "50%", background: card.color }} />

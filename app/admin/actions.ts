@@ -48,7 +48,8 @@ export async function savePageContent(prevState: any, formData: FormData) {
                 title,
                 description,
                 keywords,
-                content: contentValues
+                content: contentValues,
+                updatedAt: new Date()
             },
             create: {
                 slug,
@@ -68,8 +69,9 @@ export async function savePageContent(prevState: any, formData: FormData) {
             }
         });
 
-        // Invalidate the cache for the frontend so it immediately updates
+        // Invalidate the cache for the frontend and admin dashboard so they immediately update
         revalidatePath("/");
+        revalidatePath("/admin");
         revalidatePath(`/${slug}`);
         
         return { success: "Obsah stránky bol úspešne uložený." };

@@ -74,6 +74,30 @@ export const PAGE_SCHEMAS: Record<string, SectionSchema[]> = {
                 { name: "ctaTitleHighlight", label: "Zvýraznené slovo", type: "text" },
                 { name: "ctaSubtitle", label: "Podnadpis / Doplnkový text", type: "textarea" }
             ]
+        },
+        {
+            id: "carousel",
+            title: "Sekcia: Myšlienky / Carousel",
+            fields: [
+                {
+                    name: "carouselCards",
+                    label: "Karty v carouseli",
+                    type: "array",
+                    schema: [
+                        { name: "title", label: "Nadpis karty", type: "text" },
+                        { name: "color", label: "Farba akcentu (bodka/šípky)", type: "color" },
+                        { name: "bg", label: "Farba pozadia", type: "color" },
+                        {
+                            name: "paragraphs",
+                            label: "Odseky textu",
+                            type: "array",
+                            schema: [
+                                { name: "text", label: "Text odseku", type: "textarea" }
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ],
     sluzby: [

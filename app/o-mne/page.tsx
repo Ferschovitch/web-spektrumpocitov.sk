@@ -18,6 +18,8 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default function AboutPageWrapper() {
-    return <ClientPage />;
+export default async function AboutPageWrapper() {
+    const page = await prisma.pageContent.findUnique({ where: { slug: "o-mne" } });
+    const content = (page?.content as any) || {};
+    return <ClientPage content={content} />;
 }

@@ -99,8 +99,8 @@ export default async function RootLayout({
               name: "Spektrum Pocitov",
               url: "https://www.spektrumpocitov.sk",
               logo: "https://www.spektrumpocitov.sk/logo-sun.webp",
-              telephone: "+421908500266",
-              email: "info@spektrumpocitov.sk",
+              telephone: globalContent.footerPhone || "+421908500266",
+              email: globalContent.footerEmail || "info@spektrumpocitov.sk",
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Bratislava",

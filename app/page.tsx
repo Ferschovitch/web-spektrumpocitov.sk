@@ -271,7 +271,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── CAROUSEL (client component) ── */}
-      <CarouselSection />
+      <CarouselSection cards={c.carouselCards} />
 
       {/* ── OUR APPROACH ── */}
       <section id="nas-pristup" style={{ background: "white", padding: "80px 24px" }}>
