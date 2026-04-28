@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function SluzbyPageWrapper() {
     const pageDb = await prisma.pageContent.findUnique({ where: { slug: "sluzby" } });
-    const content = pageDb?.content || {};
+    const content = (pageDb?.content as any) || {};
 
     return <ClientPage content={content} />;
 }

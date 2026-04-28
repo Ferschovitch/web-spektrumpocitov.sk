@@ -81,7 +81,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const globalDb = await prisma.pageContent.findUnique({ where: { slug: 'global' } });
-  const globalContent = globalDb?.content || {};
+  const globalContent = (globalDb?.content as any) || {};
 
   return (
     <html lang="sk" className={`${playfair.variable} ${inter.variable}`}>

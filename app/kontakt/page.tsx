@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ContactPageWrapper() {
     const pageDb = await prisma.pageContent.findUnique({ where: { slug: "kontakt" } });
-    const content = pageDb?.content || {};
+    const content = (pageDb?.content as any) || {};
 
     return <ClientPage content={content} />;
 }
