@@ -426,11 +426,137 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     <span style={{ display: "block", fontSize: "0.85em", color: "#6B7280" }}>Jednotlivé časti je možné absolvovať samostatne.</span>
                                 </span>
                             </h2>
-                            {/* Placeholder Content */}
-                            <div style={{ marginTop: 24 }}>
+                            {/* Main Intro */}
+                            <div style={{
+                                background: "white",
+                                borderRadius: 16,
+                                padding: "20px 28px",
+                                marginTop: 24,
+                                borderLeft: "4px solid #5BC8C8",
+                                maxWidth: 780,
+                            }}>
                                 <p style={{ color: "#1A1A1A", fontSize: 16, lineHeight: 1.8, margin: 0, fontWeight: 500 }}>
-                                    {content.dospeliDesc || "Na obsahu sa pracuje"}
+                                    {content.dospeliDesc || "Smerujeme k sebapoznaniu, seba-vedomiu, sebadôvere – teda dôvere v našu intuíciu."}
                                 </p>
+                            </div>
+                        </div>
+
+                        {/* Body – Intro & Process */}
+                        <div style={{ padding: "48px 56px 24px" }}>
+                            <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 48 }} className="course-details-grid">
+                                <div>
+                                    <h3 style={{
+                                        fontFamily: "Playfair Display, Georgia, serif",
+                                        fontSize: 20,
+                                        fontWeight: 700,
+                                        color: "#1A1A1A",
+                                        marginBottom: 20,
+                                    }}>
+                                        Prebudenie vnútornej sily a intuície
+                                    </h3>
+                                    {Array.isArray(content.dospeliIntro) ? (
+                                        content.dospeliIntro.map((item: any, i: number) => (
+                                            <p key={i} style={{ color: "#4B5563", fontSize: 15, lineHeight: 1.8, marginBottom: 24 }}>
+                                                {item.text}
+                                            </p>
+                                        ))
+                                    ) : (
+                                        <p style={{ color: "#4B5563", fontSize: 15, lineHeight: 1.8, marginBottom: 24 }}>
+                                            {content.dospeliIntro}
+                                        </p>
+                                    )}
+                                    <p style={{ color: "#4B5563", fontSize: 15, lineHeight: 1.8 }}>
+                                        {content.dospeliTraining}
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h3 style={{
+                                        fontFamily: "Playfair Display, Georgia, serif",
+                                        fontSize: 20,
+                                        fontWeight: 700,
+                                        color: "#1A1A1A",
+                                        marginBottom: 20,
+                                    }}>
+                                        Prínosy kurzu
+                                    </h3>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                                        {(content.dospeliBenefits || []).map((item: any, i: number) => (
+                                            <div key={i} style={{
+                                                display: "flex", alignItems: "flex-start", gap: 12,
+                                                background: "#EDF7ED", borderRadius: 12, padding: "12px 16px",
+                                            }}>
+                                                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#6DBF67", flexShrink: 0, marginTop: 7 }} />
+                                                <span style={{ color: "#374151", fontSize: 14, lineHeight: 1.5, fontWeight: 500 }}>{item.text}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Outcomes & Support */}
+                        <div style={{ padding: "0 56px 56px" }}>
+                            <div style={{ 
+                                background: "#F9FAFB", 
+                                borderRadius: 20, 
+                                padding: "40px",
+                                border: "1px solid #E5E7EB"
+                            }}>
+                                <h3 style={{
+                                    fontFamily: "Playfair Display, Georgia, serif",
+                                    fontSize: 20,
+                                    fontWeight: 700,
+                                    color: "#1A1A1A",
+                                    marginBottom: 16,
+                                }}>
+                                    Čo získate v bežnom živote
+                                </h3>
+                                <p style={{ color: "#4B5563", fontSize: 15, lineHeight: 1.8, marginBottom: 24 }}>
+                                    {content.dospeliOutcomes}
+                                </p>
+                                
+                                <div style={{ 
+                                    background: "#EAF6FB", 
+                                    borderRadius: 14, 
+                                    padding: "20px 24px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 16,
+                                    marginTop: 32
+                                }}>
+                                    <div style={{ fontSize: 24 }}>💡</div>
+                                    <p style={{ color: "#0E7490", fontSize: 14, lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
+                                        {content.dospeliSupport}
+                                    </p>
+                                </div>
+
+                                <div style={{ textAlign: "center", marginTop: 40 }}>
+                                    <Link
+                                        href="/kontakt"
+                                        style={{
+                                            background: "#5BC8C8",
+                                            color: "white",
+                                            borderRadius: 999,
+                                            padding: "14px 40px",
+                                            textDecoration: "none",
+                                            fontSize: 15,
+                                            fontWeight: 700,
+                                            display: "inline-block",
+                                            transition: "transform 0.2s, box-shadow 0.2s",
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.transform = "scale(1.04)";
+                                            e.currentTarget.style.boxShadow = "0 8px 25px rgba(91,200,200,0.4)";
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.transform = "scale(1)";
+                                            e.currentTarget.style.boxShadow = "none";
+                                        }}
+                                    >
+                                        Mám záujem o kurz
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>

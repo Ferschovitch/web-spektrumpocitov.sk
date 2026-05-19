@@ -169,7 +169,26 @@ export const PAGE_SCHEMAS: Record<string, SectionSchema[]> = {
             fields: [
                 { name: "dospeliTitle", label: "Hlavný nadpis", type: "text" },
                 { name: "dospeliSubtitle", label: "Podnadpis", type: "text" },
-                { name: "dospeliDesc", label: "Text informácie", type: "textarea" }
+                { name: "dospeliDesc", label: "Krátky popis (hlavné zameranie)", type: "textarea" },
+                {
+                    name: "dospeliIntro",
+                    label: "Úvodné odseky o intuícii",
+                    type: "array",
+                    schema: [
+                        { name: "text", label: "Odsek", type: "textarea" }
+                    ]
+                },
+                { name: "dospeliTraining", label: "Čo a ako trénujeme", type: "textarea" },
+                {
+                    name: "dospeliBenefits",
+                    label: "Zoznam: Prínosy kurzu",
+                    type: "array",
+                    schema: [
+                        { name: "text", label: "Položka (text)", type: "text" }
+                    ]
+                },
+                { name: "dospeliOutcomes", label: "Čo získate v bežnom živote", type: "textarea" },
+                { name: "dospeliSupport", label: "Podporný text po lekcii", type: "textarea" }
             ]
         }
     ],

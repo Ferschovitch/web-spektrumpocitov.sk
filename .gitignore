@@ -42,3 +42,8 @@ next-env.d.ts
 
 # backups
 /backups/
+
+# sensitive / local files
+*.txt
+/scratch/
+
