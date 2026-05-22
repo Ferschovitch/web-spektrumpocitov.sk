@@ -99,9 +99,15 @@ export default function AboutPage({ content = {} }: { content?: any }) {
                     {/* Text */}
                     <div>
                         <h1 style={{ fontFamily: "Playfair Display, Georgia, serif", fontWeight: 700, color: "#1A1A1A", marginBottom: 20, lineHeight: 1.25 }}>
-                            <span style={{ display: "block", fontSize: "clamp(16px, 2.2vw, 26px)", color: "#9CA3AF" }}>Mgr.</span>
-                            <span style={{ display: "block", fontSize: "clamp(32px, 5vw, 52px)" }}>{c.name ? c.name.split(' ')[0] : "Linda"}</span>
-                            <span style={{ display: "block", fontSize: "clamp(16px, 2.2vw, 26px)", color: "#9CA3AF" }}>{c.name ? c.name.split(' ').slice(1).join(' ') : "Stanislavová"}</span>
+                            <span style={{ display: "block", fontSize: "clamp(16px, 2.2vw, 26px)", color: "#9CA3AF" }}>
+                                {c.name && c.name.split(' ')[0].toLowerCase().startsWith("mgr") ? c.name.split(' ')[0] : "Mgr."}
+                            </span>
+                            <span style={{ display: "block", fontSize: "clamp(32px, 5vw, 52px)" }}>
+                                {c.name ? (c.name.split(' ')[0].toLowerCase().startsWith("mgr") ? c.name.split(' ')[1] : c.name.split(' ')[0]) : "Linda"}
+                            </span>
+                            <span style={{ display: "block", fontSize: "clamp(16px, 2.2vw, 26px)", color: "#9CA3AF" }}>
+                                {c.name ? (c.name.split(' ')[0].toLowerCase().startsWith("mgr") ? c.name.split(' ').slice(2).join(' ') : c.name.split(' ').slice(1).join(' ')) : "Stanislavová"}
+                            </span>
                         </h1>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20 }}>
                             {expertiseTagsData.map((tag: any) => (

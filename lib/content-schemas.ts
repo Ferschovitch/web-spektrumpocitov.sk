@@ -114,6 +114,8 @@ export const PAGE_SCHEMAS: Record<string, SectionSchema[]> = {
             fields: [
                 { name: "konzultaciaTitle", label: "Nadpis", type: "text" },
                 { name: "konzultaciaDesc", label: "Popis", type: "textarea" },
+                { name: "konzultaciaPrice", label: "Cena (napr. od 50 €/hod.)", type: "text" },
+                { name: "konzultaciaPriceDetails", label: "Podrobnosti o cene", type: "textarea" },
                 { name: "konzultaciaBtn", label: "Text Tlačidla", type: "text" }
             ]
         },
@@ -123,6 +125,8 @@ export const PAGE_SCHEMAS: Record<string, SectionSchema[]> = {
             fields: [
                 { name: "treningTitle", label: "Nadpis", type: "text" },
                 { name: "treningDesc", label: "Popis", type: "textarea" },
+                { name: "treningPrice", label: "Cena (napr. od 70 €/hod.)", type: "text" },
+                { name: "treningPriceDetails", label: "Podrobnosti o cene", type: "textarea" },
                 { name: "treningBtn", label: "Text Tlačidla", type: "text" }
             ]
         },
@@ -160,6 +164,8 @@ export const PAGE_SCHEMAS: Record<string, SectionSchema[]> = {
                         { name: "bg", label: "Farba pozadia (Hex: #...)", type: "color" }
                     ]
                 },
+                { name: "detiPrice", label: "Cena za lekciu (napr. 100 €/1 lekcia = 2 hodiny)", type: "text" },
+                { name: "detiPriceDiscount", label: "Zvýhodnená cena (napr. Pri platbe za celý kurz...)", type: "textarea" },
                 { name: "detiKurzBtn", label: "Text tlačidla kurzu", type: "text" }
             ]
         },
@@ -188,7 +194,9 @@ export const PAGE_SCHEMAS: Record<string, SectionSchema[]> = {
                     ]
                 },
                 { name: "dospeliOutcomes", label: "Čo získate v bežnom živote", type: "textarea" },
-                { name: "dospeliSupport", label: "Podporný text po lekcii", type: "textarea" }
+                { name: "dospeliSupport", label: "Podporný text po lekcii", type: "textarea" },
+                { name: "dospeliPrice", label: "Cena za lekciu (napr. 100 €/1 lekcia = 2 hodiny)", type: "text" },
+                { name: "dospeliPriceDiscount", label: "Zvýhodnená cena (napr. Pri platbe za celý kurz...)", type: "textarea" }
             ]
         }
     ],
