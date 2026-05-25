@@ -45,9 +45,6 @@ export default function Footer({ content }: { content: any }) {
                                     Spektrum Pocitov
                                 </span>
                             </Link>
-                            <p style={{ color: "#9CA3AF", fontSize: 14, lineHeight: 1.6, maxWidth: 240 }}>
-                                {content?.footerText || "Spojenie tradičnej a alternatívnej psychológie."}
-                            </p>
                         </div>
 
                         {/* Nav links */}

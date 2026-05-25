@@ -417,108 +417,32 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                             </div>
                         </div>
 
-                        {/* Bottom Section - Price and CTA Button (Identical in style and centering to the second course) */}
-                        <div style={{ padding: "0 56px 56px", marginTop: 32 }}>
-                            <div style={{ 
-                                background: "linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%)", 
-                                border: "2px solid #5BC8C8",
-                                borderRadius: 20,
-                                padding: "24px 32px",
-                                maxWidth: 480,
-                                margin: "0 auto",
-                                textAlign: "center",
-                                boxShadow: "0 4px 16px rgba(91,200,200,0.08)",
-                                position: "relative",
-                                overflow: "hidden"
-                            }}>
-                                <div style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    left: "50%",
-                                    transform: "translateX(-50%)",
+                        {/* Bottom CTA Button */}
+                        <div style={{ padding: "0 56px 56px", textAlign: "center", marginTop: 32 }}>
+                            <Link
+                                href="/kontakt"
+                                style={{
                                     background: "#5BC8C8",
                                     color: "white",
-                                    fontSize: 10,
-                                    fontWeight: 800,
-                                    letterSpacing: "0.05em",
-                                    padding: "3px 14px",
-                                    borderRadius: "0 0 8px 8px",
-                                    textTransform: "uppercase"
-                                }}>
-                                    Cena & Zľava
-                                </div>
-
-                                <div style={{ marginTop: 8 }}>
-                                    <div style={{
-                                        fontSize: "clamp(20px, 2.5vw, 24px)",
-                                        fontWeight: 800,
-                                        color: "#1A1A1A",
-                                        fontFamily: "Playfair Display, Georgia, serif",
-                                        lineHeight: 1.15,
-                                    }}>
-                                        {content.detiPrice || "100 € / 1 lekcia (2 hodiny)"}
-                                    </div>
-                                </div>
-
-                                <div style={{
-                                    height: 1,
-                                    background: "linear-gradient(90deg, transparent, #E5E7EB, transparent)",
-                                    margin: "14px 0"
-                                }} />
-
-                                <div style={{
-                                    background: "rgba(91, 200, 200, 0.08)",
-                                    borderRadius: 12,
-                                    padding: "12px 16px",
-                                    border: "1px dashed rgba(91, 200, 200, 0.4)"
-                                }}>
-                                    <div style={{
-                                        fontSize: 11,
-                                        color: "#0E7490",
-                                        fontWeight: 700,
-                                        textTransform: "uppercase",
-                                        letterSpacing: "0.02em",
-                                        marginBottom: 4
-                                    }}>
-                                        Zvýhodnený balík
-                                    </div>
-                                    <div style={{
-                                        fontSize: 13,
-                                        lineHeight: 1.6,
-                                        fontWeight: 600,
-                                        color: "#4B5563"
-                                    }}>
-                                        {content.detiPriceDiscount || "Pri platbe za celý kurz (10 lekcií = 20 hodín) je cena 900 €."}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div style={{ textAlign: "center", marginTop: 32 }}>
-                                <Link
-                                    href="/kontakt"
-                                    style={{
-                                        background: "#5BC8C8",
-                                        color: "white",
-                                        borderRadius: 999,
-                                        padding: "14px 40px",
-                                        textDecoration: "none",
-                                        fontSize: 15,
-                                        fontWeight: 700,
-                                        display: "inline-block",
-                                        transition: "transform 0.2s, box-shadow 0.2s",
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        e.currentTarget.style.transform = "scale(1.04)";
-                                        e.currentTarget.style.boxShadow = "0 8px 25px rgba(91,200,200,0.4)";
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.currentTarget.style.transform = "scale(1)";
-                                        e.currentTarget.style.boxShadow = "none";
-                                    }}
-                                >
-                                    {content.detiKurzBtn || "Mám záujem o kurz"}
-                                </Link>
-                            </div>
+                                    borderRadius: 999,
+                                    padding: "14px 40px",
+                                    textDecoration: "none",
+                                    fontSize: 15,
+                                    fontWeight: 700,
+                                    display: "inline-block",
+                                    transition: "transform 0.2s, box-shadow 0.2s",
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = "scale(1.04)";
+                                    e.currentTarget.style.boxShadow = "0 8px 25px rgba(91,200,200,0.4)";
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = "scale(1)";
+                                    e.currentTarget.style.boxShadow = "none";
+                                }}
+                            >
+                                {content.detiKurzBtn || "Mám záujem o kurz"}
+                            </Link>
                         </div>
                     </div>
 
@@ -657,80 +581,6 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     <p style={{ color: "#0E7490", fontSize: 14, lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
                                         {content.dospeliSupport}
                                     </p>
-                                </div>
-
-                                <div style={{ 
-                                    background: "linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%)", 
-                                    border: "2px solid #5BC8C8",
-                                    borderRadius: 20,
-                                    padding: "24px 32px",
-                                    maxWidth: 480,
-                                    margin: "32px auto 0",
-                                    textAlign: "center",
-                                    boxShadow: "0 4px 16px rgba(91,200,200,0.08)",
-                                    position: "relative",
-                                    overflow: "hidden"
-                                }}>
-                                    <div style={{
-                                        position: "absolute",
-                                        top: 0,
-                                        left: "50%",
-                                        transform: "translateX(-50%)",
-                                        background: "#5BC8C8",
-                                        color: "white",
-                                        fontSize: 10,
-                                        fontWeight: 800,
-                                        letterSpacing: "0.05em",
-                                        padding: "3px 14px",
-                                        borderRadius: "0 0 8px 8px",
-                                        textTransform: "uppercase"
-                                    }}>
-                                        Cena & Zľava
-                                    </div>
-
-                                    <div style={{ marginTop: 8 }}>
-                                        <div style={{
-                                            fontSize: "clamp(20px, 2.5vw, 24px)",
-                                            fontWeight: 800,
-                                            color: "#1A1A1A",
-                                            fontFamily: "Playfair Display, Georgia, serif",
-                                            lineHeight: 1.15,
-                                        }}>
-                                            {content.dospeliPrice || "100 € / 1 lekcia (2 hodiny)"}
-                                        </div>
-                                    </div>
-
-                                    <div style={{
-                                        height: 1,
-                                        background: "linear-gradient(90deg, transparent, #E5E7EB, transparent)",
-                                        margin: "14px 0"
-                                    }} />
-
-                                    <div style={{
-                                        background: "rgba(91, 200, 200, 0.08)",
-                                        borderRadius: 12,
-                                        padding: "12px 16px",
-                                        border: "1px dashed rgba(91, 200, 200, 0.4)"
-                                    }}>
-                                        <div style={{
-                                            fontSize: 11,
-                                            color: "#0E7490",
-                                            fontWeight: 700,
-                                            textTransform: "uppercase",
-                                            letterSpacing: "0.02em",
-                                            marginBottom: 4
-                                        }}>
-                                            Zvýhodnený balík
-                                        </div>
-                                        <div style={{
-                                            fontSize: 13,
-                                            lineHeight: 1.6,
-                                            fontWeight: 600,
-                                            color: "#4B5563"
-                                        }}>
-                                            {content.dospeliPriceDiscount || "Pri platbe za celý kurz (10 lekcií = 20 hodín) je cena 900 €."}
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div style={{ textAlign: "center", marginTop: 32 }}>
