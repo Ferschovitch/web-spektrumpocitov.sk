@@ -24,3 +24,16 @@ model AuditLog {
   ip        String?
   createdAt DateTime @default(now())
 }
+
+model PageView {
+  id        String   @id @default(uuid())
+  path      String
+  referrer  String?
+  ipHash    String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([path])
+}
+

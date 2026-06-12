@@ -85,6 +85,9 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                     <Link href="/admin" className={`admin-nav-link ${checkActive("/admin") ? "active" : ""}`}>
                         Administrácia
                     </Link>
+                    <Link href="/admin/navstevnost" className={`admin-nav-link ${checkActive("/admin/navstevnost") ? "active" : ""}`}>
+                        Návštevnosť
+                    </Link>
 
                     <div className="sidebar-section-title">Obsah stránok</div>
 
