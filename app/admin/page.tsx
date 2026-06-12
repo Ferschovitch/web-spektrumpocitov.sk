@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/db";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboard() {
     // Získame celkový počet stránok v DB
     const pagesCount = await prisma.pageContent.count();
