@@ -1,10 +1,8 @@
 import { prisma } from "@/lib/db";
-import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 export default async function NavestevnostPage() {
-    // Získame dnešný začiatok (miestny čas servera)
     const now = new Date();
     const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
 
@@ -133,7 +131,7 @@ export default async function NavestevnostPage() {
         return path;
     };
 
-    // 4. Zdroje návštevnosti (Referrers) - agregácia posledných 1000 návštev v pamäti pre čistotu dát
+    // 4. Zdroje návštevnosti (Referrers)
     const recentReferrers = await prisma.pageView.findMany({
         where: { referrer: { not: null } },
         select: { referrer: true },
@@ -167,6 +165,67 @@ export default async function NavestevnostPage() {
         sortedReferrers.push({ name: "Priamy vstup / Záložky", count: directCount });
         sortedReferrers.sort((a, b) => b.count - a.count);
     }
+
+    // 5. Krajiny pôvodu (agregácia z DB)
+    const countriesGroup = await prisma.pageView.groupBy({
+        by: ['country'],
+        _count: {
+            country: true
+        },
+        orderBy: {
+            _count: {
+                country: 'desc'
+            }
+        },
+        take: 5
+    });
+
+    const countryNameMap: { [code: string]: { name: string; flag: string } } = {
+        sk: { name: "Slovensko", flag: "🇸🇰" },
+        cz: { name: "Česko", flag: "🇨🇿" },
+        at: { name: "Rakúsko", flag: "🇦🇹" },
+        de: { name: "Nemecko", flag: "🇩🇪" },
+        hu: { name: "Maďarsko", flag: "🇭🇺" },
+        pl: { name: "Poľsko", flag: "🇵🇱" },
+        ua: { name: "Ukrajina", flag: "🇺🇦" },
+        gb: { name: "Veľká Británia", flag: "🇬🇧" },
+        us: { name: "USA", flag: "🇺🇸" },
+    };
+
+    const getCountryLabel = (code: string | null) => {
+        if (!code) return { name: "Neznáme", flag: "🌐" };
+        const lower = code.toLowerCase();
+        if (countryNameMap[lower]) {
+            return countryNameMap[lower];
+        }
+        return { name: code.toUpperCase(), flag: "🏳️" };
+    };
+
+    // 6. Typy zariadení (in-memory analýza userAgent)
+    const userAgents = await prisma.pageView.findMany({
+        select: { userAgent: true }
+    });
+
+    let desktopCount = 0;
+    let mobileCount = 0;
+    let tabletCount = 0;
+
+    userAgents.forEach(pv => {
+        if (!pv.userAgent) return;
+        const ua = pv.userAgent.toLowerCase();
+        if (ua.includes("ipad") || ua.includes("tablet") || (ua.includes("android") && !ua.includes("mobi"))) {
+            tabletCount++;
+        } else if (ua.includes("mobi") || ua.includes("iphone") || ua.includes("ipod") || ua.includes("windows phone")) {
+            mobileCount++;
+        } else {
+            desktopCount++;
+        }
+    });
+
+    const totalDevices = desktopCount + mobileCount + tabletCount || 1;
+    const desktopPct = Math.round((desktopCount / totalDevices) * 100);
+    const mobilePct = Math.round((mobileCount / totalDevices) * 100);
+    const tabletPct = Math.max(0, 100 - desktopPct - mobilePct);
 
     return (
         <div>
@@ -203,10 +262,16 @@ export default async function NavestevnostPage() {
                     display: grid;
                     grid-template-columns: 2fr 1fr;
                     gap: 1.5rem;
+                    margin-bottom: 1.5rem;
+                }
+                .dashboard-section-grid-half {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1.5rem;
                     margin-bottom: 2rem;
                 }
                 @media (max-width: 1024px) {
-                    .dashboard-section-grid {
+                    .dashboard-section-grid, .dashboard-section-grid-half {
                         grid-template-columns: 1fr;
                     }
                 }
@@ -221,7 +286,7 @@ export default async function NavestevnostPage() {
                         Štatistiky návštevnosti
                     </h1>
                     <p style={{ color: "#6b7280", margin: "0.25rem 0 0 0", fontSize: "0.95rem" }}>
-                        Analýza zobrazení, unikátnych používateľov a zdrojov návštev
+                        Analýza zobrazení, zariadení, krajín pôvodu a zdrojov návštev
                     </p>
                 </div>
                 <div style={{ fontSize: "0.85rem", color: "#6b7280", padding: "0.5rem 1rem", backgroundColor: "white", borderRadius: "999px", border: "1px solid #e5e7eb" }}>
@@ -346,7 +411,7 @@ export default async function NavestevnostPage() {
                 </div>
             </div>
 
-            {/* ── PODSTRÁNKY A REFERRERY ROW ── */}
+            {/* ── SEC 1: POPULÁRNE PODSTRÁNKY A REFERRERY ── */}
             <div className="dashboard-section-grid">
                 {/* Populárne podstránky */}
                 <div className="dashboard-card">
@@ -407,6 +472,92 @@ export default async function NavestevnostPage() {
                                                 borderRadius: "3px" 
                                             }} />
                                         </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* ── SEC 2: TYPY ZARIADENÍ A KRAJINY PÔVODU ── */}
+            <div className="dashboard-section-grid-half">
+                {/* Typy zariadení */}
+                <div className="dashboard-card" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                    <div>
+                        <h2 style={{ fontSize: "1.1rem", fontWeight: "bold", marginBottom: "0.25rem", color: "#111827" }}>
+                            Typy zariadení
+                        </h2>
+                        <p style={{ color: "#6b7280", fontSize: "0.8rem", marginBottom: "1.5rem" }}>
+                            Analýza zariadení, z ktorých prichádzajú používatelia
+                        </p>
+                        
+                        <div style={{ width: "100%", height: "20px", backgroundColor: "#f3f4f6", borderRadius: "10px", overflow: "hidden", display: "flex", marginBottom: "1.5rem" }}>
+                            {desktopPct > 0 && (
+                                <div style={{ width: `${desktopPct}%`, height: "100%", backgroundColor: "#5BC8C8" }} title={`Počítače: ${desktopPct}%`} />
+                            )}
+                            {mobilePct > 0 && (
+                                <div style={{ width: `${mobilePct}%`, height: "100%", backgroundColor: "#F5C842" }} title={`Mobily: ${mobilePct}%`} />
+                            )}
+                            {tabletPct > 0 && (
+                                <div style={{ width: `${tabletPct}%`, height: "100%", backgroundColor: "#6DBF67" }} title={`Tablety: ${tabletPct}%`} />
+                            )}
+                        </div>
+                    </div>
+
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.875rem", paddingBottom: "0.5rem", borderBottom: "1px solid #f3f4f6" }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                                <span>💻</span>
+                                <span style={{ fontWeight: 500, color: "#374151" }}>Počítače (Desktop)</span>
+                            </div>
+                            <span style={{ fontWeight: 600, color: "#111827" }}>{desktopPct}% <span style={{ fontWeight: 400, color: "#6b7280", fontSize: "0.8rem" }}>({desktopCount}x)</span></span>
+                        </div>
+
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.875rem", paddingBottom: "0.5rem", borderBottom: "1px solid #f3f4f6" }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                                <span>📱</span>
+                                <span style={{ fontWeight: 500, color: "#374151" }}>Mobily (Mobile)</span>
+                            </div>
+                            <span style={{ fontWeight: 600, color: "#111827" }}>{mobilePct}% <span style={{ fontWeight: 400, color: "#6b7280", fontSize: "0.8rem" }}>({mobileCount}x)</span></span>
+                        </div>
+
+                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.875rem" }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                                <span>📟</span>
+                                <span style={{ fontWeight: 500, color: "#374151" }}>Tablety (Tablet)</span>
+                            </div>
+                            <span style={{ fontWeight: 600, color: "#111827" }}>{tabletPct}% <span style={{ fontWeight: 400, color: "#6b7280", fontSize: "0.8rem" }}>({tabletCount}x)</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Krajiny pôvodu */}
+                <div className="dashboard-card">
+                    <h2 style={{ fontSize: "1.1rem", fontWeight: "bold", marginBottom: "0.25rem", color: "#111827" }}>
+                        Krajiny pôvodu
+                    </h2>
+                    <p style={{ color: "#6b7280", fontSize: "0.8rem", marginBottom: "1.25rem" }}>
+                        Lokácie používateľov zistené zo sieťových hlavičiek
+                    </p>
+
+                    {countriesGroup.length === 0 ? (
+                        <p style={{ color: "#6b7280", fontSize: "0.9rem", margin: 0 }}>Zatiaľ žiadne geolokačné dáta v databáze.</p>
+                    ) : (
+                        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                            {countriesGroup.map((c, index) => {
+                                const label = getCountryLabel(c.country);
+                                const count = c._count.country;
+                                const percentage = totalViews > 0 ? Math.round((count / totalViews) * 100) : 0;
+                                return (
+                                    <div key={index} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.875rem", paddingBottom: "0.5rem", borderBottom: index < countriesGroup.length - 1 ? "1px solid #f3f4f6" : "none" }}>
+                                        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                                            <span style={{ fontSize: "1.1rem" }}>{label.flag}</span>
+                                            <span style={{ fontWeight: 500, color: "#374151" }}>{label.name}</span>
+                                        </div>
+                                        <span style={{ fontWeight: 600, color: "#111827" }}>
+                                            {percentage}% <span style={{ fontWeight: 400, color: "#6b7280", fontSize: "0.8rem" }}>({count}x)</span>
+                                        </span>
                                     </div>
                                 );
                             })}

@@ -43,13 +43,20 @@ export async function POST(request: NextRequest) {
             .update(`${ip}-${todayStr}`)
             .digest("hex");
 
+        // Geolokácia z CDN hlavičiek (napr. Vercel alebo Cloudflare)
+        const country = request.headers.get("x-vercel-ip-country") || 
+                        request.headers.get("cf-ipcountry") || 
+                        request.headers.get("x-country-code") || 
+                        null;
+
         // Uložíme zobrazenie stránky do databázy
         await prisma.pageView.create({
             data: {
                 path,
                 referrer: referrer || null,
                 ipHash,
-                userAgent: userAgent || null
+                userAgent: userAgent || null,
+                country
             }
         });
 

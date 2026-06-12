@@ -31,6 +31,7 @@ model PageView {
   referrer  String?
   ipHash    String?
   userAgent String?
+  country   String?
   createdAt DateTime @default(now())
 
   @@index([createdAt])
