@@ -418,7 +418,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                         </div>
 
                         {/* Pricing section for Deti */}
-                        <div style={{ 
+                        <div className="course-price-card" style={{
                             background: "linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%)", 
                             border: "2px solid #5BC8C8",
                             borderRadius: 20,
@@ -430,7 +430,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                             position: "relative",
                             overflow: "hidden"
                         }}>
-                            <div style={{
+                            <div className="course-price-label" style={{
                                 position: "absolute",
                                 top: 0,
                                 left: "50%",
@@ -448,7 +448,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                             </div>
 
                             <div style={{ marginTop: 8 }}>
-                                <div style={{
+                                <div className="course-price-value" style={{
                                     fontSize: "clamp(20px, 2.5vw, 24px)",
                                     fontWeight: 800,
                                     color: "#1A1A1A",
@@ -459,19 +459,19 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                 </div>
                             </div>
 
-                            <div style={{
+                            <div className="course-price-separator" style={{
                                 height: 1,
                                 background: "linear-gradient(90deg, transparent, #E5E7EB, transparent)",
                                 margin: "14px 0"
                             }} />
 
-                            <div style={{
+                            <div className="course-price-discount" style={{
                                 background: "rgba(91, 200, 200, 0.08)",
                                 borderRadius: 12,
                                 padding: "12px 16px",
                                 border: "1px dashed rgba(91, 200, 200, 0.4)"
                             }}>
-                                <div style={{
+                                <div className="course-price-discount-title" style={{
                                     fontSize: 11,
                                     color: "#0E7490",
                                     fontWeight: 700,
@@ -481,7 +481,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                 }}>
                                     Zvýhodnený balík
                                 </div>
-                                <div style={{
+                                <div className="course-price-discount-text" style={{
                                     fontSize: 13,
                                     lineHeight: 1.6,
                                     fontWeight: 600,
@@ -659,7 +659,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                 </div>
 
                                 {/* Pricing section for Dospeli */}
-                                <div style={{ 
+                                <div className="course-price-card" style={{
                                     background: "linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%)", 
                                     border: "2px solid #5BC8C8",
                                     borderRadius: 20,
@@ -671,7 +671,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     position: "relative",
                                     overflow: "hidden"
                                 }}>
-                                    <div style={{
+                                    <div className="course-price-label" style={{
                                         position: "absolute",
                                         top: 0,
                                         left: "50%",
@@ -689,7 +689,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     </div>
 
                                     <div style={{ marginTop: 8 }}>
-                                        <div style={{
+                                        <div className="course-price-value" style={{
                                             fontSize: "clamp(20px, 2.5vw, 24px)",
                                             fontWeight: 800,
                                             color: "#1A1A1A",
@@ -700,19 +700,19 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                         </div>
                                     </div>
 
-                                    <div style={{
+                                    <div className="course-price-separator" style={{
                                         height: 1,
                                         background: "linear-gradient(90deg, transparent, #E5E7EB, transparent)",
                                         margin: "14px 0"
                                     }} />
 
-                                    <div style={{
+                                    <div className="course-price-discount" style={{
                                         background: "rgba(91, 200, 200, 0.08)",
                                         borderRadius: 12,
                                         padding: "12px 16px",
                                         border: "1px dashed rgba(91, 200, 200, 0.4)"
                                     }}>
-                                        <div style={{
+                                        <div className="course-price-discount-title" style={{
                                             fontSize: 11,
                                             color: "#0E7490",
                                             fontWeight: 700,
@@ -722,7 +722,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                         }}>
                                             Zvýhodnený balík
                                         </div>
-                                        <div style={{
+                                        <div className="course-price-discount-text" style={{
                                             fontSize: 13,
                                             lineHeight: 1.6,
                                             fontWeight: 600,

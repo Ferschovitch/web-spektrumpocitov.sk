@@ -191,3 +191,43 @@ h4 {
 .services-grid>div:hover {
   will-change: transform;
 }
+
+/* Course pricing blocks */
+@media (max-width: 600px) {
+  .course-price-card {
+    width: min(100%, 360px) !important;
+    padding: 30px 18px 18px !important;
+    margin-top: 28px !important;
+  }
+
+  .course-price-label {
+    width: max-content;
+    max-width: calc(100% - 28px);
+    padding: 5px 16px !important;
+    font-size: 9px !important;
+    line-height: 1.3 !important;
+  }
+
+  .course-price-value {
+    max-width: 100%;
+    font-size: 21px !important;
+    line-height: 1.2 !important;
+    text-wrap: balance;
+    overflow-wrap: normal;
+  }
+
+  .course-price-discount {
+    padding: 14px 16px !important;
+  }
+
+  .course-price-discount-title {
+    font-size: 10px !important;
+    line-height: 1.35 !important;
+  }
+
+  .course-price-discount-text {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+    text-wrap: balance;
+  }
+}
