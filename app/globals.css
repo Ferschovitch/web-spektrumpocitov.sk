@@ -194,6 +194,10 @@ h4 {
 
 /* Course pricing blocks */
 @media (max-width: 600px) {
+  .course-outcomes-wrap {
+    padding: 0 0 56px !important;
+  }
+
   .course-price-card {
     width: min(100%, 360px) !important;
     padding: 30px 18px 18px !important;

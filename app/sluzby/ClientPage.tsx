@@ -1,6 +1,84 @@
 "use client";
 import Link from "next/link";
 
+function CoursePriceCard({ price, discount }: { price: string; discount: string }) {
+    return (
+        <div className="course-price-card" style={{
+            background: "linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%)",
+            border: "2px solid #5BC8C8",
+            borderRadius: 20,
+            padding: "24px 32px",
+            maxWidth: 480,
+            margin: "32px auto 0",
+            textAlign: "center",
+            boxShadow: "0 4px 16px rgba(91,200,200,0.08)",
+            position: "relative",
+            overflow: "hidden"
+        }}>
+            <div className="course-price-label" style={{
+                position: "absolute",
+                top: 0,
+                left: "50%",
+                transform: "translateX(-50%)",
+                background: "#5BC8C8",
+                color: "white",
+                fontSize: 10,
+                fontWeight: 800,
+                letterSpacing: "0.05em",
+                padding: "3px 14px",
+                borderRadius: "0 0 8px 8px",
+                textTransform: "uppercase"
+            }}>
+                Cena & Zľava
+            </div>
+
+            <div style={{ marginTop: 8 }}>
+                <div className="course-price-value" style={{
+                    fontSize: "clamp(20px, 2.5vw, 24px)",
+                    fontWeight: 800,
+                    color: "#1A1A1A",
+                    fontFamily: "Playfair Display, Georgia, serif",
+                    lineHeight: 1.15,
+                }}>
+                    {price}
+                </div>
+            </div>
+
+            <div className="course-price-separator" style={{
+                height: 1,
+                background: "linear-gradient(90deg, transparent, #E5E7EB, transparent)",
+                margin: "14px 0"
+            }} />
+
+            <div className="course-price-discount" style={{
+                background: "rgba(91, 200, 200, 0.08)",
+                borderRadius: 12,
+                padding: "12px 16px",
+                border: "1px dashed rgba(91, 200, 200, 0.4)"
+            }}>
+                <div className="course-price-discount-title" style={{
+                    fontSize: 11,
+                    color: "#0E7490",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.02em",
+                    marginBottom: 4
+                }}>
+                    Zvýhodnený balík
+                </div>
+                <div className="course-price-discount-text" style={{
+                    fontSize: 13,
+                    lineHeight: 1.6,
+                    fontWeight: 600,
+                    color: "#4B5563"
+                }}>
+                    {discount}
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export default function SluzbyPage({ content = {} }: { content?: any }) {
     const serviceJsonLd = {
         "@context": "https://schema.org",
@@ -418,79 +496,10 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                         </div>
 
                         {/* Pricing section for Deti */}
-                        <div className="course-price-card" style={{
-                            background: "linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%)", 
-                            border: "2px solid #5BC8C8",
-                            borderRadius: 20,
-                            padding: "24px 32px",
-                            maxWidth: 480,
-                            margin: "32px auto 0",
-                            textAlign: "center",
-                            boxShadow: "0 4px 16px rgba(91,200,200,0.08)",
-                            position: "relative",
-                            overflow: "hidden"
-                        }}>
-                            <div className="course-price-label" style={{
-                                position: "absolute",
-                                top: 0,
-                                left: "50%",
-                                transform: "translateX(-50%)",
-                                background: "#5BC8C8",
-                                color: "white",
-                                fontSize: 10,
-                                fontWeight: 800,
-                                letterSpacing: "0.05em",
-                                padding: "3px 14px",
-                                borderRadius: "0 0 8px 8px",
-                                textTransform: "uppercase"
-                            }}>
-                                Cena & Zľava
-                            </div>
-
-                            <div style={{ marginTop: 8 }}>
-                                <div className="course-price-value" style={{
-                                    fontSize: "clamp(20px, 2.5vw, 24px)",
-                                    fontWeight: 800,
-                                    color: "#1A1A1A",
-                                    fontFamily: "Playfair Display, Georgia, serif",
-                                    lineHeight: 1.15,
-                                }}>
-                                    {content.detiPrice || "100 € / 1 lekcia (2 hodiny)"}
-                                </div>
-                            </div>
-
-                            <div className="course-price-separator" style={{
-                                height: 1,
-                                background: "linear-gradient(90deg, transparent, #E5E7EB, transparent)",
-                                margin: "14px 0"
-                            }} />
-
-                            <div className="course-price-discount" style={{
-                                background: "rgba(91, 200, 200, 0.08)",
-                                borderRadius: 12,
-                                padding: "12px 16px",
-                                border: "1px dashed rgba(91, 200, 200, 0.4)"
-                            }}>
-                                <div className="course-price-discount-title" style={{
-                                    fontSize: 11,
-                                    color: "#0E7490",
-                                    fontWeight: 700,
-                                    textTransform: "uppercase",
-                                    letterSpacing: "0.02em",
-                                    marginBottom: 4
-                                }}>
-                                    Zvýhodnený balík
-                                </div>
-                                <div className="course-price-discount-text" style={{
-                                    fontSize: 13,
-                                    lineHeight: 1.6,
-                                    fontWeight: 600,
-                                    color: "#4B5563"
-                                }}>
-                                    {content.detiPriceDiscount || "Pri platbe za celý kurz (10 lekcií = 20 hodín) je cena 900 €."}
-                                </div>
-                            </div>
-                        </div>
+                        <CoursePriceCard
+                            price={content.detiPrice || "100 € / 1 lekcia (2 hodiny)"}
+                            discount={content.detiPriceDiscount || "Pri platbe za celý kurz (10 lekcií = 20 hodín) je cena 900 €."}
+                        />
 
                         {/* Bottom CTA Button */}
                         <div style={{ padding: "0 56px 56px", textAlign: "center", marginTop: 32 }}>
@@ -623,7 +632,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                         </div>
 
                         {/* Outcomes & Support */}
-                        <div style={{ padding: "0 56px 56px" }}>
+                        <div className="course-outcomes-wrap" style={{ padding: "0 56px 56px" }}>
                             <div style={{ 
                                 background: "#F9FAFB", 
                                 borderRadius: 20, 
@@ -657,108 +666,39 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                         {content.dospeliSupport}
                                     </p>
                                 </div>
+                            </div>
 
-                                {/* Pricing section for Dospeli */}
-                                <div className="course-price-card" style={{
-                                    background: "linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%)", 
-                                    border: "2px solid #5BC8C8",
-                                    borderRadius: 20,
-                                    padding: "24px 32px",
-                                    maxWidth: 480,
-                                    margin: "32px auto 0",
-                                    textAlign: "center",
-                                    boxShadow: "0 4px 16px rgba(91,200,200,0.08)",
-                                    position: "relative",
-                                    overflow: "hidden"
-                                }}>
-                                    <div className="course-price-label" style={{
-                                        position: "absolute",
-                                        top: 0,
-                                        left: "50%",
-                                        transform: "translateX(-50%)",
+                            {/* Pricing section for Dospeli */}
+                            <CoursePriceCard
+                                price={content.dospeliPrice || "100 € / 1 lekcia (2 hodiny)"}
+                                discount={content.dospeliPriceDiscount || "Pri platbe za celý kurz (10 lekcií = 20 hodín) je cena 900 €."}
+                            />
+
+                            <div style={{ textAlign: "center", marginTop: 32 }}>
+                                <Link
+                                    href="/kontakt"
+                                    style={{
                                         background: "#5BC8C8",
                                         color: "white",
-                                        fontSize: 10,
-                                        fontWeight: 800,
-                                        letterSpacing: "0.05em",
-                                        padding: "3px 14px",
-                                        borderRadius: "0 0 8px 8px",
-                                        textTransform: "uppercase"
-                                    }}>
-                                        Cena & Zľava
-                                    </div>
-
-                                    <div style={{ marginTop: 8 }}>
-                                        <div className="course-price-value" style={{
-                                            fontSize: "clamp(20px, 2.5vw, 24px)",
-                                            fontWeight: 800,
-                                            color: "#1A1A1A",
-                                            fontFamily: "Playfair Display, Georgia, serif",
-                                            lineHeight: 1.15,
-                                        }}>
-                                            {content.dospeliPrice || "100 € / 1 lekcia (2 hodiny)"}
-                                        </div>
-                                    </div>
-
-                                    <div className="course-price-separator" style={{
-                                        height: 1,
-                                        background: "linear-gradient(90deg, transparent, #E5E7EB, transparent)",
-                                        margin: "14px 0"
-                                    }} />
-
-                                    <div className="course-price-discount" style={{
-                                        background: "rgba(91, 200, 200, 0.08)",
-                                        borderRadius: 12,
-                                        padding: "12px 16px",
-                                        border: "1px dashed rgba(91, 200, 200, 0.4)"
-                                    }}>
-                                        <div className="course-price-discount-title" style={{
-                                            fontSize: 11,
-                                            color: "#0E7490",
-                                            fontWeight: 700,
-                                            textTransform: "uppercase",
-                                            letterSpacing: "0.02em",
-                                            marginBottom: 4
-                                        }}>
-                                            Zvýhodnený balík
-                                        </div>
-                                        <div className="course-price-discount-text" style={{
-                                            fontSize: 13,
-                                            lineHeight: 1.6,
-                                            fontWeight: 600,
-                                            color: "#4B5563"
-                                        }}>
-                                            {content.dospeliPriceDiscount || "Pri platbe za celý kurz (10 lekcií = 20 hodín) je cena 900 €."}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div style={{ textAlign: "center", marginTop: 32 }}>
-                                    <Link
-                                        href="/kontakt"
-                                        style={{
-                                            background: "#5BC8C8",
-                                            color: "white",
-                                            borderRadius: 999,
-                                            padding: "14px 40px",
-                                            textDecoration: "none",
-                                            fontSize: 15,
-                                            fontWeight: 700,
-                                            display: "inline-block",
-                                            transition: "transform 0.2s, box-shadow 0.2s",
-                                        }}
-                                        onMouseEnter={(e) => {
-                                            e.currentTarget.style.transform = "scale(1.04)";
-                                            e.currentTarget.style.boxShadow = "0 8px 25px rgba(91,200,200,0.4)";
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            e.currentTarget.style.transform = "scale(1)";
-                                            e.currentTarget.style.boxShadow = "none";
-                                        }}
-                                    >
-                                        Mám záujem o kurz
-                                    </Link>
-                                </div>
+                                        borderRadius: 999,
+                                        padding: "14px 40px",
+                                        textDecoration: "none",
+                                        fontSize: 15,
+                                        fontWeight: 700,
+                                        display: "inline-block",
+                                        transition: "transform 0.2s, box-shadow 0.2s",
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = "scale(1.04)";
+                                        e.currentTarget.style.boxShadow = "0 8px 25px rgba(91,200,200,0.4)";
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = "scale(1)";
+                                        e.currentTarget.style.boxShadow = "none";
+                                    }}
+                                >
+                                    Mám záujem o kurz
+                                </Link>
                             </div>
                         </div>
                     </div>
