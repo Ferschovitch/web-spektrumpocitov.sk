@@ -11,11 +11,11 @@ export async function generateMetadata(): Promise<Metadata> {
     title: page?.title || "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
     description: page?.description || "Psychologická podpora a rozvoj vedomia",
     keywords: page?.keywords || "",
-    alternates: { canonical: "https://www.spektrumpocitov.sk" },
+    alternates: { canonical: "/" },
     openGraph: {
       title: page?.title || "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
       description: page?.description || "Psychologická podpora a rozvoj vedomia",
-      url: "https://www.spektrumpocitov.sk",
+      url: "https://www.spektrumpocitov.sk/",
       type: "website",
     },
   };
@@ -66,10 +66,11 @@ const defaultApproach = [
 
 export default async function HomePage() {
   const pageDb = await prisma.pageContent.findUnique({ where: { slug: "home" } });
-  const c = (pageDb?.content as any) || {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const c = (pageDb?.content as Record<string, any>) || {};
 
-  const feelingsCards = (c.feelingsCards && c.feelingsCards.length > 0) ? c.feelingsCards : defaultFeelings;
-  const approachCards = (c.approachCards && c.approachCards.length > 0) ? c.approachCards : defaultApproach;
+  const feelingsCards = ((c.feelingsCards && c.feelingsCards.length > 0) ? c.feelingsCards : defaultFeelings) as Array<Record<string, string>>;
+  const approachCards = ((c.approachCards && c.approachCards.length > 0) ? c.approachCards : defaultApproach) as Array<Record<string, string>>;
 
   return (
     <div style={{ background: "#F5F6F0" }}>
@@ -247,7 +248,7 @@ export default async function HomePage() {
             style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }}
             className="feelings-grid"
           >
-            {feelingsCards.map((card: any) => (
+            {feelingsCards.map((card) => (
               <div
                 key={card.label}
                 style={{
@@ -291,7 +292,7 @@ export default async function HomePage() {
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }} className="approach-grid">
-            {approachCards.map((card: any) => (
+            {approachCards.map((card) => (
               <div
                 key={card.title}
                 style={{

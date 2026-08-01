@@ -2,8 +2,23 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function AboutPage({ content = {} }: { content?: any }) {
-    const c = content;
+interface ValuesCard { color: string; bg: string; label: string; text: string; }
+interface Tag { label: string; color: string; bg: string; }
+interface Bullet { text: string; color: string; bg: string; }
+interface AboutContent {
+    name?: string;
+    paragraph1?: string;
+    paragraph2?: string;
+    paragraph3?: string;
+    valuesCards?: ValuesCard[];
+    valuesTitle?: string;
+    expertiseTags?: Tag[];
+    bulletPoints?: Bullet[];
+    [key: string]: unknown;
+}
+
+export default function AboutPage({ content = {} }: { content?: AboutContent | unknown }) {
+    const c = (content as AboutContent) || {};
 
     const valuesCardsData = (c.valuesCards && c.valuesCards.length > 0) ? c.valuesCards : [
         { color: "#F5C842", bg: "#fdf5d6ff", label: "Rešpekt k jedinečnosti", text: "Každý príbeh je iný, každý z nás žije iným tempom. Vytváram priestor, kde môžete byť prijatí bez strachu z toho, že vás niekto bude posudzovať." },
@@ -30,32 +45,9 @@ export default function AboutPage({ content = {} }: { content?: any }) {
         { text: "Pochopenie seba samého, konštruktívne uchopenie životných skúseností a udalostí.", color: "#F5C842", bg: "#fdf5d6ff" },
         { text: "Vnútorná sloboda a autenticita.", color: "#6DBF67", bg: "#EDF7ED" },
     ];
-    const personJsonLd = {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        name: c.name || "Mgr. Linda Stanislavová",
-        jobTitle: "Psychologička a terapeutka",
-        url: "https://www.spektrumpocitov.sk/o-mne",
-        worksFor: {
-            "@type": "Organization",
-            name: "Spektrum Pocitov",
-            url: "https://www.spektrumpocitov.sk",
-        },
-        address: {
-            "@type": "PostalAddress",
-            addressLocality: "Bratislava",
-            addressCountry: "SK",
-        },
-        telephone: "+421908500266",
-        email: "info@spektrumpocitov.sk",
-    };
 
     return (
         <div style={{ background: "#F5F6F0", minHeight: "100vh" }}>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-            />
             {/* Hero bio */}
             <section style={{ background: "white", padding: "80px 24px" }}>
                 <div
@@ -84,7 +76,7 @@ export default function AboutPage({ content = {} }: { content?: any }) {
                                 alt="Mgr. Linda Stanislavová – psychologička a terapeutka"
                                 width={500}
                                 height={420}
-                                loading="lazy"
+                                preload={true}
                                 sizes="(max-width: 900px) 100vw, 500px"
                                 style={{
                                     width: "100%",
@@ -110,17 +102,17 @@ export default function AboutPage({ content = {} }: { content?: any }) {
                             </span>
                         </h1>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 20 }}>
-                            {expertiseTagsData.map((tag: any) => (
-                                <span key={tag.label} style={{
-                                    background: tag.bg,
-                                    color: tag.color,
+                            {expertiseTagsData.map((tag: Tag) => (
+                                <span key={tag.label as string} style={{
+                                    background: tag.bg as string,
+                                    color: tag.color as string,
                                     borderRadius: 999,
                                     padding: "5px 14px",
                                     fontSize: 13,
                                     fontWeight: 600,
                                     letterSpacing: "0.01em",
                                 }}>
-                                    {tag.label}
+                                    {tag.label as string}
                                 </span>
                             ))}
                         </div>
@@ -132,13 +124,13 @@ export default function AboutPage({ content = {} }: { content?: any }) {
                             {c.paragraph3 || "Pomáham harmonizovať rodinné vzťahy a podporujem otvorenú, rešpektujúcu komunikáciu. V partnerských vzťahoch vytváram bezpečný priestor pre porozumenie, blízkosť a obnovu dôvery. Rodičom pomáham pozrieť sa na výchovu detskými očami. Keď porozumieme tomu, čo sa deje pod povrchom, dokážeme prirodzene meniť aj to, čo sa deje navonok."}
                             <br /><br />
                             <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 12 }}>
-                                {bulletPointsData.map((item: any) => (
-                                    <div key={item.text} style={{
+                                {bulletPointsData.map((item: Bullet) => (
+                                    <div key={item.text as string} style={{
                                         display: "flex", alignItems: "center", gap: 12,
-                                        background: item.bg, borderRadius: 12, padding: "10px 16px",
+                                        background: item.bg as string, borderRadius: 12, padding: "10px 16px",
                                     }}>
-                                        <div style={{ width: 8, height: 8, borderRadius: "50%", background: item.color, flexShrink: 0 }} />
-                                        <span style={{ color: "#4B5563", fontSize: 15, lineHeight: 1.6 }}>{item.text}</span>
+                                        <div style={{ width: 8, height: 8, borderRadius: "50%", background: item.color as string, flexShrink: 0 }} />
+                                        <span style={{ color: "#4B5563", fontSize: 15, lineHeight: 1.6 }}>{item.text as string}</span>
                                     </div>
                                 ))}
                             </div>
@@ -203,13 +195,13 @@ export default function AboutPage({ content = {} }: { content?: any }) {
                         <p style={{ color: "#6B7280", fontSize: 17, maxWidth: 600, margin: "0 auto" }} />
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24 }} className="values-grid">
-                        {valuesCardsData.map((card: any) => (
+                        {valuesCardsData.map((card: ValuesCard) => (
                             <div key={card.label} style={{ background: card.bg, borderRadius: 20, padding: "28px 22px", boxShadow: "0 4px 16px rgba(0,0,0,0.05)" }}>
                                 <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 14 }}>
                                     <div style={{ width: 10, height: 10, borderRadius: "50%", background: card.color }} />
                                     <span style={{ fontWeight: 700, fontSize: 17, color: "#1A1A1A", lineHeight: 1.25 }}>{card.label}</span>
                                 </div>
-                                <p style={{ color: "#4B5563", fontSize: 14, lineHeight: 1.7 }}>{card.text}</p>
+                                <p style={{ color: "#4B5563", fontSize: 14, lineHeight: 1.7 }}>{card.text as string}</p>
                             </div>
                         ))}
                     </div>

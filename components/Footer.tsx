@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks = [
     /*{ href: "/#nas-pristup", label: "Náš prístup" },
@@ -14,7 +15,8 @@ const footerLinks = [
 
 
 
-export default function Footer({ content }: { content: any }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function Footer({ content }: { content: Record<string, any> }) {
     return (
         <>
             <style>{`
@@ -36,10 +38,12 @@ export default function Footer({ content }: { content: any }) {
                         {/* Logo */}
                         <div>
                             <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", marginBottom: 12 }}>
-                                <img
-                                    src="/logo-sun.png"
+                                <Image
+                                    src="/logo-sun.webp"
                                     alt="Spektrum Pocitov logo"
-                                    style={{ width: 48, height: 48, objectFit: "contain" }}
+                                    width={48}
+                                    height={48}
+                                    style={{ objectFit: "contain" }}
                                 />
                                 <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 700, fontSize: 16, color: "white" }}>
                                     Spektrum Pocitov

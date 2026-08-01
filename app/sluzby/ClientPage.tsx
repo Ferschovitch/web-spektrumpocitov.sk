@@ -79,27 +79,44 @@ function CoursePriceCard({ price, discount }: { price: string; discount: string 
     );
 }
 
-export default function SluzbyPage({ content = {} }: { content?: any }) {
-    const serviceJsonLd = {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        name: "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
-        provider: {
-            "@type": "Person",
-            name: "Mgr. Linda Stanislavová",
-            url: "https://www.spektrumpocitov.sk/o-mne",
-        },
-        areaServed: { "@type": "City", name: "Bratislava" },
-        url: "https://www.spektrumpocitov.sk/sluzby",
-    };
+interface ServicesContent {
+    pageTitle?: string;
+    konzultaciaTitle?: string;
+    konzultaciaDesc?: string;
+    konzultaciaPrice?: string;
+    konzultaciaPriceDetails?: string;
+    konzultaciaBtn?: string;
+    treningTitle?: string;
+    treningDesc?: string;
+    treningPrice?: string;
+    treningPriceDetails?: string;
+    treningBtn?: string;
+    detiTitle?: string;
+    detiSubtitle?: string;
+    detiDesc?: string;
+    detiHelpsWith?: { text: string }[];
+    detiBenefits?: { text: string }[];
+    detiHowItWorks?: { label: string; text: string; color: string; bg: string }[];
+    detiPrice?: string;
+    detiPriceDiscount?: string;
+    detiKurzBtn?: string;
+    dospeliTitle?: string;
+    dospeliSubtitle?: string;
+    dospeliDesc?: string;
+    dospeliIntro?: { text: string }[];
+    dospeliTraining?: string;
+    dospeliBenefits?: { text: string }[];
+    dospeliOutcomes?: string;
+    dospeliSupport?: string;
+    dospeliPrice?: string;
+    dospeliPriceDiscount?: string;
+    [key: string]: unknown;
+}
 
+export default function SluzbyPage({ content = {} }: { content?: ServicesContent | unknown }) {
+    const c = (content as ServicesContent) || {};
     return (
         <div style={{ background: "#F5F6F0", minHeight: "100vh" }}>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
-            />
-
             {/* ── Hero ── */}
             <section style={{ background: "white", padding: "80px 24px 72px" }}>
                 <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
@@ -111,7 +128,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                         lineHeight: 1.2,
                         marginBottom: 20,
                     }}>
-                        {content.pageTitle || "Služby"} {" "}
+                        {c.pageTitle || "Služby"} {" "}
                         <span style={{ color: "#6DBF67", fontStyle: "italic" }}>
                         </span>
                     </h1>
@@ -151,10 +168,10 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                 lineHeight: 1.25,
                                 marginBottom: 16,
                             }}>
-                                {content.konzultaciaTitle || "Konzultácia"}
+                                {c.konzultaciaTitle || "Konzultácia"}
                             </h2>
                             <p style={{ color: "#6B7280", fontSize: 15, lineHeight: 1.7, margin: 0 }}>
-                                {content.konzultaciaDesc || "Porozprávame sa a nastavíme si spoluprácu."}
+                                {c.konzultaciaDesc || "Porozprávame sa a nastavíme si spoluprácu."}
                             </p>
 
                             {/* Elegant divider */}
@@ -173,7 +190,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     fontFamily: "Playfair Display, Georgia, serif",
                                     marginBottom: 6
                                 }}>
-                                    {content.konzultaciaPrice !== undefined ? content.konzultaciaPrice : "Cena od 50 €/hod."}
+                                    {c.konzultaciaPrice !== undefined ? c.konzultaciaPrice : "Cena od 50 €/hod."}
                                 </div>
                                 <div style={{
                                     color: "#5C616C",
@@ -181,7 +198,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     lineHeight: 1.6,
                                     fontWeight: 500
                                 }}>
-                                    {content.konzultaciaPriceDetails !== undefined ? content.konzultaciaPriceDetails : "podľa zamerania a rozsahu práce. Presná cena závisí od rozsahu a charakteru stretnutia. Dohodneme si ju vopred, ešte pred začatím spolupráce."}
+                                    {c.konzultaciaPriceDetails !== undefined ? c.konzultaciaPriceDetails : "podľa zamerania a rozsahu práce. Presná cena závisí od rozsahu a charakteru stretnutia. Dohodneme si ju vopred, ešte pred začatím spolupráce."}
                                 </div>
                             </div>
                         </div>
@@ -217,7 +234,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     e.currentTarget.style.boxShadow = "none";
                                 }}
                             >
-                                {content.konzultaciaBtn || "Mám záujem o konzultáciu"}
+                                {c.konzultaciaBtn || "Mám záujem o konzultáciu"}
                             </Link>
                         </div>
                     </div>
@@ -251,10 +268,10 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                 lineHeight: 1.25,
                                 marginBottom: 16,
                             }}>
-                                {content.treningTitle || "Tréning vybranej oblasti"}
+                                {c.treningTitle || "Tréning vybranej oblasti"}
                             </h2>
                             <p style={{ color: "#6B7280", fontSize: 15, lineHeight: 1.7, margin: 0 }}>
-                                {content.treningDesc || "Cielený rozvoj konkrétnej zručnosti."}
+                                {c.treningDesc || "Cielený rozvoj konkrétnej zručnosti."}
                             </p>
 
                             {/* Elegant divider */}
@@ -273,7 +290,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     fontFamily: "Playfair Display, Georgia, serif",
                                     marginBottom: 6
                                 }}>
-                                    {content.treningPrice !== undefined ? content.treningPrice : "Cena od 70 €/hod."}
+                                    {c.treningPrice !== undefined ? c.treningPrice : "Cena od 70 €/hod."}
                                 </div>
                                 <div style={{
                                     color: "#5C616C",
@@ -281,7 +298,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     lineHeight: 1.6,
                                     fontWeight: 500
                                 }}>
-                                    {content.treningPriceDetails !== undefined ? content.treningPriceDetails : "podľa zamerania a rozsahu práce. Presná cena závisí od rozsahu a charakteru stretnutia. Dohodneme si ju vopred, ešte pred začatím spolupráce."}
+                                    {c.treningPriceDetails !== undefined ? c.treningPriceDetails : "podľa zamerania a rozsahu práce. Presná cena závisí od rozsahu a charakteru stretnutia. Dohodneme si ju vopred, ešte pred začatím spolupráce."}
                                 </div>
                             </div>
                         </div>
@@ -317,7 +334,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     e.currentTarget.style.boxShadow = "none";
                                 }}
                             >
-                                {content.treningBtn || "Mám záujem o tréning"}
+                                {c.treningBtn || "Mám záujem o tréning"}
                             </Link>
                         </div>
                     </div>
@@ -344,9 +361,9 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                 marginBottom: 16,
                                 maxWidth: 800,
                             }}>
-                                {content.detiTitle || "Kurz rozvoja vedomia pre deti"}
+                                {c.detiTitle || "Kurz rozvoja vedomia pre deti"}
                                 <span style={{ display: "block", fontSize: "clamp(16px, 2vw, 22px)", color: "#5BC8C8", fontStyle: "italic", marginTop: 6 }}>
-                                    {content.detiSubtitle || "Extraokulárne videnie"}
+                                    {c.detiSubtitle || "Extraokulárne videnie"}
                                 </span>
 
                                 <span style={{ display: "block", fontSize: "clamp(14px, 2vw, 20px)", color: "#5BC8C8", fontStyle: "normal", marginTop: 8 }}>
@@ -365,7 +382,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                 maxWidth: 780,
                             }}>
                                 <p style={{ color: "#1A1A1A", fontSize: 16, lineHeight: 1.8, margin: 0, fontWeight: 500 }}>
-                                    {content.detiDesc || "Dieťa získa prístup k vnútornému zdroju istoty a sebadôvery, trénuje svoju pozornosť a vytrvalosť. Zručnosti, ktoré dieťa získa, si môže nosiť po celý život a pozitívne ovplyvniť akúkoľvek tému vo svojom živote."}
+                                    {c.detiDesc || "Dieťa získa prístup k vnútornému zdroju istoty a sebadôvery, trénuje svoju pozornosť a vytrvalosť. Zručnosti, ktoré dieťa získa, si môže nosiť po celý život a pozitívne ovplyvniť akúkoľvek tému vo svojom živote."}
                                 </p>
                             </div>
                         </div>
@@ -388,7 +405,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     <span style={{ fontSize: 20 }}></span> Kurz pomáha pri ťažkostiach ako:
                                 </h3>
                                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                                    {(content.detiHelpsWith || [
+                                    {(c.detiHelpsWith || [
                                         { text: "Strachy a nočné mory" },
                                         { text: "Plačlivosť a šikana" },
                                         { text: "Problémy v škole – učenie, čítanie, sústredenie" },
@@ -398,7 +415,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                         { text: "Prekážky v športe" },
                                         { text: "Problémy s autoritou" },
                                         { text: "Problémy so stravovacími návykmi, ..." },
-                                    ]).map((item: any, i: number) => (
+                                    ]).map((item: { text: string }, i: number) => (
                                         <div key={i} style={{
                                             display: "flex", alignItems: "flex-start", gap: 10,
                                             background: "#EAF6FB", borderRadius: 10, padding: "9px 14px",
@@ -425,7 +442,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     <span style={{ fontSize: 20 }}></span> Prínosy
                                 </h3>
                                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                                    {(content.detiBenefits || [
+                                    {(c.detiBenefits || [
                                         { text: "Upokojenie a dôvera v seba a v život" },
                                         { text: "Lepšie rodinné a priateľské vzťahy" },
                                         { text: "Otvorenosť emóciám a schopnosť o nich komunikovať" },
@@ -434,7 +451,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                         { text: "Rýchlejšie učenie — škola, šport, hudba" },
                                         { text: "Rozvinutá myseľ, vedomie a intuícia" },
                                         { text: "Lepšie správanie doma, v škole aj v spoločnosti" },
-                                    ]).map((item: any, i: number) => (
+                                    ]).map((item: { text: string }, i: number) => (
                                         <div key={i} style={{
                                             display: "flex", alignItems: "flex-start", gap: 10,
                                             background: "#EDF7ED", borderRadius: 10, padding: "9px 14px",
@@ -461,7 +478,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     <span style={{ fontSize: 20 }}></span> Ako prebieha
                                 </h3>
                                 <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                                    {(content.detiHowItWorks || [
+                                    {(c.detiHowItWorks || [
                                         {
                                             label: "10 lekcií",
                                             text: "Kurz 1 aj Kurz 2 obsahuje 10 lekcií, opakujúcich sa ideálne každý týždeň alebo každé 2 týždne — podľa vašich možností.",
@@ -477,7 +494,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                             text: "Druhú hodinu konzultujeme s rodičmi dporúčania na udržanie pokroku, ktorý dieťa na lekcii dosiahlo.",
                                             color: "#F5C842", bg: "#fdf5d6ff",
                                         },
-                                    ]).map((step: any) => (
+                                    ]).map((step: { label: string; text: string; color: string; bg: string }) => (
                                         <div key={step.label} style={{
                                             background: step.bg, borderRadius: 14, padding: "16px 18px",
                                         }}>
@@ -497,8 +514,8 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
 
                         {/* Pricing section for Deti */}
                         <CoursePriceCard
-                            price={content.detiPrice || "100 € / 1 lekcia (2 hodiny)"}
-                            discount={content.detiPriceDiscount || "Pri platbe za celý kurz (10 lekcií = 20 hodín) je cena 900 €."}
+                            price={c.detiPrice || "100 € / 1 lekcia (2 hodiny)"}
+                            discount={c.detiPriceDiscount || "Pri platbe za celý kurz (10 lekcií = 20 hodín) je cena 900 €."}
                         />
 
                         {/* Bottom CTA Button */}
@@ -525,7 +542,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     e.currentTarget.style.boxShadow = "none";
                                 }}
                             >
-                                {content.detiKurzBtn || "Mám záujem o kurz"}
+                                {c.detiKurzBtn || "Mám záujem o kurz"}
                             </Link>
                         </div>
                     </div>
@@ -552,9 +569,9 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                 marginBottom: 16,
                                 maxWidth: 800,
                             }}>
-                                {content.dospeliTitle || "Kurz rozvoja vedomia pre dospelých"}
+                                {c.dospeliTitle || "Kurz rozvoja vedomia pre dospelých"}
                                 <span style={{ display: "block", fontSize: "clamp(16px, 2vw, 22px)", color: "#5BC8C8", fontStyle: "italic", marginTop: 6 }}>
-                                    {content.dospeliSubtitle || "Extraokulárne videnie"}
+                                    {c.dospeliSubtitle || "Extraokulárne videnie"}
                                 </span>
                                 <span style={{ display: "block", fontSize: "clamp(14px, 2vw, 20px)", color: "#5BC8C8", fontStyle: "normal", marginTop: 8 }}>
                                     <span style={{ display: "block", marginBottom: 4 }}>Časť 1: Myseľ (10 lekcií)</span>
@@ -572,7 +589,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                 maxWidth: 780,
                             }}>
                                 <p style={{ color: "#1A1A1A", fontSize: 16, lineHeight: 1.8, margin: 0, fontWeight: 500 }}>
-                                    {content.dospeliDesc || "Smerujeme k sebapoznaniu, seba-vedomiu, sebadôvere – teda dôvere v našu intuíciu."}
+                                    {c.dospeliDesc || "Smerujeme k sebapoznaniu, seba-vedomiu, sebadôvere – teda dôvere v našu intuíciu."}
                                 </p>
                             </div>
                         </div>
@@ -590,19 +607,19 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     }}>
                                         Prebudenie vnútornej sily a intuície
                                     </h3>
-                                    {Array.isArray(content.dospeliIntro) ? (
-                                        content.dospeliIntro.map((item: any, i: number) => (
+                                    {Array.isArray(c.dospeliIntro) ? (
+                                        c.dospeliIntro.map((item: { text: string }, i: number) => (
                                             <p key={i} style={{ color: "#4B5563", fontSize: 15, lineHeight: 1.8, marginBottom: 24 }}>
                                                 {item.text}
                                             </p>
                                         ))
                                     ) : (
                                         <p style={{ color: "#4B5563", fontSize: 15, lineHeight: 1.8, marginBottom: 24 }}>
-                                            {content.dospeliIntro}
+                                            {c.dospeliIntro}
                                         </p>
                                     )}
                                     <p style={{ color: "#4B5563", fontSize: 15, lineHeight: 1.8 }}>
-                                        {content.dospeliTraining}
+                                        {c.dospeliTraining}
                                     </p>
                                 </div>
 
@@ -617,7 +634,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                         Prínosy kurzu
                                     </h3>
                                     <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                                        {(content.dospeliBenefits || []).map((item: any, i: number) => (
+                                        {(c.dospeliBenefits || []).map((item: { text: string }, i: number) => (
                                             <div key={i} style={{
                                                 display: "flex", alignItems: "flex-start", gap: 12,
                                                 background: "#EDF7ED", borderRadius: 12, padding: "12px 16px",
@@ -649,7 +666,7 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                     Čo získate v bežnom živote
                                 </h3>
                                 <p style={{ color: "#4B5563", fontSize: 15, lineHeight: 1.8, marginBottom: 24 }}>
-                                    {content.dospeliOutcomes}
+                                    {c.dospeliOutcomes}
                                 </p>
                                 
                                 <div style={{ 
@@ -663,15 +680,15 @@ export default function SluzbyPage({ content = {} }: { content?: any }) {
                                 }}>
                                     <div style={{ fontSize: 24 }}>💡</div>
                                     <p style={{ color: "#0E7490", fontSize: 14, lineHeight: 1.6, margin: 0, fontWeight: 500 }}>
-                                        {content.dospeliSupport}
+                                        {c.dospeliSupport}
                                     </p>
                                 </div>
                             </div>
 
                             {/* Pricing section for Dospeli */}
                             <CoursePriceCard
-                                price={content.dospeliPrice || "100 € / 1 lekcia (2 hodiny)"}
-                                discount={content.dospeliPriceDiscount || "Pri platbe za celý kurz (10 lekcií = 20 hodín) je cena 900 €."}
+                                price={c.dospeliPrice || "100 € / 1 lekcia (2 hodiny)"}
+                                discount={c.dospeliPriceDiscount || "Pri platbe za celý kurz (10 lekcií = 20 hodín) je cena 900 €."}
                             />
 
                             <div style={{ textAlign: "center", marginTop: 32 }}>

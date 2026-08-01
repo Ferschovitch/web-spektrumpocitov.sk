@@ -7,7 +7,7 @@ import AnalyticsTracker from "@/components/AnalyticsTracker";
 import { prisma } from "@/lib/db";
 
 const playfair = Playfair_Display({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   weight: ["400", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-serif",
@@ -16,7 +16,7 @@ const playfair = Playfair_Display({
 
 // Dropped weight "300" – not visually used anywhere on the site
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
@@ -44,9 +44,7 @@ export const metadata: Metadata = {
     "narcizmus",
     "emočná sebaregulácia",
   ],
-  alternates: {
-    canonical: "https://www.spektrumpocitov.sk",
-  },
+
   openGraph: {
     siteName: "Spektrum Pocitov",
     locale: "sk_SK",
@@ -65,11 +63,7 @@ export const metadata: Metadata = {
     site: "@spektrumpocitov",
   },
   robots: {
-    index: true,
-    follow: true,
     googleBot: {
-      index: true,
-      follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,
     },
@@ -82,7 +76,33 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const globalDb = await prisma.pageContent.findUnique({ where: { slug: 'global' } });
-  const globalContent = (globalDb?.content as any) || {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const globalContent = (globalDb?.content as Record<string, any>) || {};
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://www.spektrumpocitov.sk/#website",
+    "url": "https://www.spektrumpocitov.sk",
+    "name": "Spektrum Pocitov",
+    "inLanguage": "sk",
+  };
+
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://www.spektrumpocitov.sk/#organization",
+    "name": "Spektrum Pocitov",
+    "url": "https://www.spektrumpocitov.sk",
+    "logo": "https://www.spektrumpocitov.sk/logo-sun.webp",
+    "telephone": globalContent.footerPhone || "+421908500266",
+    "email": globalContent.footerEmail || "info@spektrumpocitov.sk",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bratislava",
+      "addressCountry": "SK",
+    },
+  };
 
   return (
     <html lang="sk" className={`${playfair.variable} ${inter.variable}`}>
@@ -90,28 +110,17 @@ export default async function RootLayout({
         {/* Preconnect to Google Fonts CDN for faster font fetching */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        {/* JSON-LD – Organization structured data */}
+        {/* JSON-LD – WebSite and Organization structured data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Spektrum Pocitov",
-              url: "https://www.spektrumpocitov.sk",
-              logo: "https://www.spektrumpocitov.sk/logo-sun.webp",
-              telephone: globalContent.footerPhone || "+421908500266",
-              email: globalContent.footerEmail || "info@spektrumpocitov.sk",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Bratislava",
-                addressCountry: "SK",
-              },
-              sameAs: [
-                "https://www.kidgenius.sk/",
-                "https://www.svetladil.cz/",
-              ],
-            }),
+            __html: JSON.stringify(websiteJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
           }}
         />
       </head>
