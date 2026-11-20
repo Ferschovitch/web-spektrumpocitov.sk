@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
-import { prisma } from "@/lib/db";
+import { getPageContent } from "@/lib/page-content";
 
 const playfair = Playfair_Display({
   subsets: ["latin", "latin-ext"],
@@ -75,7 +75,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const globalDb = await prisma.pageContent.findUnique({ where: { slug: 'global' } });
+  const globalDb = await getPageContent("global");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const globalContent = (globalDb?.content as Record<string, any>) || {};
 
@@ -90,17 +90,24 @@ export default async function RootLayout({
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["LocalBusiness", "ProfessionalService"],
     "@id": "https://www.spektrumpocitov.sk/#organization",
     "name": "Spektrum Pocitov",
+    "description": "Psychologická podpora a rozvoj vedomia pre deti, jednotlivcov, páry a rodiny v Bratislave.",
     "url": "https://www.spektrumpocitov.sk",
     "logo": "https://www.spektrumpocitov.sk/logo-sun.webp",
+    "image": "https://www.spektrumpocitov.sk/og-image.png",
     "telephone": globalContent.footerPhone || "+421908500266",
     "email": globalContent.footerEmail || "info@spektrumpocitov.sk",
+    "priceRange": "€€",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Bratislava",
       "addressCountry": "SK",
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Bratislava",
     },
   };
 

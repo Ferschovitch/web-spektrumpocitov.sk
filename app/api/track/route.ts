@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { usesLocalContent } from "@/lib/page-content";
 import { createHash } from "crypto";
 
 export async function POST(request: NextRequest) {
+    if (usesLocalContent()) {
+        return NextResponse.json({ skipped: "Local content preview" });
+    }
     try {
         let body;
         try {

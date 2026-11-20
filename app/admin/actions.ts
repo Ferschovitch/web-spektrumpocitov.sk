@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/db";
+import { savePageContentData, usesLocalContent } from "@/lib/page-content";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
@@ -42,26 +43,16 @@ export async function savePageContent(prevState: any, formData: FormData) {
     }
 
     try {
-        await prisma.pageContent.upsert({
-            where: { slug },
-            update: {
-                title,
-                description,
-                keywords,
-                content: contentValues,
-                updatedAt: new Date()
-            },
-            create: {
-                slug,
-                title,
-                description,
-                keywords,
-                content: contentValues
-            }
+        await savePageContentData({
+            slug,
+            title,
+            description,
+            keywords,
+            content: contentValues,
         });
 
         // Vytvorenie auditu
-        await prisma.auditLog.create({
+        if (!usesLocalContent()) await prisma.auditLog.create({
             data: {
                 action: "UPDATE_PAGE",
                 details: `Stranka ${slug} bola upravena`,

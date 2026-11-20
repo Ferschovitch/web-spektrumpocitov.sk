@@ -23,6 +23,7 @@ export const PAGE_SCHEMAS: Record<string, SectionSchema[]> = {
                 { name: "heroTitleHighlight1", label: "Zvýraznené slovo 1", type: "text" },
                 { name: "heroTitleMiddle", label: "Stredný text", type: "text" },
                 { name: "heroTitleHighlight2", label: "Zvýraznené slovo 2", type: "text" },
+                { name: "practitionerName", label: "Meno psychologičky nad hlavným nadpisom", type: "text" },
                 { name: "heroBody1", label: "Hlavný text (odsek 1)", type: "textarea" },
                 { name: "heroBody2", label: "Hlavný text (odsek 2)", type: "textarea" },
                 { name: "heroBody3", label: "Hlavný text (odsek 3)", type: "textarea" },
@@ -197,6 +198,22 @@ export const PAGE_SCHEMAS: Record<string, SectionSchema[]> = {
                 { name: "dospeliSupport", label: "Podporný text po lekcii", type: "textarea" },
                 { name: "dospeliPrice", label: "Cena za lekciu (napr. 100 €/1 lekcia = 2 hodiny)", type: "text" },
                 { name: "dospeliPriceDiscount", label: "Zvýhodnená cena (napr. Pri platbe za celý kurz...)", type: "textarea" }
+            ]
+        },
+        {
+            id: "faq",
+            title: "Často kladené otázky",
+            fields: [
+                { name: "faqTitle", label: "Nadpis sekcie", type: "text" },
+                {
+                    name: "faqItems",
+                    label: "Otázky a odpovede",
+                    type: "array",
+                    schema: [
+                        { name: "question", label: "Otázka", type: "text" },
+                        { name: "answer", label: "Odpoveď", type: "textarea" }
+                    ]
+                }
             ]
         }
     ],

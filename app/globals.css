@@ -71,6 +71,131 @@ h4 {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
 }
 
+.practitioner-name {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #4B5563;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+.practitioner-name:hover {
+  text-decoration: underline;
+}
+
+.practitioner-name:focus-visible,
+.faq-item summary:focus-visible {
+  outline: 3px solid #0E7490;
+  outline-offset: 5px;
+  border-radius: 6px;
+}
+
+.faq-section {
+  background: #F5F6F0;
+  padding: 0 24px 80px;
+}
+
+.faq-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-eyebrow {
+  margin-bottom: 12px;
+  color: #4B5563;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.faq-wrap h2 {
+  margin-bottom: 32px;
+  color: #1A1A1A;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+}
+
+.faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.faq-item {
+  overflow: hidden;
+  border: 1px solid #E5E7EB;
+  border-radius: 18px;
+  background: white;
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 28px;
+  color: #1A1A1A;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary:hover,
+.faq-item[open] summary {
+  background: #EAF6FB;
+}
+
+.faq-indicator {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #EAF6FB;
+}
+
+.faq-indicator::before,
+.faq-indicator::after {
+  position: absolute;
+  top: 13px;
+  left: 8px;
+  width: 12px;
+  height: 2px;
+  border-radius: 1px;
+  background: #0E7490;
+  content: "";
+}
+
+.faq-indicator::after {
+  transform: rotate(90deg);
+}
+
+.faq-item[open] .faq-indicator::after {
+  transform: rotate(0);
+}
+
+.faq-item > p {
+  padding: 20px 28px 26px;
+  color: #4B5563;
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .faq-section { padding: 0 20px 48px; }
+  .faq-item summary { padding: 20px; gap: 12px; font-size: 16px; }
+  .faq-item > p { padding: 16px 20px 22px; }
+}
+
 /* Blob shapes */
 .blob {
   border-radius: 50%;

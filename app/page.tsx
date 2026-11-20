@@ -3,22 +3,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import CarouselSection from "@/components/CarouselSection";
-import { prisma } from "@/lib/db";
+import { getPageContent } from "@/lib/page-content";
+import { getPageMetadata } from "@/lib/page-metadata";
+import copy from "@/content/client-copy.json";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await prisma.pageContent.findUnique({ where: { slug: "home" } });
-  return {
-    title: page?.title || "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
-    description: page?.description || "Psychologická podpora a rozvoj vedomia",
-    keywords: page?.keywords || "",
-    alternates: { canonical: "/" },
-    openGraph: {
-      title: page?.title || "Spektrum Pocitov – spojenie tradičnej a alternatívnej psychológie",
-      description: page?.description || "Psychologická podpora a rozvoj vedomia",
-      url: "https://www.spektrumpocitov.sk/",
-      type: "website",
-    },
-  };
+  return getPageMetadata("home", await getPageContent("home"));
 }
 
 const defaultFeelings = [
@@ -65,7 +55,7 @@ const defaultApproach = [
 ];
 
 export default async function HomePage() {
-  const pageDb = await prisma.pageContent.findUnique({ where: { slug: "home" } });
+  const pageDb = await getPageContent("home");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const c = (pageDb?.content as Record<string, any>) || {};
 
@@ -113,6 +103,9 @@ export default async function HomePage() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="hero-grid">
           {/* Left: text */}
           <div>
+            <Link href="/o-mne" className="practitioner-name">
+              {c.practitionerName || copy.pages.home.content.practitionerName}
+            </Link>
             <h1
               style={{
                 fontFamily: "Playfair Display, Georgia, serif",

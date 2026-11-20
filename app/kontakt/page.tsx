@@ -1,30 +1,14 @@
 import type { Metadata } from "next";
-import { prisma } from "@/lib/db";
+import { getPageContent } from "@/lib/page-content";
+import { getPageMetadata } from "@/lib/page-metadata";
 import ClientPage from "./ClientPage";
 
 export async function generateMetadata(): Promise<Metadata> {
-    const page = await prisma.pageContent.findUnique({ where: { slug: "kontakt" } });
-    return {
-        title: { absolute: page?.title || "Kontakt – Spektrum Pocitov" },
-        description: page?.description || "Kontaktujte nás – napíšte alebo zavolajte Mgr. Linde Stanislavovej.",
-        keywords: page?.keywords || "",
-        alternates: { canonical: "/kontakt" },
-        openGraph: {
-            title: page?.title || "Kontakt – Spektrum Pocitov",
-            description: page?.description || "Kontaktujte nás – napíšte alebo zavolajte Mgr. Linde Stanislavovej.",
-            url: "https://www.spektrumpocitov.sk/kontakt",
-            type: "website",
-        },
-        twitter: {
-            card: "summary",
-            title: "Kontakt | Spektrum Pocitov",
-            description: "Napíšte alebo zavolajte a dohodneme si konzultáciu v Bratislave.",
-        },
-    };
+    return getPageMetadata("kontakt", await getPageContent("kontakt"));
 }
 
 export default async function ContactPageWrapper() {
-    const pageDb = await prisma.pageContent.findUnique({ where: { slug: "kontakt" } });
+    const pageDb = await getPageContent("kontakt");
     const content = (pageDb?.content as Record<string, unknown>) || {};
 
     const contactPageJsonLd = {

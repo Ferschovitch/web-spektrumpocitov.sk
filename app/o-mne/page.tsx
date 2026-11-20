@@ -1,30 +1,14 @@
 import type { Metadata } from "next";
-import { prisma } from "@/lib/db";
+import { getPageContent } from "@/lib/page-content";
+import { getPageMetadata } from "@/lib/page-metadata";
 import ClientPage from "./ClientPage";
 
 export async function generateMetadata(): Promise<Metadata> {
-    const page = await prisma.pageContent.findUnique({ where: { slug: "o-mne" } });
-    return {
-        title: { absolute: page?.title || "O mne – Mgr. Linda Stanislavová | Spektrum Pocitov" },
-        description: page?.description || "Psychologička, koučka a lektorka rozvoja mysle, vedomia a intuície. Venujem sa deťom, jednotlivcom, párom aj rodinám.",
-        keywords: page?.keywords || "",
-        alternates: { canonical: "/o-mne" },
-        openGraph: {
-            title: page?.title || "O mne – Mgr. Linda Stanislavová | Spektrum Pocitov",
-            description: page?.description || "Psychologička, koučka a lektorka rozvoja mysle, vedomia a intuície.",
-            url: "https://www.spektrumpocitov.sk/o-mne",
-            type: "profile",
-        },
-        twitter: {
-            card: "summary_large_image",
-            title: "O nás – Mgr. Linda Stanislavová | Spektrum Pocitov",
-            description: "Spoznajte Mgr. Lindu Stanislavovú – psychologičku a lektorku rozvoja mysle.",
-        },
-    };
+    return getPageMetadata("o-mne", await getPageContent("o-mne"));
 }
 
 export default async function AboutPageWrapper() {
-    const page = await prisma.pageContent.findUnique({ where: { slug: "o-mne" } });
+    const page = await getPageContent("o-mne");
     const content = (page?.content as Record<string, unknown>) || {};
 
     const personJsonLd = {

@@ -1,0 +1,94 @@
+{
+  "keywords": [
+    "psychologička Bratislava",
+    "psychológ Bratislava",
+    "psychologická podpora a poradenstvo Bratislava",
+    "terapia a podpora pre deti a rodičov",
+    "rodinná dynamika",
+    "párová komunikácia",
+    "párová terapia",
+    "otvorená komunikácia",
+    "efektívna komunikácia",
+    "zdravé vzťahy",
+    "krízová intervencia a pomoc v náročných obdobiach",
+    "kurz Extraokulárneho videnia",
+    "Vision Extra Ocular",
+    "VEO",
+    "intuícia",
+    "spojenie s intuíciou",
+    "spojenie so sebou",
+    "odpoveď vo vnútri",
+    "odpoveď v sebe",
+    "spojenie so svojím vnútrom",
+    "vnútorné dieťa",
+    "emocionálne zranenia",
+    "trauma",
+    "posttraumatická stresová porucha",
+    "PTSD",
+    "panický záchvat",
+    "panický atak",
+    "panic attack",
+    "zrkadlenie vo vzťahoch",
+    "psychoterapia",
+    "Theta Healing",
+    "Theta liečenie",
+    "Etikoterapia",
+    "riešenie toxických vzťahov",
+    "manipulácia",
+    "narcizmus",
+    "emočná sebaregulácia u detí",
+    "strachy",
+    "šikana v škole",
+    "autogénny tréning",
+    "relaxačné techniky",
+    "meditácia"
+  ],
+  "pages": {
+    "home": {
+      "title": "Spektrum Pocitov | Psychologická podpora a rozvoj vedomia – Bratislava / Mgr. Linda Stanislavová | Psychologička Bratislava",
+      "description": "Konzultácie, cielené tréningy zručností a kurzy Extraokulárneho videnia (Vision Extra Ocular) pre deti i dospelých. Spojenie tradičnej a alternatívnej psychológie.",
+      "content": {
+        "practitionerName": "Mgr. Linda Stanislavová"
+      }
+    },
+    "sluzby": {
+      "title": "Služby a cenník – Terapia, konzultácie a kurzy | Spektrum Pocitov",
+      "description": "Konzultácie, cielené tréningy zručností a kurzy Extraokulárneho videnia (Vision Extra Ocular) pre deti i dospelých. Cenník a priebeh stretnutí.",
+      "content": {
+        "faqTitle": "Často kladené otázky",
+        "faqItems": [
+          {
+            "question": "Ako prebieha prvé stretnutie a čo si mám pripraviť?",
+            "answer": "Na prvom stretnutí sa zoznámime, porozprávame sa o možnostiach riešenia Vašej situácie a dohodneme sa na základných detailoch spolupráce. Podľa konkrétnej situácie môžeme rovno prejsť aj k riešeniu."
+          },
+          {
+            "question": "Dá sa stretnúť aj online, alebo len osobne v Bratislave?",
+            "answer": "Áno, okrem osobných stretnutí v Bratislave ponúkam aj možnosť online konzultácií."
+          },
+          {
+            "question": "Pre koho je vhodný kurz Extraokulárneho videnia a od akého veku dieťaťa?",
+            "answer": "Kurz Extraokulárneho videnia je vhodný pre deti aj dospelých, ktorí si chcú dopriať psychický relax, uvoľnenie, vnútornú rovnováhu pri riešení problémov, spojenie s intuíciou a rozvíjať schopnosť správne sa rozhodovať. Ďalšie informácie nájdete vyššie v časti Prínosy kurzu. Kurz je vhodný pre deti približne od 7 rokov. Záleží však na konkrétnom dieťati, jeho zrelosti, aktuálnych schopnostiach a možnostiach."
+          },
+          {
+            "question": "Koľko sedení zvyčajne potrebujeme?",
+            "answer": "Počet sedení je individuálny. Závisí od konkrétneho problému, nastavenia klienta a mnohých ďalších faktorov."
+          },
+          {
+            "question": "Ako je to s diskrétnosťou a súkromím?",
+            "answer": "To, čo mi zveríte, považujem za dôverné. Zachovanie súkromia klienta je jednou z hlavných hodnôt mojej poradne. S Vašimi informáciami zaobchádzam diskrétne a s rešpektom k Vášmu súkromiu."
+          }
+        ]
+      }
+    },
+    "o-mne": {
+      "title": "O mne – Mgr. Linda Stanislavová | Psychologička Bratislava",
+      "description": "Som psychologička, koučka a lektorka rozvoja vedomia. Pomáham deťom, jednotlivcom i párom nájsť vnútornú rovnováhu a harmonické vzťahy.",
+      "content": {}
+    },
+    "kontakt": {
+      "title": "Kontakt – Spektrum Pocitov | Konzultácie Bratislava",
+      "description": "Máš otázky alebo si chceš dohodnúť termín konzultácie? Zavolaj alebo napíš Mgr. Linde Stanislavovej v Bratislave.",
+      "content": {}
+    }
+  }
+}
